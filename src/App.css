@@ -6,3 +6,12 @@
   margin: 0;
   padding: 0;
 }
+
+#root {
+  background-color: #f8f8f8;
+}
+
+.selected {
+  font-size: 2.5rem;
+  color: #730fc3
+}
