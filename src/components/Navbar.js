@@ -54,13 +54,14 @@ const NavContainer = styled.nav`
     justify-content: space-between;
     color: #551a8b;
     overflow: hidden;
-    position: fixed;
+    position: sticky;
 
     @media screen and (max-width: 500px) {
         width: 100vw;
         height: 60px;
         bottom: 0;
         flex-direction: row;
+        position: fixed;
     }
 `;
 
