@@ -1,10 +1,37 @@
+import React from 'react';
 import './App.css';
+import Navbar from './components/Navbar';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Ticket Punch</h1>
-    </div>
+    <Router>
+      <>
+      <Navbar />
+
+        <Switch>
+          <Route path="/tickets">
+
+          </Route>
+
+          <Route path="/history">
+
+          </Route>
+
+          <Route path="/profile">
+
+          </Route>
+
+          <Route path="/">
+
+          </Route>
+        </Switch>
+      </>
+    </Router>
   );
 }
 
