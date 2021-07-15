@@ -2,36 +2,43 @@ import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { GiBoxingGlove } from 'react-icons/gi';
-import { FaTicketAlt } from 'react-icons/fa';
-import { FaHistory } from 'react-icons/fa';
-import { FaRegQuestionCircle } from 'react-icons/fa';
-import { MdAccountCircle } from 'react-icons/md';
+import { IoTicketOutline } from 'react-icons/io5';
+import { VscHistory } from 'react-icons/vsc';
+import { IoHelpCircleOutline } from 'react-icons/io5';
+import { VscAccount } from 'react-icons/vsc';
 
 const Navbar = () => {
     return (
         <NavContainer>
-    
-                <NavChunk>
-                    <NavLink exact to="/" activeStyle={link_style}>
-                        <GiBoxingGlove />
-                    </NavLink>
 
-                    <NavLink to="/tickets" activeStyle={link_style}>
-                        <FaTicketAlt />
-                    </NavLink>
+            <NavChunk>
+                <StyledNavLink exact to="/">
+                    <GiBoxingGlove />
+                    <LinkTitle>Projects</LinkTitle>
+                </StyledNavLink>
 
-                    <NavLink to="/history" activeStyle={link_style}>
-                        <FaHistory />
-                    </NavLink>
-                </NavChunk>
+                <StyledNavLink to="/tickets">
+                    <IoTicketOutline />
+                    <LinkTitle>Tickets</LinkTitle>
+                </StyledNavLink>
 
-                <NavChunk>
-                    <FaRegQuestionCircle />
+                <StyledNavLink to="/history">
+                    <VscHistory />
+                    <LinkTitle>History</LinkTitle>
+                </StyledNavLink>
+            </NavChunk>
 
-                    <NavLink to="/profile" activeStyle={link_style}>
-                        <MdAccountCircle />
-                    </NavLink>
-                </NavChunk>
+            <NavChunk>
+                <ModalIcon>
+                    <IoHelpCircleOutline />
+                    <LinkTitle>Help</LinkTitle>
+                </ModalIcon>
+
+                <StyledNavLink to="/profile">
+                    <VscAccount />
+                    <LinkTitle>Profile</LinkTitle>
+                </StyledNavLink>
+            </NavChunk>
 
         </NavContainer>
     );
@@ -47,7 +54,7 @@ const NavContainer = styled.nav`
     width: 60px;
     height: 100vh;
     float: left;
-    background-color: #b987e1;
+    background-color: #303134;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -66,7 +73,7 @@ const NavContainer = styled.nav`
 `;
 
 const NavChunk = styled.div`
-    font-size: 2rem;
+    font-size: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -78,12 +85,35 @@ const NavChunk = styled.div`
         flex-direction: row;
         align-items: center;
         justify-content: space-evenly;
-        width: 100%;
-        height: 250px;
+        max-width: 250px;
+        height: 100%;
     }
 `;
 
-const link_style = {
-    color: "#fff",
-    fontSize: "2.7rem",
-};
+const StyledNavLink = styled(NavLink)`
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: #9AA0A6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &.active{
+        color: #A25DDC;
+    }
+`;
+
+const LinkTitle = styled.h5`
+    font-size: 0.75rem;
+    font-weight: 400;
+    padding: 3px;
+`;
+
+const ModalIcon = styled.div`
+    font-size: 1.6rem;
+    text-decoration: none;
+    color: #9AA0A6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
