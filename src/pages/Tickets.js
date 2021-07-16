@@ -22,7 +22,7 @@ const Tickets = () => {
                 <Bar className="stuck">
                     <StatusTitle>Stuck</StatusTitle>
                     <CardContainer>
-                        <Card bug={true}cardTitle={"Deploy to Heroku"} />
+                        <Card bug={true} cardTitle={"Deploy to Heroku"} />
                     </CardContainer>
                 </Bar>
                 <Bar className="working-on-it">

@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Projects from './pages/Projects';
 import Tickets from './pages/Tickets';
+import History from './pages/History';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
           </Route>
 
           <Route path="/history">
-
+            <History />
           </Route>
 
           <Route path="/profile">
