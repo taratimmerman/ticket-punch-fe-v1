@@ -7,6 +7,7 @@ import {
   Route
 } from "react-router-dom";
 import Projects from './pages/Projects';
+import Tickets from './pages/Tickets';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
 
         <Switch>
           <Route path="/tickets">
-
+            <Tickets />
           </Route>
 
           <Route path="/history">

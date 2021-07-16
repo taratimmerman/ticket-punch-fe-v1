@@ -11,7 +11,7 @@ export const PageContainer = styled.section`
 `;
 
 export const Greeting = styled.h1`
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: #888D93;
 
     @media screen and (max-width: 500px) {
@@ -35,20 +35,81 @@ export const PageTitle = styled.h2`
 
 // BUTTONS
 
-export const PurpleButtonPrimary = styled.button`
+export const SolidButton = styled.button`
     border-radius: 8px;
     border: none;
     height: 40px;
     width: 140px;
-    background-color: #A25DDC;
     color: #E8EAED;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
 
     :hover{
-        background-color: darkorchid;
         cursor: pointer;
-        transition: 0.5s;
+    }
+
+    &.purple{
+        background-color: #A25DDC;
+    }
+
+    &.red{
+        background-color: #E2445C;
+    }
+
+    &.yellow{
+        background-color: #FDAB3D;
+        color: #303134;
+    }
+
+    &.green{
+        background-color: #00C875;
+    }
+`;
+
+export const OutlineButton = styled.button`
+    border-radius: 8px;
+    border: 2px solid;
+    background-color: transparent;
+    height: 40px;
+    width: 140px;
+    font-size: 0.85rem;
+    box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
+
+    :hover{
+        cursor: pointer;
+    }
+
+    &.purple{
+        border-color: #A25DDC;
+        color: #A25DDC;
+    }
+
+    &.red{
+        border-color: #E2445C;
+        color: #E2445C;
+    }
+
+    &.yellow{
+        border-color: #FDAB3D;
+        color: #FDAB3D;
+    }
+
+    &.green{
+        border-color: #00C875;
+        color: #00C875;
+    }
+`;
+
+// KANBAN CONTAINER
+
+export const KanbanContainer = styled.section`
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 100%;
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
     }
 `;
 
