@@ -3,10 +3,10 @@ import styled from 'styled-components';
 // PAGE NEUTRAL/DYNAMIC STYLED COMPONENTS:
 
 export const PageContainer = styled.section`
-    padding: 30px 30px 0 100px;
+    padding: 30px 30px 30px 90px;
     color: #E8EAED;
         @media screen and (max-width: 500px) {
-            padding: 30px;
+            padding: 30px 30px 90px 30px;
         }
 `;
 
@@ -20,10 +20,11 @@ export const Greeting = styled.h1`
 `;
 
 export const PageTitleWrapper = styled.div`
-    height: 50px;
+    height: 55px;
     width: 100%;
     margin: 18px 0;
-    border-bottom: 1px #888D93 solid;
+    background-color: #303134;
+    border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -31,6 +32,14 @@ export const PageTitleWrapper = styled.div`
 
 export const PageTitle = styled.h2`
     width: 100%;
+    margin: 8px 15px;
+
+    @media screen and (max-width: 500px) {
+            font-size: 1.5rem;
+        }
+    @media screen and (max-width: 300px) {
+            font-size: 1rem;
+        }
 `;
 
 // BUTTONS
@@ -43,6 +52,7 @@ export const SolidButton = styled.button`
     color: #E8EAED;
     font-size: 0.85rem;
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
+    margin: 8px;
 
     :hover{
         cursor: pointer;
@@ -64,6 +74,10 @@ export const SolidButton = styled.button`
     &.green{
         background-color: #00C875;
     }
+
+    @media screen and (max-width: 300px) {
+        font-size: 0.70rem;
+        }
 `;
 
 export const OutlineButton = styled.button`
@@ -74,7 +88,8 @@ export const OutlineButton = styled.button`
     width: 140px;
     font-size: 0.85rem;
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
-
+    margin: 8px;
+    
     :hover{
         cursor: pointer;
     }
@@ -98,13 +113,17 @@ export const OutlineButton = styled.button`
         border-color: #00C875;
         color: #00C875;
     }
+
+    @media screen and (max-width: 300px) {
+        font-size: 0.70rem;
+        }
 `;
 
 // KANBAN CONTAINER
 
 export const KanbanContainer = styled.section`
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     width: 100%;
     height: 100%;
 
