@@ -135,6 +135,10 @@ export const Bar = styled.section`
     &.done {
         background-color: #00C875;
     }
+
+    &.archive {
+        background-color: #A25DDC;
+    }
 `;
 
 export const StatusTitle = styled.h3`

@@ -2,25 +2,34 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { ImBug } from "react-icons/im";
+import { VscHistory } from 'react-icons/vsc';
 
 const Card = props => {
     if (props.bug) {
         return (
             <CardWrapper>
-                <CardTitle>{props.cardTitle}</CardTitle>
+                <h4>{props.cardTitle}</h4>
                 <ImBug />
+            </CardWrapper>);
+    }
+    if (props.archived) {
+        return (
+            <CardWrapper>
+                <h4>{props.cardTitle}</h4>
+                <VscHistory />
             </CardWrapper>);
     }
     return (
         <CardWrapper>
-            <CardTitle>{props.cardTitle}</CardTitle>
+            <h4>{props.cardTitle}</h4>
         </CardWrapper>
     );
 };
 
 Card.propTypes = {
     cardTitle: PropTypes.string,
-    bug: PropTypes.boolean
+    bug: PropTypes.boolean,
+    archived: PropTypes.boolean
 };
 
 export default Card;
@@ -43,8 +52,4 @@ const CardWrapper = styled.div`
         cursor: pointer;
         transition: 0.5s;
     }
-`;
-
-const CardTitle = styled.h3`
-
 `;
