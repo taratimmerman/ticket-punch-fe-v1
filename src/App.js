@@ -9,6 +9,7 @@ import {
 import Projects from './pages/Projects';
 import Tickets from './pages/Tickets';
 import History from './pages/History';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
           </Route>
 
           <Route path="/profile">
-
+            <Profile />
           </Route>
 
           <Route path="/">
