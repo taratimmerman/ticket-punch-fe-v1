@@ -28,8 +28,8 @@ const Card = props => {
 
 Card.propTypes = {
     cardTitle: PropTypes.string,
-    bug: PropTypes.boolean,
-    archived: PropTypes.boolean
+    bug: PropTypes.bool,
+    archived: PropTypes.bool
 };
 
 export default Card;

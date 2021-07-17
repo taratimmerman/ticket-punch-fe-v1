@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { GiBoxingGlove } from 'react-icons/gi';
@@ -6,8 +6,22 @@ import { IoTicketOutline } from 'react-icons/io5';
 import { VscHistory } from 'react-icons/vsc';
 import { IoHelpCircleOutline } from 'react-icons/io5';
 import { VscAccount } from 'react-icons/vsc';
+import {
+    SolidButton,
+    OutlineButton,
+} from '../styling/PageStyling';
+import {
+    ModalContainer,
+    ModalCircle,
+    ModalAction,
+    ModalDetails,
+    ModalButtonContainer
+} from '../styling/ModalStyling';
 
 const Navbar = () => {
+
+    const [questionsIsOpen, setQuestionsIsOpen] = useState(false);
+
     return (
         <NavContainer>
 
@@ -29,10 +43,22 @@ const Navbar = () => {
             </NavChunk>
 
             <NavChunk>
-                <ModalIcon>
+                <HelpIcon onClick={() => setQuestionsIsOpen(true)}>
                     <IoHelpCircleOutline />
                     <LinkTitle>Help</LinkTitle>
-                </ModalIcon>
+                </HelpIcon>
+
+                <ModalContainer className="yellow" isOpen={questionsIsOpen} onRequestClose={() => setQuestionsIsOpen(false)}>
+                    <ModalCircle className="yellow">
+                        <IoHelpCircleOutline />
+                    </ModalCircle>
+                    <ModalAction>Questions?</ModalAction>
+                    <ModalDetails>Email the dev!</ModalDetails>
+                    <ModalButtonContainer>
+                        <OutlineButton className="yellow" onClick={() => setQuestionsIsOpen(false)}>Cancel</OutlineButton>
+                        <SolidButton className="yellow">Email Tara</SolidButton>
+                    </ModalButtonContainer>
+                </ModalContainer>
 
                 <StyledNavLink to="/profile">
                     <VscAccount />
@@ -117,15 +143,23 @@ const LinkTitle = styled.h5`
     padding: 3px;
 `;
 
-const ModalIcon = styled.div`
-    font-size: 1.6rem;
+const HelpIcon = styled.div`
+    font-size: 1.8rem;
     text-decoration: none;
     color: #9AA0A6;
     display: flex;
     flex-direction: column;
     align-items: center;
 
+    @media screen and (max-width: 500px) {
+        font-size: 1.5rem;
+    }
+
     @media screen and (max-width: 320px) {
         font-size: 1.3rem;
+    }
+
+    :hover{
+        cursor: pointer;
     }
 `;

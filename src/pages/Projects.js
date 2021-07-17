@@ -10,7 +10,7 @@ import {
     Bar,
     StatusTitle,
     CardContainer
-} from './PageStyling';
+} from '../styling/PageStyling';
 
 const Projects = () => {
     return (

@@ -9,7 +9,7 @@ import {
     Bar,
     StatusTitle,
     CardContainer
-} from './PageStyling';
+} from '../styling/PageStyling';
 
 const Tickets = () => {
     return (

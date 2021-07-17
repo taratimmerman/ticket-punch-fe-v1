@@ -4,7 +4,7 @@ import {
     PageTitleWrapper,
     PageTitle,
     OutlineButton
-} from './PageStyling';
+} from '../styling/PageStyling';
 import { VscAccount } from 'react-icons/vsc';
 import { BsPencil } from 'react-icons/bs';
 import { BsTrash } from 'react-icons/bs';
