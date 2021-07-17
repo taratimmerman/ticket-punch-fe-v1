@@ -8,20 +8,20 @@ const Card = props => {
     if (props.bug) {
         return (
             <CardWrapper>
-                <h4>{props.cardTitle}</h4>
+                <CardTitle>{props.cardTitle}</CardTitle>
                 <ImBug />
             </CardWrapper>);
     }
     if (props.archived) {
         return (
             <CardWrapper>
-                <h4>{props.cardTitle}</h4>
+                <CardTitle>{props.cardTitle}</CardTitle>
                 <VscHistory />
             </CardWrapper>);
     }
     return (
         <CardWrapper>
-            <h4>{props.cardTitle}</h4>
+            <CardTitle>{props.cardTitle}</CardTitle>
         </CardWrapper>
     );
 };
@@ -51,5 +51,11 @@ const CardWrapper = styled.div`
         opacity: 0.8;
         cursor: pointer;
         transition: 0.5s;
+    }
+`;
+
+const CardTitle = styled.h4`
+    @media screen and (max-width: 320px) {
+        font-size: 0.90rem;
     }
 `;

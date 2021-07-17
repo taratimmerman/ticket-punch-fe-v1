@@ -15,7 +15,7 @@ const Tickets = () => {
     return (
         <PageContainer className="page">
             <PageTitleWrapper>
-                <PageTitle>Your tickets</PageTitle>
+                <PageTitle>Tickets</PageTitle>
                 <SolidButton className="purple">New Ticket</SolidButton>
             </PageTitleWrapper>
             <KanbanContainer>

@@ -14,7 +14,7 @@ const History = () => {
     return (
         <PageContainer className="page">
             <PageTitleWrapper>
-                <PageTitle>Your history</PageTitle>
+                <PageTitle>History</PageTitle>
             </PageTitleWrapper>
             <KanbanContainer>
                 <Bar className="archive">

@@ -63,12 +63,16 @@ const NavContainer = styled.nav`
     overflow: hidden;
     position: sticky;
 
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 540px) {
         width: 100vw;
         height: 60px;
         bottom: 0;
         flex-direction: row;
         position: fixed;
+    }
+
+    @media screen and (max-width: 320px) {
+        height: 50px;
     }
 `;
 
@@ -81,11 +85,11 @@ const NavChunk = styled.div`
     width: 100%;
     height: 250px;
 
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 540px) {
         flex-direction: row;
         align-items: center;
         justify-content: space-evenly;
-        max-width: 250px;
+        max-width: 50%;
         height: 100%;
     }
 `;
@@ -100,6 +104,10 @@ const StyledNavLink = styled(NavLink)`
 
     &.active{
         color: #A25DDC;
+    }
+
+    @media screen and (max-width: 320px) {
+        font-size: 1.3rem;
     }
 `;
 
@@ -116,4 +124,8 @@ const ModalIcon = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    @media screen and (max-width: 320px) {
+        font-size: 1.3rem;
+    }
 `;
