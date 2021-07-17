@@ -48,7 +48,13 @@ const Navbar = () => {
                     <LinkTitle>Help</LinkTitle>
                 </HelpIcon>
 
-                <ModalContainer className="yellow" isOpen={questionsIsOpen} onRequestClose={() => setQuestionsIsOpen(false)}>
+                <ModalContainer
+                className="yellow"
+                isOpen={questionsIsOpen}
+                onRequestClose={() => setQuestionsIsOpen(false)}
+                closeTimeoutMS={200}
+                contentLabel="modal"
+                >
                     <ModalCircle className="yellow">
                         <IoHelpCircleOutline />
                     </ModalCircle>
