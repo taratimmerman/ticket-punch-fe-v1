@@ -6,17 +6,23 @@ export const PageContainer = styled.section`
     padding: 30px 30px 30px 90px;
     color: #E8EAED;
     z-index: -99;
-        @media screen and (max-width: 500px) {
+        @media screen and (max-width: 540px) {
             padding: 30px 30px 90px 30px;
+        }
+        @media screen and (max-width: 320px) {
+            padding: 30px 30px 70px 30px;
         }
 `;
 
 export const Greeting = styled.h1`
-    font-size: 2.2rem;
+    font-size: 2rem;
     color: #888D93;
 
     @media screen and (max-width: 500px) {
-            font-size: 2rem;
+            font-size: 1.8rem;
+        }
+    @media screen and (max-width: 360px) {
+        font-size: 1.5rem;
         }
 `;
 
@@ -78,7 +84,7 @@ export const SolidButton = styled.button`
         background-color: #00C875;
     }
 
-    @media screen and (max-width: 300px) {
+    @media screen and (max-width: 360px) {
         font-size: 0.70rem;
         }
 `;
@@ -119,7 +125,7 @@ export const OutlineButton = styled.button`
         color: #00C875;
     }
 
-    @media screen and (max-width: 300px) {
+    @media screen and (max-width: 360px) {
         font-size: 0.70rem;
         }
 `;

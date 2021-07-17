@@ -13,7 +13,7 @@ const Profile = () => {
     return (
         <ProfileContainer className="page">
             <PageTitleWrapper>
-                <PageTitle>Your profile</PageTitle>
+                <PageTitle>Profile</PageTitle>
                 <OutlineButton className="purple">Log out</OutlineButton>
             </PageTitleWrapper>
             <ProfileInfoContainer>

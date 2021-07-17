@@ -17,7 +17,7 @@ const Projects = () => {
         <PageContainer className="page">
             <Greeting>Welcome to Ticket Punch, Guest</Greeting>
             <PageTitleWrapper>
-                <PageTitle>Your projects</PageTitle>
+                <PageTitle>Projects</PageTitle>
                 <SolidButton className="purple">New Project</SolidButton>
             </PageTitleWrapper>
             <KanbanContainer>
