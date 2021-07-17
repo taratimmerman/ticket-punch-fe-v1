@@ -14,7 +14,7 @@ import {
 
 const Projects = () => {
     return (
-        <PageContainer>
+        <PageContainer className="page">
             <Greeting>Welcome to Ticket Punch, Guest</Greeting>
             <PageTitleWrapper>
                 <PageTitle>Your projects</PageTitle>

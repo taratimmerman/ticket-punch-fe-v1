@@ -5,6 +5,7 @@ import styled from 'styled-components';
 export const PageContainer = styled.section`
     padding: 30px 30px 30px 90px;
     color: #E8EAED;
+    z-index: -99;
         @media screen and (max-width: 500px) {
             padding: 30px 30px 90px 30px;
         }
@@ -56,6 +57,8 @@ export const SolidButton = styled.button`
 
     :hover{
         cursor: pointer;
+        opacity: 0.8;
+        transition-duration: 0.3s;
     }
 
     &.purple{
@@ -92,6 +95,8 @@ export const OutlineButton = styled.button`
     
     :hover{
         cursor: pointer;
+        opacity: 0.8;
+        transition-duration: 0.3s;
     }
 
     &.purple{

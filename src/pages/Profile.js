@@ -11,7 +11,7 @@ import { BsTrash } from 'react-icons/bs';
 
 const Profile = () => {
     return (
-        <ProfileContainer>
+        <ProfileContainer className="page">
             <PageTitleWrapper>
                 <PageTitle>Your profile</PageTitle>
                 <OutlineButton className="purple">Log out</OutlineButton>
@@ -70,20 +70,20 @@ const Username = styled.h1`
 
 const ProfileActionContainer = styled.div`
     height: 55px;
-    width: 100%;
-    margin: 16px 0;
-    background-color: #303134;
+    width: 50%;
+    margin: 0 25%;
     border-radius: 8px;
     display: flex;
     align-content: center;
-    justify-content: center;
+    justify-content: space-evenly;
 `;
 
 const ProfileActionWrapper = styled.div`
     font-size: 2rem;
     color: #9AA0A6;
-    margin: 8px;
     text-align: center;
+    height: 55px;
+    width: 55px;
 
         :hover{
             color: #A25DDC;

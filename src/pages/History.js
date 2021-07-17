@@ -12,7 +12,7 @@ import {
 
 const History = () => {
     return (
-        <PageContainer>
+        <PageContainer className="page">
             <PageTitleWrapper>
                 <PageTitle>Your history</PageTitle>
             </PageTitleWrapper>
