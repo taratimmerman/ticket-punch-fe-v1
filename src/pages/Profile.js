@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import {
     PageTitleWrapper,
     PageTitle,
-    OutlineButton
+    OutlineButton,
+    SolidButton
 } from '../styling/PageStyling';
 import { VscAccount } from 'react-icons/vsc';
 import { BsPencil } from 'react-icons/bs';
 import { BsTrash } from 'react-icons/bs';
+import {
+    ModalContainer,
+    ModalCircle,
+    ModalAction,
+    ModalDetails,
+    ModalButtonContainer
+} from '../styling/ModalStyling';
 
 const Profile = () => {
+
+    const [deleteIsOpen, setDeleteIsOpen] = useState(false);
+
     return (
         <ProfileContainer className="page">
             <PageTitleWrapper>
@@ -21,9 +32,32 @@ const Profile = () => {
                 <Username>Guest</Username>
             </ProfileInfoContainer>
             <ProfileActionContainer>
-                <ProfileActionWrapper>
+                <ProfileActionWrapper onClick={() => setDeleteIsOpen(true)}>
                     <BsTrash />
                 </ProfileActionWrapper>
+
+                <ModalContainer
+                className="red"
+                isOpen={deleteIsOpen} onRequestClose={() => setDeleteIsOpen(false)}
+                closeTimeoutMS={200}
+                contentLabel="modal"
+                >
+                    <ModalCircle className="red">
+                        <BsTrash />
+                    </ModalCircle>
+                    <ModalAction>Delete Account?</ModalAction>
+                    <ModalDetails>You will permanently lose your:</ModalDetails>
+                    <ul>
+                        <li>Profile</li>
+                        <li>Projects</li>
+                        <li>Tickets</li>
+                    </ul>
+                    <ModalButtonContainer>
+                        <OutlineButton className="red" onClick={() => setDeleteIsOpen(false)}>Cancel</OutlineButton>
+                        <SolidButton className="red">Delete Account</SolidButton>
+                    </ModalButtonContainer>
+                </ModalContainer>
+
                 <ProfileActionWrapper>
                     <BsPencil />
                 </ProfileActionWrapper>
@@ -48,7 +82,7 @@ const ProfileContainer = styled.section`
     position: fixed;
     z-index: -99;
     
-        @media screen and (max-width: 500px) {
+        @media screen and (max-width: 540px) {
             padding: 30px;
         }
 `;

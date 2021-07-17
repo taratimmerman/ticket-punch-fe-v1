@@ -11,6 +11,8 @@
   background-color: #202124;
 }
 
+/* PAGE TRANSITIONS */
+
 .page{
   position: absolute;
   top: 0;
@@ -36,4 +38,19 @@
 .fade-exit.fade-exit-active {
     opacity: 0;
     transition: opacity 100ms linear;
+}
+
+/* MODAL TRANSITIONS */
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 250ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open{
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close{
+  opacity: 0;
 }

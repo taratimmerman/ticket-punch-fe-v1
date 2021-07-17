@@ -6,13 +6,17 @@ Modal.setAppElement('#root');
 export const ModalContainer = styled(Modal)`
     background-color: #202124;
     border-radius: 8px;
-    margin: 30vh auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     width: 400px;
     padding: 0 0 15px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    color: #888D93;
 
         &.red {
             border-top: #E2445C solid 10px;
@@ -31,16 +35,10 @@ export const ModalContainer = styled(Modal)`
         }
 
         @media screen and (max-width: 400px) {
-            margin: 20vh auto;
             width: 275px;
         }
 
-        @media screen and (max-height: 420px) {
-            margin: 15vh auto;
-        }
-
         @media screen and (max-height: 320px) {
-            margin: 12vh auto;
             padding: 0;
         }
 `;
@@ -69,7 +67,7 @@ export const ModalCircle = styled.div`
         }
 
     color: #E8EAED;
-    font-size: 4rem;
+    font-size: 2.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
