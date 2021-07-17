@@ -13,7 +13,7 @@ import {
 
 const Tickets = () => {
     return (
-        <PageContainer>
+        <PageContainer className="page">
             <PageTitleWrapper>
                 <PageTitle>Your tickets</PageTitle>
                 <SolidButton className="purple">New Ticket</SolidButton>

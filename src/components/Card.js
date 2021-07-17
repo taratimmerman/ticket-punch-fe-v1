@@ -48,7 +48,7 @@ const CardWrapper = styled.div`
     color: #303134;
 
     :hover{
-        background-color: gainsboro;
+        opacity: 0.8;
         cursor: pointer;
         transition: 0.5s;
     }
