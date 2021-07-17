@@ -130,6 +130,9 @@ export const OutlineButton = styled.button`
         }
 `;
 
+export const ButtonWrapper = styled.div`
+`;
+
 // KANBAN CONTAINER
 
 export const KanbanContainer = styled.section`
