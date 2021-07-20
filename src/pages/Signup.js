@@ -35,26 +35,36 @@ const Signup = () => {
             <CTA>Sign up for a Ticket Punch account</CTA>
             <StyledForm>
                 <StyledLabel
-                for="username"
+                    htmlFor="username"
                 >Username</StyledLabel>
 
                 <SolidInput
-                type="text"
-                name="username"
-                placeholder="Username"
+                    type="text"
+                    name="username"
+                    placeholder="Username"
                 />
 
                 <StyledLabel
-                for="password"
+                    htmlFor="password"
                 >Password</StyledLabel>
 
                 <SolidInput
-                type="password"
-                placeholder="Password"
+                    type="password"
+                    placeholder="Password"
                 />
+
+                <StyledLabel
+                    htmlFor="verify-password"
+                >Verify Password</StyledLabel>
+
+                <SolidInput
+                    type="password"
+                    placeholder="Verify Password"
+                />
+
                 <SolidButton
-                type="submit"
-                className="purple"
+                    type="submit"
+                    className="purple"
                 >Sign Up</SolidButton>
             </StyledForm>
             <SubActionContainer>

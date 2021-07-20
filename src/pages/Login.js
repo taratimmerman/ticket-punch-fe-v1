@@ -35,7 +35,7 @@ const Login = () => {
             <CTA>Login to your Ticket Punch account</CTA>
             <StyledForm>
                 <StyledLabel
-                for="username"
+                htmlFor="username"
                 >Username</StyledLabel>
 
                 <SolidInput
@@ -45,7 +45,7 @@ const Login = () => {
                 />
 
                 <StyledLabel
-                for="password"
+                htmlFor="password"
                 >Password</StyledLabel>
 
                 <SolidInput
