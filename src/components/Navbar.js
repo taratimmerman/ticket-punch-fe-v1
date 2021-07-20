@@ -26,7 +26,7 @@ const Navbar = () => {
         <NavContainer>
 
             <NavChunk>
-                <StyledNavLink exact to="/">
+                <StyledNavLink to="/projects">
                     <GiBoxingGlove />
                     <LinkTitle>Projects</LinkTitle>
                 </StyledNavLink>
