@@ -181,3 +181,43 @@ export const StatusTitle = styled.h3`
 export const CardContainer = styled.div`
     margin: 16px;
 `;
+
+export const SolidInput = styled.input`
+    background-color: #303134;
+    border-radius: 8px;
+    border: none;
+    height: 40px;
+    width: 240px;
+    color: #E8EAED;
+    font-size: 0.85rem;
+    box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
+    margin: 16px;
+    overflow: hidden;
+    padding: 8px;
+    text-align: center;
+    
+    :focus {
+        outline: none;
+    }
+
+    :hover{
+        cursor: pointer;
+        opacity: 0.8;
+        transition-duration: 0.3s;
+    }
+`;
+
+export const StyledForm = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const StyledLabel = styled.label`
+    color: #888D93;
+    font-size: 0.75rem;
+    position: relative;
+    left: -86px;
+    bottom: -10px;
+`;

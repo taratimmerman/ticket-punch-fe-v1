@@ -18,6 +18,10 @@ export const ModalContainer = styled(Modal)`
     justify-content: center;
     color: #888D93;
 
+        :focus {
+            outline: none;
+        }
+
         &.red {
             border-top: #E2445C solid 10px;
         }
