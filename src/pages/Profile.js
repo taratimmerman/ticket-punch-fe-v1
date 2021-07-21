@@ -4,7 +4,10 @@ import {
     PageTitleWrapper,
     PageTitle,
     OutlineButton,
-    SolidButton
+    SolidButton,
+    SolidInput,
+    StyledForm,
+    StyledLabel
 } from '../styling/PageStyling';
 import { VscAccount } from 'react-icons/vsc';
 import { BsPencil } from 'react-icons/bs';
@@ -16,10 +19,16 @@ import {
     ModalDetails,
     ModalButtonContainer
 } from '../styling/ModalStyling';
+import {
+    CTA,
+    SubAction
+} from '../styling/WelcomeStyling';
 
 const Profile = () => {
 
     const [deleteIsOpen, setDeleteIsOpen] = useState(false);
+    const [editIsOpen, setEditIsOpen] = useState(false);
+
 
     return (
         <ProfileContainer className="page">
@@ -37,10 +46,10 @@ const Profile = () => {
                 </ProfileActionWrapper>
 
                 <ModalContainer
-                className="red"
-                isOpen={deleteIsOpen} onRequestClose={() => setDeleteIsOpen(false)}
-                closeTimeoutMS={200}
-                contentLabel="modal"
+                    className="red"
+                    isOpen={deleteIsOpen} onRequestClose={() => setDeleteIsOpen(false)}
+                    closeTimeoutMS={200}
+                    contentLabel="modal"
                 >
                     <ModalCircle className="red">
                         <BsTrash />
@@ -58,9 +67,62 @@ const Profile = () => {
                     </ModalButtonContainer>
                 </ModalContainer>
 
-                <ProfileActionWrapper>
+                <ProfileActionWrapper onClick={() => setEditIsOpen(true)}>
                     <BsPencil />
                 </ProfileActionWrapper>
+
+                <ModalContainer
+                    className="purple"
+                    isOpen={editIsOpen} onRequestClose={() => setEditIsOpen(false)}
+                    closeTimeoutMS={200}
+                    contentLabel="modal"
+                >
+                    <ModalCircle className="purple">
+                        <BsPencil />
+                    </ModalCircle>
+
+                    <CTA>Edit Account</CTA>
+
+                    <StyledForm>
+                        <StyledLabel
+                            htmlFor="username"
+                        >Edit Username</StyledLabel>
+
+                        <SolidInput
+                            type="text"
+                            name="username"
+                            placeholder="Username"
+                        />
+
+                        <StyledLabel
+                            htmlFor="password"
+                        >Update Password</StyledLabel>
+
+                        <SolidInput
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                        />
+
+                        <StyledLabel
+                            htmlFor="verify-password"
+                        >Verify Password</StyledLabel>
+
+                        <SolidInput
+                            type="password"
+                            name="verify-password"
+                            placeholder="Password"
+                        />
+                    </StyledForm>
+
+                    <SubAction>These changes cannot be undone</SubAction>
+
+                    <ModalButtonContainer>
+                        <OutlineButton className="purple" onClick={() => setEditIsOpen(false)}>Cancel</OutlineButton>
+                        <SolidButton className="purple" type="submit">Edit Account</SolidButton>
+                    </ModalButtonContainer>
+                </ModalContainer>
+
             </ProfileActionContainer>
         </ProfileContainer>
     );
