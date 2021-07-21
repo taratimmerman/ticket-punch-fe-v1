@@ -84,6 +84,10 @@ export const SolidButton = styled.button`
         background-color: #00C875;
     }
 
+    &.gray{
+        background-color: #303134;
+    }
+
     @media screen and (max-width: 360px) {
         font-size: 0.70rem;
         }
@@ -123,6 +127,11 @@ export const OutlineButton = styled.button`
     &.green{
         border-color: #00C875;
         color: #00C875;
+    }
+
+    &.gray{
+        border-color: #303134;
+        color: #303134;
     }
 
     @media screen and (max-width: 360px) {

@@ -93,7 +93,7 @@ const NavContainer = styled.nav`
     justify-content: space-between;
     color: #551a8b;
     overflow: hidden;
-    position: sticky;
+    position: fixed;
 
     @media screen and (max-width: 540px) {
         width: 100vw;
