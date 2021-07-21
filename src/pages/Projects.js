@@ -99,13 +99,13 @@ const Projects = () => {
                 <Bar className="working-on-it">
                     <StatusTitle>Working on it</StatusTitle>
                     <CardContainer>
-                        <Card cardTitle={"Ticket Punch"} />
+                        <Card title={"Ticket Punch"} description={"Never, never assume that what you have achieved is fucking good enough. Think about all the fucking possibilities."} status={"Working on it"}/>
                     </CardContainer>
                 </Bar>
                 <Bar className="done">
                     <StatusTitle>Done</StatusTitle>
                     <CardContainer>
-                        <Card cardTitle={"Family Promise"} />
+                        <Card title={"Family Promise"} description={"Talk about going nowhere fast. Our neural pathways have become accustomed to your sensory input patterns."} status={"Done"} />
                     </CardContainer>
                 </Bar>
             </KanbanContainer>

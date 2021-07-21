@@ -54,3 +54,13 @@
 .ReactModal__Overlay--before-close{
   opacity: 0;
 }
+
+/* HIDE SCROLLBAR */
+
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  display: none;
+}
