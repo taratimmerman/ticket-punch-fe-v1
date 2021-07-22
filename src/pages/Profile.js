@@ -61,6 +61,9 @@ const Profile = () => {
                         <li>Projects</li>
                         <li>Tickets</li>
                     </ul>
+
+                    <SubAction>This action cannot be undone</SubAction>
+
                     <ModalButtonContainer>
                         <OutlineButton className="red" onClick={() => setDeleteIsOpen(false)}>Cancel</OutlineButton>
                         <SolidButton className="red">Delete Account</SolidButton>
@@ -111,7 +114,7 @@ const Profile = () => {
                         <SolidInput
                             type="password"
                             name="verify-password"
-                            placeholder="Password"
+                            placeholder="Verify Password"
                         />
                     </StyledForm>
 
