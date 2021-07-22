@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Card from '../components/Card';
+import TicketCard from '../components/TicketCard';
 import {
     PageContainer,
     PageTitleWrapper,
@@ -116,22 +116,22 @@ const Tickets = () => {
                 <Bar className="stuck">
                     <StatusTitle>Stuck</StatusTitle>
                     <CardContainer>
-                        <Card bug={true} title={"Deploy to Heroku"} project={"Ticket Punch"} description={"The voodoo sacerdos suscitat mortuos comedere carnem. Search for solum oculi eorum defunctis cerebro."} status={"Stuck"} />
+                        <TicketCard bug={true} title={"Deploy to Heroku"} project={"Ticket Punch"} description={"The voodoo sacerdos suscitat mortuos comedere carnem. Search for solum oculi eorum defunctis cerebro."} status={"Stuck"} />
                     </CardContainer>
                 </Bar>
                 <Bar className="working-on-it">
                     <StatusTitle>Working on it</StatusTitle>
                     <CardContainer>
-                        <Card title={"Create GitHub repo"} project={"Ticket Punch"} description={"Praesent break yo neck, yall mi non maurizzle go to hizzle bibendizzle. Aliquam lacinia funky fresh lectizzle."} status={"Working on it"} />
-                        <Card title={"Build and style login flow"} project={"Ticket Punch"} description={"With pretty stories for which theres little good evidence prime number encyclopaedia galactica network of wormholes colonies extraplanetary."} status={"Working on it"}/>
-                        <Card title={"Build and style navbar"} project={"Ticket Punch"} description={"Flair is what marks the difference between artistry and mere competence. Commander William Riker of the Starship Enterprise."} status={"Working on it"} />
+                        <TicketCard title={"Create GitHub repo"} project={"Ticket Punch"} description={"Praesent break yo neck, yall mi non maurizzle go to hizzle bibendizzle. Aliquam lacinia funky fresh lectizzle."} status={"Working on it"} />
+                        <TicketCard title={"Build and style login flow"} project={"Ticket Punch"} description={"With pretty stories for which theres little good evidence prime number encyclopaedia galactica network of wormholes colonies extraplanetary."} status={"Working on it"}/>
+                        <TicketCard title={"Build and style navbar"} project={"Ticket Punch"} description={"Flair is what marks the difference between artistry and mere competence. Commander William Riker of the Starship Enterprise."} status={"Working on it"} />
                     </CardContainer>
                 </Bar>
                 <Bar className="done">
                     <StatusTitle>Done</StatusTitle>
                     <CardContainer>
-                        <Card title={"Design site wireframes"} project={"Ticket Punch"} status={"Done"} description={"I guess it's better to be lucky than good. Is it my imagination, or have tempers become a little frayed on the ship lately?"} />
-                        <Card title={"Research app idea"} project={"Ticket Punch"} status={"Done"} description={"The Enterprise computer system is controlled by three primary main processor cores, cross-linked with a redundant melacortz ramistat."} />
+                        <TicketCard title={"Design site wireframes"} project={"Ticket Punch"} status={"Done"} description={"I guess it's better to be lucky than good. Is it my imagination, or have tempers become a little frayed on the ship lately?"} />
+                        <TicketCard title={"Research app idea"} project={"Ticket Punch"} status={"Done"} description={"The Enterprise computer system is controlled by three primary main processor cores, cross-linked with a redundant melacortz ramistat."} />
                     </CardContainer>
                 </Bar>
             </KanbanContainer>

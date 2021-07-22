@@ -68,7 +68,7 @@ export const SubActionContainer = styled.div`
 
 export const SubAction = styled.span`
     color: #888D93;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     margin: 16px 16px 8px 16px;
 `;
 
@@ -78,7 +78,7 @@ export const SolidButtonLink = styled(NavLink)`
     height: 40px;
     width: 140px;
     color: #E8EAED;
-    font-size: 0.85rem;
+    font-size: 0.875rem;
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
     margin: 8px;
     text-decoration: none;
@@ -109,7 +109,7 @@ export const SolidButtonLink = styled(NavLink)`
     }
 
     @media screen and (max-width: 360px) {
-        font-size: 0.70rem;
+        font-size: 0.75rem;
         }
 `;
 
@@ -119,7 +119,7 @@ export const OutlineButtonLink = styled(NavLink)`
     background-color: transparent;
     height: 40px;
     width: 140px;
-    font-size: 0.85rem;
+    font-size: 0.875rem;
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
     margin: 8px;
     text-decoration: none;
@@ -153,6 +153,6 @@ export const OutlineButtonLink = styled(NavLink)`
     }
 
     @media screen and (max-width: 360px) {
-        font-size: 0.70rem;
+        font-size: 0.75rem;
         }
 `;
