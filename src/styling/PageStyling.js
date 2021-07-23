@@ -199,30 +199,55 @@ export const SolidInput = styled.input`
     border-radius: 8px;
     border: none;
     height: 40px;
-    width: 240px;
+    width: 100%;
     color: #E8EAED;
     font-size: 1rem;
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
-    margin: 16px;
+    margin: 16px 0;
     overflow: hidden;
     padding: 8px;
-    
-    :focus {
-        outline: none;
-    }
 
     :hover{
         cursor: pointer;
         opacity: 0.8;
         transition-duration: 0.3s;
     }
+
+    &.red {
+        :focus {
+            outline-color: #E2445C;
+        }
+    }
+
+    &.yellow {
+        :focus {
+            outline-color: #FDAB3D;
+        }
+    }
+
+    &.green {
+        :focus {
+            outline-color: #00C875;
+        }
+    }
+
+    &.purple {
+        :focus {
+            outline-color: #A25DDC;
+        }
+    }
+
+    &.error {
+        border: 2px solid #E2445C;
+    }
 `;
 
 export const StyledForm = styled.form`
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 240px;
 `;
 
 export const StyledLabel = styled.label`
@@ -278,4 +303,53 @@ export const SolidTextArea = styled.textarea`
         opacity: 0.8;
         transition-duration: 0.3s;
     }
+`;
+
+export const ErrorWrapper = styled.div`
+    background-color: #E2445C;
+    border-radius: 8px;
+    color: #E8EAED;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 40px;
+    width: 240px;
+    padding: 8px;
+    margin-bottom: 8px;
+`;
+
+export const ErrorIcon = styled.div`
+    font-size: 	1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const FormError = styled.p`
+    font-size: 0.8125rem;
+    text-align: right;
+    padding: 0 16px;
+`;
+
+export const InlineErrorWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #E2445C;
+    position: relative;
+    top: -10px;
+`;
+
+export const InlineErrorIcon = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px 0 0;
+`;
+
+export const InlineError = styled.small`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 `;

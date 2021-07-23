@@ -64,6 +64,7 @@ export const SubActionContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 240px;
 `;
 
 export const SubAction = styled.span`
