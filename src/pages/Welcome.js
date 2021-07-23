@@ -28,7 +28,7 @@ const Welcome = () => {
             <ModalCircle className="purple">
                 <GiBoxingGlove />
             </ModalCircle>
-            <AppTitle>Welcome to Ticket Punch!</AppTitle>
+            <AppTitle>Welcome to Ticket Punch</AppTitle>
             <CTA>{"Let's get started"}</CTA>
             <SolidButtonLink to="/login" className="purple">Log In</SolidButtonLink>
             <SolidButtonLink to="/signup" className="purple">Sign Up</SolidButtonLink>
