@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { GiBoxingGlove } from 'react-icons/gi';
 import { MdError } from 'react-icons/md';
 import {
     WelcomeContainer,
     CTA,
     SubActionContainer,
     SubAction,
-    OutlineButtonLink
+    OauthProviders,
+    OauthProvider,
+    ProviderName,
+    OauthLogo,
+    StyledLink
 } from '../styling/WelcomeStyling';
-import {
-    ModalCircle
-} from '../styling/ModalStyling';
 import {
     SolidButton,
     SolidInput,
@@ -20,12 +20,16 @@ import {
     InlineErrorIcon,
     InlineError
 } from '../styling/PageStyling';
-import { useForm } from "react-hook-form";
+import { useForm } from 'react-hook-form';
+import Google from '../components/google-icon.svg';
+import Slack from '../components/logo_slack.png';
+import LinkedIn from '../components/logo_linkedin.png';
+
 
 const Login = () => {
 
     const [loginIsOpen, setLoginIsOpen] = useState(true);
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm({
+    const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onBlur"
     });
 
@@ -34,7 +38,11 @@ const Login = () => {
 
     const LoginValidation = {
         email: {
-            required: "Please enter your email"
+            required: "Please enter your email address",
+            pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: "Enter in the format: name@company.com"
+            }
         },
         password: {
             required: "Please enter your password"
@@ -49,10 +57,7 @@ const Login = () => {
             shouldCloseOnOverlayClick={false}
             closeTimeoutMS={200}
             contentLabel="modal">
-            <ModalCircle className="purple">
-                <GiBoxingGlove />
-            </ModalCircle>
-            <CTA>Sign in to your Ticket Punch account</CTA>
+            <CTA>Log in to your Ticket Punch account</CTA>
 
             <StyledForm onSubmit={handleSubmit(handleLogin, handleError)}>
                 <StyledLabel
@@ -64,6 +69,7 @@ const Login = () => {
                     {...register('email', LoginValidation.email)}
                     name="email"
                     className={`purple ${errors.email ? "error" : null}`}
+                    placeholder="name@company.com"
                 />
                 {errors.email ?
                     <InlineErrorWrapper>
@@ -83,6 +89,7 @@ const Login = () => {
                     {...register('password', LoginValidation.password)}
                     name="password"
                     className={`purple ${errors.password ? "error" : null}`}
+                    placeholder="Choose a password"
                 />
                 {errors.password ?
                     <InlineErrorWrapper>
@@ -93,19 +100,36 @@ const Login = () => {
                     </InlineErrorWrapper>
                     : null}
 
-                <SubActionContainer>
-                    <SolidButton
-                        type="submit"
-                        className="purple"
-                        disabled={!isValid}
-                    >Sign In</SolidButton>
-                </SubActionContainer>
+                <SolidButton
+                    type="submit"
+                    className="purple"
+                >Sign In</SolidButton>
             </StyledForm>
 
             <SubActionContainer>
-                <SubAction>Need an account?</SubAction>
-                <OutlineButtonLink to="/signup" className="purple">Sign Up</OutlineButtonLink>
+                <SubAction>Or sign in with</SubAction>
+                <OauthProviders>
+                    <OauthProvider>
+                        <OauthLogo alt="Google" src={Google} />
+                        <ProviderName>Google</ProviderName>
+                    </OauthProvider>
+
+                    <OauthProvider>
+                        <OauthLogo alt="Slack" src={Slack} />
+                        <ProviderName>Slack</ProviderName>
+                    </OauthProvider>
+
+                    <OauthProvider>
+                        <OauthLogo alt="LinkedIn" src={LinkedIn} />
+                        <ProviderName>LinkedIn</ProviderName>
+                    </OauthProvider>
+                </OauthProviders>
             </SubActionContainer>
+
+            <SubAction
+            >{"Don't have an account yet?"}
+                <StyledLink to='/'>Sign up</StyledLink>
+            </SubAction>
         </WelcomeContainer>
     );
 };

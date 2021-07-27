@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Modal from 'react-modal';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 Modal.setAppElement('#root');
 
@@ -11,36 +11,18 @@ export const WelcomeContainer = styled(Modal)`
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 400px;
-    padding: 0 8px 40px 8px;
+    width: 500px;
+    padding: 48px 56px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: #888D93;
 
-        :focus {
-            outline: none;
-        }
-
-        &.red {
-            border-top: #E2445C solid 10px;
-        }
-    
-        &.yellow {
-            border-top: #FDAB3D solid 10px;
-        }
-
-        &.green {
-            border-top: #00C875 solid 10px;
-        }
-
-        &.purple {
-            border-top: #A25DDC solid 10px;
-        }
-
-        @media screen and (max-width: 400px) {
-            width: 275px;
+        @media screen and (max-width: 500px) {
+            height: 100vh;
+            width: 100vw;
+            padding: 60px 16px 0 16px;
         }
 
         @media screen and (max-height: 320px) {
@@ -51,40 +33,42 @@ export const WelcomeContainer = styled(Modal)`
 export const AppTitle = styled.h2`
     color: #E8EAED;
     text-align: center;
+    font-size: 1.5rem;
 `;
 
 export const CTA = styled.p`
     color: #888D93;
+    font-size: 1rem;
     margin-bottom: 32px;
 `;
 
 export const SubActionContainer = styled.div`
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 240px;
+    width: 100%;
+    margin: 16px 0;
 `;
 
 export const SubAction = styled.span`
     color: #888D93;
-    font-size: 0.875rem;
-    margin: 16px 16px 8px 16px;
+    font-size: 1rem;
 `;
 
 export const SolidButtonLink = styled(NavLink)`
     border-radius: 8px;
     border: none;
     height: 40px;
-    width: 140px;
+    width: 100%;
     color: #E8EAED;
     font-size: 0.875rem;
+    font-weight: bold;
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
     margin: 8px;
     text-decoration: none;
     text-align: center;
-    padding: 11px;
+    padding: 7px;
 
     :hover{
         cursor: pointer;
@@ -109,7 +93,7 @@ export const SolidButtonLink = styled(NavLink)`
         background-color: #00C875;
     }
 
-    @media screen and (max-width: 360px) {
+    @media screen and (max-width: 500px) {
         font-size: 0.75rem;
         }
 `;
@@ -119,8 +103,9 @@ export const OutlineButtonLink = styled(NavLink)`
     border: 2px solid;
     background-color: transparent;
     height: 40px;
-    width: 140px;
+    width: 100%;
     font-size: 0.875rem;
+    font-weight: bold;
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
     margin: 8px;
     text-decoration: none;
@@ -156,4 +141,54 @@ export const OutlineButtonLink = styled(NavLink)`
     @media screen and (max-width: 360px) {
         font-size: 0.75rem;
         }
+`;
+
+export const OauthProviders = styled.div`
+    display: flex;
+    width: 100%;
+    margin: 16px 0;
+`;
+
+export const OauthProvider = styled.button`
+    flex-grow: 1;
+    flex-basis: 0%;
+    min-height: 36px;
+    min-width: 32px;
+    background-color: #303134;
+    padding: 4px 20px;
+    border-radius: 4px;
+    border: none;
+    transition: background .2s ease,transform 50ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #E8EAED;
+    cursor: pointer;
+    margin-right: 8px;
+    box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
+
+    :hover{
+        background-color: #9AA0A6;
+    }
+
+    :first-child{
+        margin-left: 8px;
+    }
+
+`;
+
+export const ProviderName = styled.span`
+
+`;
+
+export const OauthLogo = styled.img`
+    width: 1rem;
+    height: 1rem;
+    margin-right: 8px;
+`;
+
+export const StyledLink = styled(Link)`
+    text-decoration: none;
+    color: #A25DDC;
+    margin-left: 8px;
 `;
