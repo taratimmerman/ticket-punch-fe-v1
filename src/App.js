@@ -12,7 +12,6 @@ import History from './pages/History';
 import Profile from './pages/Profile';
 import Welcome from './pages/Welcome';
 import Login from './pages/Login';
-import Signup from './pages/Signup';
 import {
   CSSTransition,
   TransitionGroup,
@@ -38,8 +37,6 @@ function App() {
               <Route path="/profile" component={Profile} />
 
               <Route path="/login" component={Login} />
-
-              <Route path="/signup" component={Signup} />
 
               <Route exact path="/" component={Welcome} />
             </Switch>

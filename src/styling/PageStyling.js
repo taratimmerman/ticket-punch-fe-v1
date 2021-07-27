@@ -55,17 +55,14 @@ export const SolidButton = styled.button`
     border-radius: 8px;
     border: none;
     height: 40px;
-    width: 140px;
+    width: 100%;
+    margin: 16px 0;
     color: #E8EAED;
-    font-size: 0.875rem;;
+    font-size: 1rem;
+    font-weight: bold;
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
-    margin: 8px;
-
-    :hover{
-        cursor: pointer;
-        opacity: 0.8;
-        transition-duration: 0.3s;
-    }
+    transition: background .2s ease,transform 50ms;
+    cursor: pointer;
 
     &.purple{
         background-color: #A25DDC;
@@ -88,6 +85,10 @@ export const SolidButton = styled.button`
         background-color: #303134;
     }
 
+    :hover{
+        background-color: #9AA0A6;
+    }
+
     @media screen and (max-width: 360px) {
         font-size: 0.75rem;
         }
@@ -98,10 +99,11 @@ export const OutlineButton = styled.button`
     border: 2px solid;
     background-color: transparent;
     height: 40px;
-    width: 140px;
+    width: 100%;
+    margin: 16px 0;
     font-size: 0.875rem;
+    font-weight: bold;
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
-    margin: 8px;
     
     :hover{
         cursor: pointer;
@@ -198,20 +200,14 @@ export const SolidInput = styled.input`
     background-color: #303134;
     border-radius: 8px;
     border: none;
-    height: 40px;
+    height: 36px;
     width: 100%;
     color: #E8EAED;
-    font-size: 1rem;
+    font-size: 	1.125rem;
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
     margin: 16px 0;
     overflow: hidden;
     padding: 8px;
-
-    :hover{
-        cursor: pointer;
-        opacity: 0.8;
-        transition-duration: 0.3s;
-    }
 
     &.red {
         :focus {
@@ -238,7 +234,7 @@ export const SolidInput = styled.input`
     }
 
     &.error {
-        border: 2px solid #E2445C;
+        border: 1px solid #E2445C;
     }
 `;
 
@@ -247,12 +243,12 @@ export const StyledForm = styled.form`
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    width: 240px;
+    width: 100%;
 `;
 
 export const StyledLabel = styled.label`
-    color: #888D93;
-    font-size: 0.8125rem;
+    color: #E8EAED;
+    font-size: 0.9375rem;
     position: relative;
     bottom: -10px;
 `;
@@ -273,12 +269,6 @@ export const SolidDropdown = styled.select`
     :focus {
         outline: none;
     }
-
-    :hover{
-        cursor: pointer;
-        opacity: 0.8;
-        transition-duration: 0.3s;
-    }
 `;
 
 export const SolidTextArea = styled.textarea`
@@ -296,12 +286,6 @@ export const SolidTextArea = styled.textarea`
 
     :focus {
         outline: none;
-    }
-
-    :hover{
-        cursor: pointer;
-        opacity: 0.8;
-        transition-duration: 0.3s;
     }
 `;
 
