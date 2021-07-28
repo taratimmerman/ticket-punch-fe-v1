@@ -21,9 +21,9 @@ import {
     InlineError
 } from '../styling/PageStyling';
 import { useForm } from 'react-hook-form';
-import Google from '../components/google-icon.svg';
-import Slack from '../components/logo_slack.png';
-import LinkedIn from '../components/logo_linkedin.png';
+import Google from '../assets/google-icon.svg';
+import Slack from '../assets/logo_slack.png';
+import LinkedIn from '../assets/logo_linkedin.png';
 
 
 const Login = () => {
