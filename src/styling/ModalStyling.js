@@ -11,7 +11,7 @@ export const ModalContainer = styled(Modal)`
     left: 50%;
     transform: translate(-50%,-50%);
     width: 400px;
-    padding: 0 0 15px 0;
+    padding: 48px 56px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,12 +38,11 @@ export const ModalContainer = styled(Modal)`
             border-top: #A25DDC solid 10px;
         }
 
-        @media screen and (max-width: 400px) {
-            width: 275px;
-        }
-
-        @media screen and (max-height: 320px) {
-            padding: 0;
+        @media screen and (max-width: 500px) {
+            height: 100vh;
+            width: 100vw;
+            padding: 60px 16px 0 16px;
+            border-radius: 0px;
         }
 `;
 
@@ -52,7 +51,13 @@ export const ModalCircle = styled.div`
     width: 60px;
     border-radius: 50%;
     position: relative;
-    top: -40px;
+    top: -80px;
+    color: #E8EAED;
+    font-size: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
         &.red {
             background-color: #E2445C;
@@ -70,12 +75,9 @@ export const ModalCircle = styled.div`
             background-color: #A25DDC;
         }
 
-    color: #E8EAED;
-    font-size: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+        @media screen and (max-width: 500px) {
+            display: none;
+        }
 `;
 
 export const ModalAction = styled.h3`
@@ -90,6 +92,7 @@ export const ModalAction = styled.h3`
 export const ModalDetails = styled.span`
     color: #888D93;
     margin: 15px;
+    text-align: center;
 
     @media screen and (max-height: 320px) {
         margin-bottom: 5px;
@@ -97,9 +100,11 @@ export const ModalDetails = styled.span`
 `;
 
 export const ModalButtonContainer = styled.div`
+    display: flex;
     justify-content: space-between;
-    width: 80%;
-    margin: 15px;
+    align-items: center;
+    width: 300px;
+    margin: 40px 0 0 0;
 
     @media screen and (max-width: 400px) {
         width: 60%;

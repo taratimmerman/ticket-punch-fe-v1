@@ -96,12 +96,13 @@ export const CardButton = styled.button`
     background-color: transparent;
     border-color: #303134;
     color: #303134;
-
+    transition: background .2s ease,transform 50ms;
+    cursor: pointer;
+    
     :hover{
-        cursor: pointer;
-        opacity: 0.8;
-        transition-duration: 0.3s;
+        background-color: #9AA0A6;
     }
+
 `;
 
 export const CardButtonWrapper = styled.div`

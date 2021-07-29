@@ -19,11 +19,9 @@ import {
 import {
     ModalContainer,
     ModalCircle,
-    ModalButtonContainer
+    ModalButtonContainer,
+    ModalAction
 } from '../styling/ModalStyling';
-import {
-    CTA,
-} from '../styling/WelcomeStyling';
 import { IoTicketOutline } from 'react-icons/io5';
 
 
@@ -35,7 +33,7 @@ const Tickets = () => {
         <PageContainer className="page">
             <PageTitleWrapper>
                 <PageTitle>Tickets</PageTitle>
-                <SolidButton className="purple" onClick={() => setNewTicketIsOpen(true)}>New Ticket</SolidButton>
+                <SolidButton className="purple restrict" onClick={() => setNewTicketIsOpen(true)}>New Ticket</SolidButton>
             </PageTitleWrapper>
 
             <ModalContainer
@@ -48,7 +46,7 @@ const Tickets = () => {
                 <ModalCircle className="green">
                     <IoTicketOutline />
                 </ModalCircle>
-                <CTA>Add Ticket</CTA>
+                <ModalAction>Add Ticket</ModalAction>
                 <StyledForm>
                     <StyledLabel
                         htmlFor="ticket-name"
@@ -101,13 +99,13 @@ const Tickets = () => {
                 </StyledForm>
                 <ModalButtonContainer>
                     <OutlineButton
-                        className="green"
+                        className="green restrict"
                         onClick={() => setNewTicketIsOpen(false)}
                     >Cancel</OutlineButton>
 
                     <SolidButton
                         type="submit"
-                        className="green"
+                        className="green restrict"
                     >Add Ticket</SolidButton>
                 </ModalButtonContainer>
             </ModalContainer>

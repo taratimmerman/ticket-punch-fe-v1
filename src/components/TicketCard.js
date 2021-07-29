@@ -97,8 +97,8 @@ const TicketCard = props => {
                 <SubAction>This action cannot be undone</SubAction>
 
                 <ModalButtonContainer>
-                    <OutlineButton className="red" onClick={() => setDeleteTicketIsOpenState(false)}>Cancel</OutlineButton>
-                    <SolidButton className="red">Delete Ticket</SolidButton>
+                    <OutlineButton className="red restrict" onClick={() => setDeleteTicketIsOpenState(false)}>Cancel</OutlineButton>
+                    <SolidButton className="red restrict">Delete Ticket</SolidButton>
                 </ModalButtonContainer>
             </ModalContainer>
 
@@ -169,13 +169,13 @@ const TicketCard = props => {
 
                 <ModalButtonContainer>
                     <OutlineButton
-                        className="purple"
+                        className="purple restrict"
                         onClick={() => setEditTicketIsOpenState(false)}
                     >Cancel</OutlineButton>
 
                     <SolidButton
                         type="submit"
-                        className="purple"
+                        className="purple restrict"
                     >Edit Ticket</SolidButton>
                 </ModalButtonContainer>
             </ModalContainer>

@@ -95,8 +95,8 @@ const ProjectCard = props => {
                 <SubAction>This action cannot be undone</SubAction>
 
                 <ModalButtonContainer>
-                    <OutlineButton className="red" onClick={() => setDeleteProjectIsOpenState(false)}>Cancel</OutlineButton>
-                    <SolidButton className="red">Delete Project</SolidButton>
+                    <OutlineButton className="red restrict" onClick={() => setDeleteProjectIsOpenState(false)}>Cancel</OutlineButton>
+                    <SolidButton className="red restrict">Delete Project</SolidButton>
                 </ModalButtonContainer>
             </ModalContainer>
 
@@ -150,13 +150,13 @@ const ProjectCard = props => {
 
                 <ModalButtonContainer>
                     <OutlineButton
-                        className="purple"
+                        className="purple restrict"
                         onClick={() => setEditProjectIsOpenState(false)}
                     >Cancel</OutlineButton>
 
                     <SolidButton
                         type="submit"
-                        className="purple"
+                        className="purple restrict"
                     >Edit Project</SolidButton>
                 </ModalButtonContainer>
             </ModalContainer>

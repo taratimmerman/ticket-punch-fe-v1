@@ -34,7 +34,7 @@ const Profile = () => {
         <ProfileContainer className="page">
             <PageTitleWrapper>
                 <PageTitle>Profile</PageTitle>
-                <OutlineButton className="purple">Log out</OutlineButton>
+                <OutlineButton className="purple restrict">Log out</OutlineButton>
             </PageTitleWrapper>
             <ProfileInfoContainer>
                 <VscAccount fontSize={"9rem"} />
@@ -62,11 +62,11 @@ const Profile = () => {
                         <li>Tickets</li>
                     </ul>
 
-                    <SubAction>This action cannot be undone</SubAction>
+                    <ModalDetails>This action cannot be undone</ModalDetails>
 
                     <ModalButtonContainer>
-                        <OutlineButton className="red" onClick={() => setDeleteIsOpen(false)}>Cancel</OutlineButton>
-                        <SolidButton className="red">Delete Account</SolidButton>
+                        <OutlineButton className="red restrict" onClick={() => setDeleteIsOpen(false)}>Cancel</OutlineButton>
+                        <SolidButton className="red restrict">Delete Account</SolidButton>
                     </ModalButtonContainer>
                 </ModalContainer>
 
@@ -121,8 +121,8 @@ const Profile = () => {
                     <SubAction>These changes cannot be undone</SubAction>
 
                     <ModalButtonContainer>
-                        <OutlineButton className="purple" onClick={() => setEditIsOpen(false)}>Cancel</OutlineButton>
-                        <SolidButton className="purple" type="submit">Edit Account</SolidButton>
+                        <OutlineButton className="purple restrict" onClick={() => setEditIsOpen(false)}>Cancel</OutlineButton>
+                        <SolidButton className="purple restrict" type="submit">Edit Account</SolidButton>
                     </ModalButtonContainer>
                 </ModalContainer>
 

@@ -18,13 +18,11 @@ import {
     SolidTextArea
 } from '../styling/PageStyling';
 import {
+    ModalAction,
     ModalContainer,
     ModalCircle,
     ModalButtonContainer
 } from '../styling/ModalStyling';
-import {
-    CTA,
-} from '../styling/WelcomeStyling';
 import { GiBoxingGlove } from 'react-icons/gi';
 
 const Projects = () => {
@@ -33,10 +31,10 @@ const Projects = () => {
 
     return (
         <PageContainer className="page">
-            <Greeting>Welcome to Ticket Punch, Guest</Greeting>
+            <Greeting>Welcome to Ticket Punch</Greeting>
             <PageTitleWrapper>
                 <PageTitle>Projects</PageTitle>
-                <SolidButton className="purple" onClick={() => setNewProjectIsOpen(true)}>New Project</SolidButton>
+                <SolidButton className="purple restrict" onClick={() => setNewProjectIsOpen(true)}>New Project</SolidButton>
             </PageTitleWrapper>
 
             <ModalContainer
@@ -49,7 +47,7 @@ const Projects = () => {
                 <ModalCircle className="green">
                     <GiBoxingGlove />
                 </ModalCircle>
-                <CTA>Add Project</CTA>
+                <ModalAction>Add Project</ModalAction>
                 <StyledForm>
                     <StyledLabel
                         htmlFor="project-name"
@@ -81,31 +79,33 @@ const Projects = () => {
                         name="project-description"
                         placeholder="Project Description"
                     />
-                </StyledForm>
-                <ModalButtonContainer>
-                    <OutlineButton
-                        className="green"
-                        onClick={() => setNewProjectIsOpen(false)}
-                    >Cancel</OutlineButton>
 
-                    <SolidButton
-                        type="submit"
-                        className="green"
-                    >Add Project</SolidButton>
-                </ModalButtonContainer>
+                    <ModalButtonContainer>
+                        <OutlineButton
+                            className="green restrict"
+                            onClick={() => setNewProjectIsOpen(false)}
+                        >Cancel</OutlineButton>
+
+                        <SolidButton
+                            type="submit"
+                            className="green restrict"
+                        >Add Project</SolidButton>
+                    </ModalButtonContainer>
+                </StyledForm>
+
             </ModalContainer>
 
             <KanbanContainer>
                 <Bar className="working-on-it">
                     <StatusTitle>Working on it</StatusTitle>
                     <CardContainer>
-                        <ProjectCard title={"Ticket Punch"} description={"Never, never assume that what you have achieved is fucking good enough. Think about all the fucking possibilities."} status={"Working on it"}/>
+                        <ProjectCard title={"Ticket Punch"} description={"A project management web app created to empower users to single-task or multi-task at their discretion. A simplified Monday.com if you will."} status={"Working on it"} />
                     </CardContainer>
                 </Bar>
                 <Bar className="done">
                     <StatusTitle>Done</StatusTitle>
                     <CardContainer>
-                        <ProjectCard title={"Family Promise"} description={"Talk about going nowhere fast. Our neural pathways have become accustomed to your sensory input patterns."} status={"Done"} />
+                        <ProjectCard title={"Family Promise"} description={"Family Promise helps local communities coordinate their compassion to address the root causes of family homelessness. They tap existing local resources to empower families towards economic stability."} status={"Done"} />
                     </CardContainer>
                 </Bar>
             </KanbanContainer>
