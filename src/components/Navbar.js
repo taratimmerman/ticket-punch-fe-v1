@@ -61,8 +61,8 @@ const Navbar = () => {
                     <ModalAction>Questions?</ModalAction>
                     <ModalDetails>Email the dev!</ModalDetails>
                     <ModalButtonContainer>
-                        <OutlineButton className="yellow" onClick={() => setQuestionsIsOpen(false)}>Cancel</OutlineButton>
-                        <SolidButton className="yellow">Email Tara</SolidButton>
+                        <OutlineButton className="yellow restrict" onClick={() => setQuestionsIsOpen(false)}>Cancel</OutlineButton>
+                        <SolidButton className="yellow restrict">Email Tara</SolidButton>
                     </ModalButtonContainer>
                 </ModalContainer>
 

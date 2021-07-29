@@ -30,6 +30,7 @@ export const PageTitleWrapper = styled.div`
     height: 55px;
     width: 100%;
     margin: 18px 0;
+    padding: 8px 16px;
     background-color: #303134;
     border-radius: 8px;
     display: flex;
@@ -39,7 +40,6 @@ export const PageTitleWrapper = styled.div`
 
 export const PageTitle = styled.h2`
     width: 100%;
-    margin: 8px 15px;
 
     @media screen and (max-width: 500px) {
             font-size: 1.1875rem;
@@ -85,6 +85,10 @@ export const SolidButton = styled.button`
         background-color: #303134;
     }
 
+    &.restrict{
+        width: 140px;
+    }
+
     :hover{
         background-color: #9AA0A6;
     }
@@ -101,14 +105,14 @@ export const OutlineButton = styled.button`
     height: 40px;
     width: 100%;
     margin: 16px 0;
-    font-size: 0.875rem;
+    font-size: 1rem;
     font-weight: bold;
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
+    transition: background .2s ease,transform 50ms;
+    cursor: pointer;
     
     :hover{
-        cursor: pointer;
-        opacity: 0.8;
-        transition-duration: 0.3s;
+        background-color: #303134;
     }
 
     &.purple{
@@ -134,6 +138,10 @@ export const OutlineButton = styled.button`
     &.gray{
         border-color: #303134;
         color: #303134;
+    }
+
+    &.restrict{
+        width: 140px;
     }
 
     @media screen and (max-width: 360px) {
@@ -259,10 +267,10 @@ export const SolidDropdown = styled.select`
     border-radius: 8px;
     border: none;
     height: 40px;
-    width: 240px;
+    width: 100%;
     font-size: 1rem;
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
-    margin: 16px;
+    margin: 16px 0;
     overflow: hidden;
     padding: 8px;
 
@@ -278,11 +286,11 @@ export const SolidTextArea = styled.textarea`
     border: none;
     font-size: 1rem;
     box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
-    margin: 16px;
+    margin: 16px 0;
     overflow: hidden;
     padding: 8px;
     height: 80px;
-    width: 240px;
+    width: 100%;
 
     :focus {
         outline: none;

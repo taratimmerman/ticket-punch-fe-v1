@@ -21,7 +21,7 @@ const History = () => {
                 <Bar className="archive">
                     <StatusTitle>Archived Projects</StatusTitle>
                     <CardContainer>
-                    <ProjectCard archived={true} title={"Graduate from Lambda"} description={"The look in your eyes, I recognize it. You used to have it for me. I can't. As much as I care about you, my first duty is to the ship."} status={"Archived"} />
+                    <ProjectCard archived={true} title={"Graduate from Lambda"} description={"Recently graduated with 960 certified hours, from a full-time, intensive, mastery-based Software Development and Computer Science bootcamp."} status={"Archived"} />
                     </CardContainer>
                 </Bar>
                 <Bar className="archive">
