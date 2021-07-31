@@ -1,5 +1,24 @@
 import React, { useState } from 'react';
+
+import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
 import { MdError } from 'react-icons/md';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { loginUserAction } from '../actions/userActions';
+import Google from '../assets/google-icon.svg';
+import LinkedIn from '../assets/logo_linkedin.png';
+import Slack from '../assets/logo_slack.png';
+import {
+    SolidButton,
+    SolidInput,
+    StyledForm,
+    StyledLabel,
+    InlineErrorWrapper,
+    InlineErrorIcon,
+    InlineError
+} from '../styling/PageStyling';
 import {
     WelcomeContainer,
     CTA,
@@ -11,29 +30,21 @@ import {
     OauthLogo,
     StyledLink
 } from '../styling/WelcomeStyling';
-import {
-    SolidButton,
-    SolidInput,
-    StyledForm,
-    StyledLabel,
-    InlineErrorWrapper,
-    InlineErrorIcon,
-    InlineError
-} from '../styling/PageStyling';
-import { useForm } from 'react-hook-form';
-import Google from '../assets/google-icon.svg';
-import Slack from '../assets/logo_slack.png';
-import LinkedIn from '../assets/logo_linkedin.png';
 
 
-const Login = () => {
+const Login = ({ loginAction }) => {
 
     const [loginIsOpen, setLoginIsOpen] = useState(true);
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onBlur"
     });
 
-    const handleLogin = (data) => console.log(data);
+    const handleLogin = (user) => {
+        const email = user.email.trim();
+        const password = user.password.trim();
+
+        loginAction(email, password);
+    };
     const handleError = (errors) => console.log(errors);
 
     const LoginValidation = {
@@ -134,4 +145,18 @@ const Login = () => {
     );
 };
 
-export default Login;
+Login.propTypes = {
+    loginAction: PropTypes.func
+};
+
+const mapStateToProps = (state) => {
+    return { loggingIn: state.login };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        loginAction: loginUserAction
+    }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

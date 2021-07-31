@@ -1,4 +1,24 @@
 import React, { useState } from 'react';
+
+import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
+import { MdError } from 'react-icons/md';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { registerUserAction } from '../actions/userActions';
+import Google from '../assets/google-icon.svg';
+import LinkedIn from '../assets/logo_linkedin.png';
+import Slack from '../assets/logo_slack.png';
+import {
+    SolidButton,
+    SolidInput,
+    StyledForm,
+    StyledLabel,
+    InlineErrorWrapper,
+    InlineErrorIcon,
+    InlineError
+} from '../styling/PageStyling';
 import {
     WelcomeContainer,
     AppTitle,
@@ -11,22 +31,8 @@ import {
     OauthLogo,
     StyledLink
 } from '../styling/WelcomeStyling';
-import {
-    SolidButton,
-    SolidInput,
-    StyledForm,
-    StyledLabel,
-    InlineErrorWrapper,
-    InlineErrorIcon,
-    InlineError
-} from '../styling/PageStyling';
-import { useForm } from 'react-hook-form';
-import { MdError } from 'react-icons/md';
-import Google from '../assets/google-icon.svg';
-import Slack from '../assets/logo_slack.png';
-import LinkedIn from '../assets/logo_linkedin.png';
 
-const Welcome = () => {
+const Welcome = ({ registerAction }) => {
 
     const [welcomeIsOpen, setWelcomeIsOpen] = useState(true);
 
@@ -34,9 +40,11 @@ const Welcome = () => {
         mode: "onBlur"
     });
 
-    const handleRegistration = (data) => {
-        const username = data.email.substring(0, data.email.lastIndexOf("@"));
-        console.log(data, username);
+    const handleRegistration = (user) => {
+        const email = user.email.trim();
+        const password = user.password.trim();
+
+        registerAction(email, password);
     };
     const handleError = (errors) => console.log(errors);
 
@@ -146,4 +154,18 @@ const Welcome = () => {
     );
 };
 
-export default Welcome;
+Welcome.propTypes = {
+    registerAction: PropTypes.func
+};
+
+const mapStateToProps = (state) => {
+    return { registering: state.registration };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        registerAction: registerUserAction
+    }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Welcome);
