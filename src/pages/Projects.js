@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
+
+import { GiBoxingGlove } from 'react-icons/gi';
+
 import ProjectCard from '../components/ProjectCard';
+import {
+    ModalAction,
+    ModalContainer,
+    ModalCircle,
+    ModalButtonContainer
+} from '../styling/ModalStyling';
 import {
     PageContainer,
     Greeting,
@@ -17,13 +26,6 @@ import {
     SolidDropdown,
     SolidTextArea
 } from '../styling/PageStyling';
-import {
-    ModalAction,
-    ModalContainer,
-    ModalCircle,
-    ModalButtonContainer
-} from '../styling/ModalStyling';
-import { GiBoxingGlove } from 'react-icons/gi';
 
 const Projects = () => {
 

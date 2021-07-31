@@ -1,28 +1,10 @@
 import React, { useState, useRef } from 'react';
+
 import PropTypes from 'prop-types';
-import { VscHistory } from 'react-icons/vsc';
-import { GiBoxingGlove } from 'react-icons/gi';
 import { BsTrash } from 'react-icons/bs';
-import {
-    SolidInput,
-    StyledForm,
-    StyledLabel,
-    SolidDropdown,
-    SolidTextArea,
-    OutlineButton,
-    SolidButton
-} from '../styling/PageStyling';
-import {
-    ModalContainer,
-    ModalCircle,
-    ModalButtonContainer,
-    ModalAction,
-    ModalDetails
-} from '../styling/ModalStyling';
-import {
-    CTA,
-    SubAction
-} from '../styling/WelcomeStyling';
+import { GiBoxingGlove } from 'react-icons/gi';
+import { VscHistory } from 'react-icons/vsc';
+
 import {
     CardContainer,
     TitleWrapper,
@@ -34,6 +16,26 @@ import {
     CardButton,
     CardLabel
 } from '../styling/CardStyling';
+import {
+    ModalContainer,
+    ModalCircle,
+    ModalButtonContainer,
+    ModalAction,
+    ModalDetails
+} from '../styling/ModalStyling';
+import {
+    SolidInput,
+    StyledForm,
+    StyledLabel,
+    SolidDropdown,
+    SolidTextArea,
+    OutlineButton,
+    SolidButton
+} from '../styling/PageStyling';
+import {
+    CTA,
+    SubAction
+} from '../styling/WelcomeStyling';
 
 const ProjectCard = props => {
 

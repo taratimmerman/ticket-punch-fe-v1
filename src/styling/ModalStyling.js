@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import Modal from 'react-modal';
+import styled from 'styled-components';
 
 Modal.setAppElement('#root');
 

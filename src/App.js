@@ -1,21 +1,24 @@
 import React from 'react';
+
 import './App.css';
-import Navbar from './components/Navbar';
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
-import Projects from './pages/Projects';
-import Tickets from './pages/Tickets';
-import History from './pages/History';
-import Profile from './pages/Profile';
-import Welcome from './pages/Welcome';
-import Login from './pages/Login';
 import {
   CSSTransition,
   TransitionGroup,
 } from 'react-transition-group';
+
+import Navbar from './components/Navbar';
+import History from './pages/History';
+import Login from './pages/Login';
+import Profile from './pages/Profile';
+import Projects from './pages/Projects';
+import Tickets from './pages/Tickets';
+import Welcome from './pages/Welcome';
+
 
 function App() {
   return (

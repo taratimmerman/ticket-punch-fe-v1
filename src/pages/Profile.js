@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
+
+import { BsPencil, BsTrash } from 'react-icons/bs';
+import { VscAccount } from 'react-icons/vsc';
 import styled from 'styled-components';
+
+import {
+    ModalContainer,
+    ModalCircle,
+    ModalAction,
+    ModalDetails,
+    ModalButtonContainer
+} from '../styling/ModalStyling';
 import {
     PageTitleWrapper,
     PageTitle,
@@ -9,16 +20,6 @@ import {
     StyledForm,
     StyledLabel
 } from '../styling/PageStyling';
-import { VscAccount } from 'react-icons/vsc';
-import { BsPencil } from 'react-icons/bs';
-import { BsTrash } from 'react-icons/bs';
-import {
-    ModalContainer,
-    ModalCircle,
-    ModalAction,
-    ModalDetails,
-    ModalButtonContainer
-} from '../styling/ModalStyling';
 import {
     CTA,
     SubAction

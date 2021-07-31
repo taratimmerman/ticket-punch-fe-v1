@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
+
+import { IoTicketOutline } from 'react-icons/io5';
+
 import TicketCard from '../components/TicketCard';
+import {
+    ModalContainer,
+    ModalCircle,
+    ModalButtonContainer,
+    ModalAction
+} from '../styling/ModalStyling';
 import {
     PageContainer,
     PageTitleWrapper,
@@ -16,13 +25,7 @@ import {
     SolidDropdown,
     SolidTextArea
 } from '../styling/PageStyling';
-import {
-    ModalContainer,
-    ModalCircle,
-    ModalButtonContainer,
-    ModalAction
-} from '../styling/ModalStyling';
-import { IoTicketOutline } from 'react-icons/io5';
+
 
 
 const Tickets = () => {

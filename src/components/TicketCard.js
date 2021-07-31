@@ -1,28 +1,11 @@
 import React, { useState, useRef } from 'react';
+
 import PropTypes from 'prop-types';
-import { ImBug } from "react-icons/im";
-import { VscHistory } from 'react-icons/vsc';
-import { IoTicketOutline } from 'react-icons/io5';
 import { BsTrash } from 'react-icons/bs';
-import {
-    SolidButton,
-    OutlineButton,
-    SolidInput,
-    StyledForm,
-    StyledLabel,
-    SolidDropdown,
-    SolidTextArea
-} from '../styling/PageStyling';
-import {
-    ModalContainer,
-    ModalCircle,
-    ModalButtonContainer,
-    ModalAction
-} from '../styling/ModalStyling';
-import {
-    CTA,
-    SubAction
-} from '../styling/WelcomeStyling';
+import { ImBug } from "react-icons/im";
+import { IoTicketOutline } from 'react-icons/io5';
+import { VscHistory } from 'react-icons/vsc';
+
 import {
     CardContainer,
     TitleWrapper,
@@ -35,6 +18,25 @@ import {
     CardButton,
     CardLabel
 } from '../styling/CardStyling';
+import {
+    ModalContainer,
+    ModalCircle,
+    ModalButtonContainer,
+    ModalAction
+} from '../styling/ModalStyling';
+import {
+    SolidButton,
+    OutlineButton,
+    SolidInput,
+    StyledForm,
+    StyledLabel,
+    SolidDropdown,
+    SolidTextArea
+} from '../styling/PageStyling';
+import {
+    CTA,
+    SubAction
+} from '../styling/WelcomeStyling';
 
 const TicketCard = props => {
 

@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+
 import { GiBoxingGlove } from 'react-icons/gi';
-import { IoTicketOutline } from 'react-icons/io5';
-import { VscHistory } from 'react-icons/vsc';
-import { IoHelpCircleOutline } from 'react-icons/io5';
-import { VscAccount } from 'react-icons/vsc';
-import {
-    SolidButton,
-    OutlineButton,
-} from '../styling/PageStyling';
+import { IoTicketOutline, IoHelpCircleOutline } from 'react-icons/io5';
+import { VscHistory, VscAccount } from 'react-icons/vsc';
+import { NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+
 import {
     ModalContainer,
     ModalCircle,
@@ -17,6 +13,10 @@ import {
     ModalDetails,
     ModalButtonContainer
 } from '../styling/ModalStyling';
+import {
+    SolidButton,
+    OutlineButton,
+} from '../styling/PageStyling';
 
 const Navbar = () => {
 
