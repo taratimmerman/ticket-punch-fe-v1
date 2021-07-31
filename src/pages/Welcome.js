@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { MdError } from 'react-icons/md';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
-import { registerUserAction } from '../actions/userActions';
+import { loginUserAction, registerUserAction } from '../actions/userActions';
 import Google from '../assets/google-icon.svg';
 import LinkedIn from '../assets/logo_linkedin.png';
 import Slack from '../assets/logo_slack.png';
@@ -32,7 +33,7 @@ import {
     StyledLink
 } from '../styling/WelcomeStyling';
 
-const Welcome = ({ registerAction }) => {
+const Welcome = ({ registerAction, loginAction }) => {
 
     const [welcomeIsOpen, setWelcomeIsOpen] = useState(true);
 
@@ -40,11 +41,19 @@ const Welcome = ({ registerAction }) => {
         mode: "onBlur"
     });
 
+    const history = useHistory();
+
     const handleRegistration = (user) => {
         const email = user.email.trim();
         const password = user.password.trim();
 
         registerAction(email, password);
+
+        loginAction(email, password);
+
+        setWelcomeIsOpen(false);
+
+        history.push('/projects');
     };
     const handleError = (errors) => console.log(errors);
 
@@ -155,16 +164,21 @@ const Welcome = ({ registerAction }) => {
 };
 
 Welcome.propTypes = {
-    registerAction: PropTypes.func
+    registerAction: PropTypes.func,
+    loginAction: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
-    return { registering: state.registration };
+    return {
+        registering: state.registration,
+        loggingIn: state.login
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        registerAction: registerUserAction
+        registerAction: registerUserAction,
+        loginAction: loginUserAction
     }, dispatch);
 };
 

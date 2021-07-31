@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { MdError } from 'react-icons/md';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
 import { loginUserAction } from '../actions/userActions';
@@ -35,15 +36,22 @@ import {
 const Login = ({ loginAction }) => {
 
     const [loginIsOpen, setLoginIsOpen] = useState(true);
+
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onBlur"
     });
+
+    const history = useHistory();
 
     const handleLogin = (user) => {
         const email = user.email.trim();
         const password = user.password.trim();
 
         loginAction(email, password);
+        
+        setLoginIsOpen(false);
+
+        history.push('/projects');
     };
     const handleError = (errors) => console.log(errors);
 

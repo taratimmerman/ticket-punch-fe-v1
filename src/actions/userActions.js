@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import { API_URL , axiosWithAuth } from '../helpers/axiosWithAuth';
-import { history } from '../helpers/history';
 
 // USER ACTION TYPES
 
@@ -41,8 +40,7 @@ export const loginUserAction = ( email , password ) => dispatch => {
                 type: LOGIN_SUCCESS,
                 payload: res.data
             });
-            window.localStorage.setItem('token', res.data.token);
-            history.push('/projects');
+            window.localStorage.setItem('user', JSON.stringify(res.data));
         })
         .catch(err => {
             dispatch({

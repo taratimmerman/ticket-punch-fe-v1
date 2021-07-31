@@ -6,13 +6,10 @@ import {
 
 // INITIAL LOGIN STATE
 
-let user = JSON.parse(localStorage.getItem('user'));
-const initialLoginState = user ? { 
+const initialLoginState ={ 
     loggedIn: true, 
-    user,
     status: ''
-} : 
-{};
+};
 
 // LOGIN REDUCER
 
