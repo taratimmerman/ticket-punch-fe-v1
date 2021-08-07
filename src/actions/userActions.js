@@ -1,12 +1,14 @@
 import axios from 'axios';
 
 import { API_URL , axiosWithAuth } from '../helpers/axiosWithAuth';
+import { errorActionCreator } from './errorActions';
 
 // USER ACTION TYPES
 
 export const LOGIN_REQUEST = 'USERS_LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'USERS_LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'USERS_LOGIN_FAILURE';
+export const LOGIN_ERROR = 'USERS_LOGIN_ERROR';
 
 export const REGISTER_REQUEST = 'USERS_REGISTER_REQUEST';
 export const REGISTER_SUCCESS = 'USERS_REGISTER_SUCCESS';
@@ -43,10 +45,7 @@ export const loginUserAction = ( email , password ) => dispatch => {
             window.localStorage.setItem('user', JSON.stringify(res.data));
         })
         .catch(err => {
-            dispatch({
-                type: LOGIN_FAILURE,
-                payload: err.message
-            });
+            dispatch(errorActionCreator(LOGIN_FAILURE, err));
         });
 };
 

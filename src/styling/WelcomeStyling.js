@@ -23,6 +23,7 @@ export const WelcomeContainer = styled(Modal)`
             height: 100vh;
             width: 100vw;
             padding: 60px 16px 0 16px;
+            border-radius: 0px;
         }
 
         @media screen and (max-height: 320px) {

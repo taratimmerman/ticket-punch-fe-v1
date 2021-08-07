@@ -11,6 +11,7 @@ import { loginUserAction, registerUserAction } from '../actions/userActions';
 import Google from '../assets/google-icon.svg';
 import LinkedIn from '../assets/logo_linkedin.png';
 import Slack from '../assets/logo_slack.png';
+import ErrorMessage from '../components/ErrorMessage';
 import {
     SolidButton,
     SolidInput,
@@ -84,6 +85,8 @@ const Welcome = ({ registerAction, loginAction }) => {
             contentLabel="modal">
             <AppTitle>Welcome to Ticket Punch</AppTitle>
             <CTA>{"Let's get started"}</CTA>
+
+            <ErrorMessage/>
 
             <StyledForm onSubmit={handleSubmit(handleRegistration, handleError)}>
                 <StyledLabel

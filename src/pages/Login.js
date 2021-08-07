@@ -11,6 +11,7 @@ import { loginUserAction } from '../actions/userActions';
 import Google from '../assets/google-icon.svg';
 import LinkedIn from '../assets/logo_linkedin.png';
 import Slack from '../assets/logo_slack.png';
+import ErrorMessage from '../components/ErrorMessage';
 import {
     SolidButton,
     SolidInput,
@@ -77,6 +78,8 @@ const Login = ({ loginAction }) => {
             closeTimeoutMS={200}
             contentLabel="modal">
             <CTA>Log in to your Ticket Punch account</CTA>
+
+            <ErrorMessage />
 
             <StyledForm onSubmit={handleSubmit(handleLogin, handleError)}>
                 <StyledLabel

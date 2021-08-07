@@ -3,6 +3,7 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAILURE
 } from '../actions/userActions';
+import { errorReducer } from './errorReducer';
 
 // INITIAL LOGIN STATE
 
@@ -18,6 +19,7 @@ export const loginReducer = (state = initialLoginState, action) => {
         case LOGIN_REQUEST:
             return {
                 ...state,
+                ...errorReducer(state, action),
                 loggingIn: true,
                 user: action.payload,
                 status: 'Pending...'
@@ -25,6 +27,7 @@ export const loginReducer = (state = initialLoginState, action) => {
         case LOGIN_SUCCESS:
             return {
                 ...state,
+                ...errorReducer(state, action),
                 loggedIn: true,
                 user: action.payload,
                 status: 'Success'
@@ -32,6 +35,7 @@ export const loginReducer = (state = initialLoginState, action) => {
         case LOGIN_FAILURE:
             return {
                 ...state,
+                ...errorReducer(state, action),
                 loggedIn: false,
                 error: action.payload,
                 status: 'Failed'
