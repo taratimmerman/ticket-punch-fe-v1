@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import { API_URL , axiosWithAuth } from '../helpers/axiosWithAuth';
-import { errorActionCreator } from './errorActions';
 
 // USER ACTION TYPES
 
@@ -45,7 +44,10 @@ export const loginUserAction = ( email , password ) => dispatch => {
             window.localStorage.setItem('user', JSON.stringify(res.data));
         })
         .catch(err => {
-            dispatch(errorActionCreator(LOGIN_FAILURE, err));
+            dispatch({
+                type: LOGIN_FAILURE,
+                payload: err.message
+            });
         });
 };
 

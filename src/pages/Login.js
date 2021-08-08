@@ -34,7 +34,7 @@ import {
 } from '../styling/WelcomeStyling';
 
 
-const Login = ({ loginAction }) => {
+const Login = ({ loginAction, loggedIn, errorMessage }) => {
 
     const [loginIsOpen, setLoginIsOpen] = useState(true);
 
@@ -49,10 +49,14 @@ const Login = ({ loginAction }) => {
         const password = user.password.trim();
 
         loginAction(email, password);
-        
-        setLoginIsOpen(false);
 
-        history.push('/projects');
+        if (loggedIn) {
+            setLoginIsOpen(false);
+
+            history.push('/projects');
+        } else {
+            null;
+        }
     };
     const handleError = (errors) => console.log(errors);
 
@@ -79,7 +83,7 @@ const Login = ({ loginAction }) => {
             contentLabel="modal">
             <CTA>Log in to your Ticket Punch account</CTA>
 
-            <ErrorMessage />
+            <ErrorMessage error={errorMessage}/>
 
             <StyledForm onSubmit={handleSubmit(handleLogin, handleError)}>
                 <StyledLabel
@@ -157,11 +161,17 @@ const Login = ({ loginAction }) => {
 };
 
 Login.propTypes = {
-    loginAction: PropTypes.func
+    loginAction: PropTypes.func,
+    loggedIn: PropTypes.bool,
+    errorMessage: PropTypes.string
 };
 
 const mapStateToProps = (state) => {
-    return { loggingIn: state.login };
+    console.log('State from mapStateToProps', state.loginReducer);
+    return {
+        loggedIn: state.loginReducer.loggedIn,
+        errorMessage: state.loginReducer.error
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
