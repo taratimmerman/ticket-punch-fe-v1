@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+import PropTypes from 'prop-types';
 import { GiBoxingGlove } from 'react-icons/gi';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { getAllProjectsByUserAction } from '../actions/projectActions';
 import ProjectCard from '../components/ProjectCard';
+import { userId } from '../helpers/getUserId';
 import {
     ModalAction,
     ModalContainer,
@@ -27,9 +32,13 @@ import {
     SolidTextArea
 } from '../styling/PageStyling';
 
-const Projects = () => {
+const Projects = ({ getAllProjectsAction }) => {
 
     const [newProjectisOpen, setNewProjectIsOpen] = useState(false);
+
+    useEffect(() => {
+        getAllProjectsAction(userId.id);
+    }, []);
 
     return (
         <PageContainer className="page">
@@ -115,4 +124,21 @@ const Projects = () => {
     );
 };
 
-export default Projects;
+Projects.propTypes = {
+    getAllProjectsAction: PropTypes.func
+};
+
+const mapStateToProps = (state) => {
+    console.log('State: ', state.projectReducer);
+    return {
+
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        getAllProjectsAction: getAllProjectsByUserAction
+    }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Projects);

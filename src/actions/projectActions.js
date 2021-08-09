@@ -29,7 +29,7 @@ export const getAllProjectsByUserAction = userId => dispatch => {
     dispatch({ type: GETALL_REQUEST });
 
     axiosWithAuth()
-        .get(`${API_URL}/projects/${userId}`)
+        .get(`${API_URL}/projects/user/${userId}`)
         .then(res => {
             dispatch({
                 type: GETALL_SUCCESS,
