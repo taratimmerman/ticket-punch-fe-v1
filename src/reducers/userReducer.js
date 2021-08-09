@@ -18,7 +18,7 @@ import {
 export const initialUserState = {
     users: [],
     status: '',
-    error: ''
+    error: null
 };
 
 // USER REDUCER

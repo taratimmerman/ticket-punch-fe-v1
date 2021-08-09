@@ -9,7 +9,6 @@ import { closeLoginModalAction } from './modalActions';
 export const LOGIN_REQUEST = 'USERS_LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'USERS_LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'USERS_LOGIN_FAILURE';
-export const LOGIN_ERROR = 'USERS_LOGIN_ERROR';
 
 export const LOGOUT = 'USERS_LOGOUT';
 
@@ -33,7 +32,7 @@ export const DELETE_REQUEST = 'USERS_DELETE_REQUEST';
 export const DELETE_SUCCESS = 'USERS_DELETE_SUCCESS';
 export const DELETE_FAILURE = 'USERS_DELETE_FAILURE';
 
-// SERVICES ACTIONS
+// USER ACTION CREATORS
 
 export const loginUserAction = ( email , password ) => dispatch => {
     dispatch({ type: LOGIN_REQUEST });

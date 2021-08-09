@@ -3,7 +3,7 @@
 export const SHOW_LOGIN = 'SHOW_USER_LOGIN_MODAL';
 export const CLOSE_LOGIN = 'CLOSE_USER_LOGIN_MODAL';
 
-// MODAL ACTIONS
+// MODAL ACTION CREATORS
 
 export const openLoginModalAction = () => dispatch => {
     dispatch({ type: SHOW_LOGIN });
