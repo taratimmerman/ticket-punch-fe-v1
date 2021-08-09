@@ -1,8 +1,9 @@
 import React from 'react';
 
 import './App.css';
+import { createBrowserHistory } from 'history';
 import {
-  BrowserRouter as Router,
+  Router,
   Switch,
   Route
 } from "react-router-dom";
@@ -19,10 +20,11 @@ import Projects from './pages/Projects';
 import Tickets from './pages/Tickets';
 import Welcome from './pages/Welcome';
 
+export const history = createBrowserHistory();
 
 function App() {
   return (
-    <Router>
+    <Router history={history}>
       <Navbar />
       <Route render={({ location }) => (
         <TransitionGroup>

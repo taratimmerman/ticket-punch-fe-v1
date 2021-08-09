@@ -6,7 +6,7 @@ import {
 
 // INITIAL LOGIN STATE
 
-const initialLoginState ={ 
+const initialLoginState = { 
     loggedIn: false, 
     status: '',
     error: null

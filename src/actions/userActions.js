@@ -1,6 +1,8 @@
 import axios from 'axios';
 
+import { history } from '../App';
 import { API_URL , axiosWithAuth } from '../helpers/axiosWithAuth';
+import { closeLoginModalAction } from './modalActions';
 
 // USER ACTION TYPES
 
@@ -42,6 +44,8 @@ export const loginUserAction = ( email , password ) => dispatch => {
                 payload: res.data
             });
             window.localStorage.setItem('user', JSON.stringify(res.data));
+            dispatch(closeLoginModalAction());
+            history.push('/projects');
         })
         .catch(err => {
             dispatch({

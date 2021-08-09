@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { MdError } from 'react-icons/md';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
+import { openLoginModalAction } from '../actions/modalActions';
 import { loginUserAction } from '../actions/userActions';
 import Google from '../assets/google-icon.svg';
 import LinkedIn from '../assets/logo_linkedin.png';
@@ -34,30 +34,19 @@ import {
 } from '../styling/WelcomeStyling';
 
 
-const Login = ({ loginAction, loggedIn, errorMessage }) => {
-
-    const [loginIsOpen, setLoginIsOpen] = useState(true);
+const Login = ({ loginAction, errorMessage, openLoginAction, showModal }) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onBlur"
     });
-
-    const history = useHistory();
 
     const handleLogin = (user) => {
         const email = user.email.trim();
         const password = user.password.trim();
 
         loginAction(email, password);
-
-        if (loggedIn) {
-            setLoginIsOpen(false);
-
-            history.push('/projects');
-        } else {
-            null;
-        }
     };
+
     const handleError = (errors) => console.log(errors);
 
     const LoginValidation = {
@@ -76,14 +65,14 @@ const Login = ({ loginAction, loggedIn, errorMessage }) => {
     return (
         <WelcomeContainer
             className="purple"
-            isOpen={loginIsOpen}
-            onRequestClose={() => setLoginIsOpen(true)}
+            isOpen={showModal}
+            onRequestClose={openLoginAction}
             shouldCloseOnOverlayClick={false}
             closeTimeoutMS={200}
             contentLabel="modal">
             <CTA>Log in to your Ticket Punch account</CTA>
 
-            <ErrorMessage error={errorMessage}/>
+            <ErrorMessage error={errorMessage} />
 
             <StyledForm onSubmit={handleSubmit(handleLogin, handleError)}>
                 <StyledLabel
@@ -162,21 +151,24 @@ const Login = ({ loginAction, loggedIn, errorMessage }) => {
 
 Login.propTypes = {
     loginAction: PropTypes.func,
-    loggedIn: PropTypes.bool,
-    errorMessage: PropTypes.string
+    errorMessage: PropTypes.string,
+    openLoginAction: PropTypes.func,
+    showModal: PropTypes.bool
 };
 
 const mapStateToProps = (state) => {
-    console.log('State from mapStateToProps', state.loginReducer);
+    console.log('State from mapStateToProps', state.loginReducer, state.modalsReducer);
+    console.log('showModal: ', state.modalsReducer.showUserLoginModal);
     return {
-        loggedIn: state.loginReducer.loggedIn,
-        errorMessage: state.loginReducer.error
+        errorMessage: state.loginReducer.error,
+        showModal: state.modalsReducer.showUserLoginModal
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        loginAction: loginUserAction
+        loginAction: loginUserAction,
+        openLoginAction: openLoginModalAction
     }, dispatch);
 };
 
