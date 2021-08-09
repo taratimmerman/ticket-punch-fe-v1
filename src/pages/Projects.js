@@ -32,13 +32,21 @@ import {
     SolidTextArea
 } from '../styling/PageStyling';
 
-const Projects = ({ getAllProjectsAction }) => {
+const Projects = ({ getAllProjectsAction, projects }) => {
 
     const [newProjectisOpen, setNewProjectIsOpen] = useState(false);
 
     useEffect(() => {
-        getAllProjectsAction(userId.id);
+        getAllProjectsAction(userId);
     }, []);
+
+    const workingProjects = projects.filter(project => {
+        return project.status === "working_on_it";
+    });
+
+    const doneProjects = projects.filter(project => {
+        return project.status === "done";
+    });
 
     return (
         <PageContainer className="page">
@@ -48,6 +56,7 @@ const Projects = ({ getAllProjectsAction }) => {
                 <SolidButton className="purple restrict" onClick={() => setNewProjectIsOpen(true)}>New Project</SolidButton>
             </PageTitleWrapper>
 
+            {/* New Project Modal */}
             <ModalContainer
                 className="green"
                 isOpen={newProjectisOpen}
@@ -110,13 +119,17 @@ const Projects = ({ getAllProjectsAction }) => {
                 <Bar className="working-on-it">
                     <StatusTitle>Working on it</StatusTitle>
                     <CardContainer>
-                        <ProjectCard title={"Ticket Punch"} description={"A project management web app created to empower users to single-task or multi-task at their discretion. A simplified Monday.com if you will."} status={"Working on it"} />
+                        {workingProjects.map(project => (
+                            <ProjectCard key={project.id} title={project.title} description={project.description} status={project.status} />
+                        ))}
                     </CardContainer>
                 </Bar>
                 <Bar className="done">
                     <StatusTitle>Done</StatusTitle>
                     <CardContainer>
-                        <ProjectCard title={"Family Promise"} description={"Family Promise helps local communities coordinate their compassion to address the root causes of family homelessness. They tap existing local resources to empower families towards economic stability."} status={"Done"} />
+                    {doneProjects.map(project => (
+                            <ProjectCard key={project.id} title={project.title} description={project.description} status={project.status} />
+                        ))}
                     </CardContainer>
                 </Bar>
             </KanbanContainer>
@@ -125,13 +138,13 @@ const Projects = ({ getAllProjectsAction }) => {
 };
 
 Projects.propTypes = {
-    getAllProjectsAction: PropTypes.func
+    getAllProjectsAction: PropTypes.func,
+    projects: PropTypes.array
 };
 
 const mapStateToProps = (state) => {
-    console.log('State: ', state.projectReducer);
     return {
-
+        projects: state.projectReducer.projects
     };
 };
 
