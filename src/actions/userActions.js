@@ -11,6 +11,8 @@ export const LOGIN_SUCCESS = 'USERS_LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'USERS_LOGIN_FAILURE';
 export const LOGIN_ERROR = 'USERS_LOGIN_ERROR';
 
+export const LOGOUT = 'USERS_LOGOUT';
+
 export const REGISTER_REQUEST = 'USERS_REGISTER_REQUEST';
 export const REGISTER_SUCCESS = 'USERS_REGISTER_SUCCESS';
 export const REGISTER_FAILURE = 'USERS_REGISTER_FAILURE';
@@ -55,6 +57,12 @@ export const loginUserAction = ( email , password ) => dispatch => {
         });
 };
 
+export const logoutUserAction = () => dispatch => {
+    dispatch({ type: LOGOUT });
+    localStorage.removeItem('user');
+    history.push('/');
+};
+
 export const registerUserAction = ( email , password ) => dispatch => {
     dispatch({ type: REGISTER_REQUEST });
 
@@ -96,7 +104,7 @@ export const getAllUsersAction = () => dispatch => {
 export const getUserByIdAction = userId => dispatch => {
     dispatch({ type: GETUSER_REQUEST });
 
-    axiosWithAuth
+    axiosWithAuth()
         .get(`${API_URL}/users/${userId}`)
         .then(res => {
             dispatch({

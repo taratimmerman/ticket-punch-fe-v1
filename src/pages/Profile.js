@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 
+import PropTypes from 'prop-types';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 import { VscAccount } from 'react-icons/vsc';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
 
+import { logoutUserAction } from '../actions/userActions';
 import {
     ModalContainer,
     ModalCircle,
@@ -25,7 +29,7 @@ import {
     SubAction
 } from '../styling/WelcomeStyling';
 
-const Profile = () => {
+const Profile = ({ logoutAction }) => {
 
     const [deleteIsOpen, setDeleteIsOpen] = useState(false);
     const [editIsOpen, setEditIsOpen] = useState(false);
@@ -35,7 +39,7 @@ const Profile = () => {
         <ProfileContainer className="page">
             <PageTitleWrapper>
                 <PageTitle>Profile</PageTitle>
-                <OutlineButton className="purple restrict">Log out</OutlineButton>
+                <OutlineButton className="purple restrict" onClick={() => logoutAction()}>Log out</OutlineButton>
             </PageTitleWrapper>
             <ProfileInfoContainer>
                 <VscAccount fontSize={"9rem"} />
@@ -132,7 +136,17 @@ const Profile = () => {
     );
 };
 
-export default Profile;
+Profile.propTypes = {
+    logoutAction: PropTypes.func
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        logoutAction: logoutUserAction
+    }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(Profile);
 
 // STYLED COMPONENTS:
 

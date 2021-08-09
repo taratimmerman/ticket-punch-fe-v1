@@ -1,7 +1,8 @@
 import {
     LOGIN_REQUEST,
     LOGIN_SUCCESS,
-    LOGIN_FAILURE
+    LOGIN_FAILURE,
+    LOGOUT
 } from '../actions/userActions';
 
 // INITIAL LOGIN STATE
@@ -37,6 +38,8 @@ export const loginReducer = (state = initialLoginState, action) => {
                 error: action.payload,
                 status: 'Failed'
             };
+        case LOGOUT:
+            return {};
         default:
             return state;
     }

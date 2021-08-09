@@ -157,8 +157,6 @@ Login.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-    console.log('State from mapStateToProps', state.loginReducer, state.modalsReducer);
-    console.log('showModal: ', state.modalsReducer.showUserLoginModal);
     return {
         errorMessage: state.loginReducer.error,
         showModal: state.modalsReducer.showUserLoginModal
