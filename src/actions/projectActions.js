@@ -23,6 +23,8 @@ export const DELETEPROJECT_REQUEST = 'PROJECTS_DELETEPROJECT_REQUEST';
 export const DELETEPROJECT_SUCCESS = 'PROJECTS_DELETEPROJECT_SUCCESS';
 export const DELETEPROJECT_FAILURE = 'PROJECTS_DELETEPROJECT_FAILURE';
 
+export const TARGET_PROJECT = 'PROJECTS_TARGET_PROJECT';
+
 // PROJECT ACTION CREATORS
 
 export const getAllProjectsByUserAction = userId => dispatch => {
@@ -119,4 +121,8 @@ export const deleteProjectAction = projectId => dispatch => {
                 payload: err.message
             });
         });
+};
+
+export const targetProjectAction = (projectId, projectTitle) => dispatch => {
+    dispatch({ type: TARGET_PROJECT, projectId, projectTitle });
 };

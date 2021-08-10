@@ -13,7 +13,8 @@ import {
     UPDATEPROJECT_FAILURE,
     DELETEPROJECT_REQUEST,
     DELETEPROJECT_SUCCESS,
-    DELETEPROJECT_FAILURE
+    DELETEPROJECT_FAILURE,
+    TARGET_PROJECT
 } from '../actions/projectActions';
 
 // INITIAL PROJECT STATE
@@ -22,7 +23,9 @@ const initialProjectState = {
     projects: [],
     loading: false,
     status: '',
-    error: null
+    error: null,
+    projectId: null,
+    projectTitle: ''
 };
 
 // PROJECT REDUCER
@@ -131,6 +134,12 @@ export const projectReducer = (state = initialProjectState, action) => {
                 loading: false,
                 error: action.payload,
                 status: 'Failed'
+            };
+        case TARGET_PROJECT:
+            return {
+                ...state,
+                projectId: action.projectId,
+                projectTitle: action.projectTitle
             };
         default:
             return state;

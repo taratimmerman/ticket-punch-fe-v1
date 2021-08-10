@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { openAddProjectModalAction, closeAddProjectModalAction } from '../actions/modalActions';
-import { createProjectAction, getAllProjectsByUserAction } from '../actions/projectActions';
+import { createProjectAction, getAllProjectsByUserAction, targetProjectAction } from '../actions/projectActions';
 import ProjectCard from '../components/ProjectCard';
 import { activeUserId } from '../helpers/getUserId';
 import {
@@ -38,7 +38,7 @@ import {
     InlineError
 } from '../styling/PageStyling';
 
-const Projects = ({ getAllProjectsAction, projects, createProjectAction, openModalAction, closeModalAction, showModal }) => {
+const Projects = ({ getAllProjectsAction, projects, createProjectAction, openModalAction, closeModalAction, showModal, targetProjectAction }) => {
 
     useEffect(() => {
         getAllProjectsAction(activeUserId);
@@ -165,8 +165,9 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
                     <CardContainer>
                         {projects.filter(project => (
                             project.status === "working_on_it"
-                        )).map(project => (
-                            <ProjectCard key={project.id} title={project.title} description={project.description} status={project.status} />
+                        )).map(project => (<div key={project.id} onClick={() => targetProjectAction(project.id, project.title)}>
+                            <ProjectCard key={project.id} id={project.id} title={project.title} description={project.description} status={project.status} />
+                        </div>
                         ))}
                     </CardContainer>
                 </Bar>
@@ -175,8 +176,9 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
                     <CardContainer>
                         {projects.filter(project => (
                             project.status === "done"
-                        )).map(project => (
-                            <ProjectCard key={project.id} title={project.title} description={project.description} status={project.status} />
+                            )).map(project => (<div key={project.id} onClick={() => targetProjectAction(project.id, project.title)}>
+                            <ProjectCard key={project.id} id={project.id} title={project.title} description={project.description} status={project.status} />
+                        </div>
                         ))}
                     </CardContainer>
                 </Bar>
@@ -191,10 +193,12 @@ Projects.propTypes = {
     createProjectAction: PropTypes.func,
     openModalAction: PropTypes.func,
     closeModalAction: PropTypes.func,
-    showModal: PropTypes.bool
+    showModal: PropTypes.bool,
+    targetProjectAction: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
+    console.log(state.projectReducer);
     return {
         projects: state.projectReducer.projects,
         showModal: state.modalsReducer.showAddProjectModal
@@ -206,7 +210,8 @@ const mapDispatchToProps = (dispatch) => {
         getAllProjectsAction: getAllProjectsByUserAction,
         createProjectAction: createProjectAction,
         openModalAction: openAddProjectModalAction,
-        closeModalAction: closeAddProjectModalAction
+        closeModalAction: closeAddProjectModalAction,
+        targetProjectAction: targetProjectAction
     }, dispatch);
 };
 

@@ -67,6 +67,9 @@ const ProjectCard = props => {
                 style={{ maxHeight: `${setHeight}` }}
                 className={`${setActive}`}
             >
+                <CardLabel>Project ID</CardLabel>
+                <CardDescription>{props.id}</CardDescription>
+
                 <CardLabel>Project Description</CardLabel>
                 <CardDescription>{props.description}</CardDescription>
 
@@ -173,7 +176,8 @@ ProjectCard.propTypes = {
     archived: PropTypes.bool,
     description: PropTypes.string,
     project: PropTypes.string,
-    status: PropTypes.string
+    status: PropTypes.string,
+    id: PropTypes.number
 };
 
 export default ProjectCard;
