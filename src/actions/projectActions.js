@@ -1,5 +1,5 @@
 import { API_URL, axiosWithAuth } from '../helpers/axiosWithAuth';
-import { DELETE_REQUEST, UPDATE_REQUEST } from './userActions';
+import { closeAddProjectModalAction } from './modalActions';
 
 // PROJECT ACTION TYPES (CONSTANTS)
 
@@ -63,16 +63,17 @@ export const getProjectByIdAction = projectId => dispatch => {
         });
 };
 
-export const createProjectAction = newProject => dispatch => {
+export const createProjectAction = (user_id, title, description, status) => dispatch => {
     dispatch({ type: CREATEPROJECT_REQUEST });
 
     axiosWithAuth()
-        .post(`${API_URL}/projects`, newProject)
+        .post(`${API_URL}/projects`, { user_id, title, description, status })
         .then(res => {
             dispatch({
                 type: CREATEPROJECT_SUCCESS,
                 payload: res.data
             });
+            dispatch(closeAddProjectModalAction());
         })
         .catch(err => {
             dispatch({
@@ -83,7 +84,7 @@ export const createProjectAction = newProject => dispatch => {
 };
 
 export const editProjectAction = (projectId, projectEdits) => dispatch => {
-    dispatch({ type: UPDATE_REQUEST });
+    dispatch({ type: UPDATEPROJECT_REQUEST });
 
     axiosWithAuth()
         .put(`${API_URL}/projects/${projectId}`, projectEdits)
@@ -102,7 +103,7 @@ export const editProjectAction = (projectId, projectEdits) => dispatch => {
 };
 
 export const deleteProjectAction = projectId => dispatch => {
-    dispatch({ type: DELETE_REQUEST });
+    dispatch({ type: DELETEPROJECT_REQUEST });
 
     axiosWithAuth()
         .delete(`${API_URL}/projects/${projectId}`)

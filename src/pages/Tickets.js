@@ -86,7 +86,7 @@ const Tickets = () => {
                     <SolidDropdown name="ticket-status">
                         <option>---</option>
                         <option value="stuck">Stuck</option>
-                        <option value="working-on-it">Working on it</option>
+                        <option value="working_on_it">Working on it</option>
                         <option value="done">Done</option>
                     </SolidDropdown>
 
@@ -96,8 +96,8 @@ const Tickets = () => {
 
                     <SolidDropdown name="bug">
                         <option>---</option>
-                        <option>Yes</option>
-                        <option>No</option>
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
                     </SolidDropdown>
                 </StyledForm>
                 <ModalButtonContainer>

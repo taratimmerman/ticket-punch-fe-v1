@@ -1,3 +1,3 @@
 const getUser = JSON.parse(localStorage.getItem('user'));
 
-export const userId = getUser.id;
+export const activeUserId = getUser.id;
