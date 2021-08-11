@@ -87,10 +87,18 @@ const ProjectCard = (props) => {
 
     const editProjectValidation = {
         title: {
-            required: "Please enter the project title"
+            required: "Please enter the project title",
+            maxLength: {
+                value: 30,
+                message: "Project titles must be less than 30 characters"
+            }
         },
         description: {
-            required: "Please enter the project description"
+            required: "Please enter the project description",
+            maxLength: {
+                value: 140,
+                message: "Project descriptions must be less than 30 characters"
+            }
         }
     };
 
