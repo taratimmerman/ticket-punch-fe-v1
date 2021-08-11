@@ -87,11 +87,11 @@ export const createProjectAction = (user_id, title, description, status) => disp
         });
 };
 
-export const editProjectAction = (projectId, userId, projectTitle, projectDescription, projectStatus) => dispatch => {
+export const editProjectAction = (id, user_id, title, description, status) => dispatch => {
     dispatch({ type: UPDATEPROJECT_REQUEST });
 
     axiosWithAuth()
-        .put(`${API_URL}/projects/${projectId}`, { projectTitle, userId, projectDescription, projectStatus })
+        .put(`${API_URL}/projects/${id}`, { user_id, title, description, status })
         .then(res => {
             dispatch({
                 type: UPDATEPROJECT_SUCCESS,

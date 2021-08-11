@@ -107,7 +107,6 @@ export const projectReducer = (state = initialProjectState, action) => {
             return {
                 ...state,
                 loading: false,
-                projects: action.payload,
                 status: 'Success'
             };
         case UPDATEPROJECT_FAILURE:

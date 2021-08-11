@@ -73,14 +73,14 @@ const ProjectCard = (props) => {
     }
 
     const handleEditProject = (projectEdits) => {
-        const projectId = props.projectId;
+        const id = props.projectId;
         const user_id = activeUserId;
         const title = projectEdits.title.trim();
         const description = projectEdits.description.trim();
         const status = projectEdits.status.trim();
-        console.log(projectEdits);
+        console.log(id, user_id, title, description, status);
 
-        editProjectAction(projectId, user_id, title, description, status);
+        props.editProjectAction(id, user_id, title, description, status);
         reset();
     };
 
@@ -247,7 +247,8 @@ ProjectCard.propTypes = {
     deleteProjectAction: PropTypes.func,
     openDeleteProjectModalAction: PropTypes.func,
     closeDeleteProjectModalAction: PropTypes.func,
-    showDeleteModal: PropTypes.bool
+    showDeleteModal: PropTypes.bool,
+    editProjectAction: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
