@@ -1,5 +1,6 @@
 import { API_URL, axiosWithAuth } from '../helpers/axiosWithAuth';
-import { closeAddProjectModalAction } from './modalActions';
+import { activeUserId } from '../helpers/getUserId';
+import { closeAddProjectModalAction, closeDeleteProjectModalAction } from './modalActions';
 
 // PROJECT ACTION TYPES (CONSTANTS)
 
@@ -114,6 +115,8 @@ export const deleteProjectAction = projectId => dispatch => {
                 type: DELETEPROJECT_SUCCESS,
                 payload: res.data
             });
+            dispatch(closeDeleteProjectModalAction());
+            dispatch(getAllProjectsByUserAction(activeUserId));
         })
         .catch(err => {
             dispatch({

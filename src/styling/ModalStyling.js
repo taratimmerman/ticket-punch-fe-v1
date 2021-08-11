@@ -83,10 +83,30 @@ export const ModalCircle = styled.div`
 export const ModalAction = styled.h3`
     color: #E8EAED;
     margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     @media screen and (max-height: 320px) {
         margin-bottom: 5px;
         }
+`;
+
+export const ModalItem = styled.span`
+    margin: 0 8px;
+    font-size: 1.5rem;
+
+    &.red {
+        color: #E2445C;
+    }
+
+    &.yellow {
+        color: #FDAB3D;
+    }
+
+    &.green {
+        color: #00C875;
+    }
 `;
 
 export const ModalDetails = styled.span`

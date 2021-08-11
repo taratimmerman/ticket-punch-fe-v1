@@ -24,7 +24,7 @@ const initialProjectState = {
     loading: false,
     status: '',
     error: null,
-    projectId: null,
+    projectId: 0,
     projectTitle: ''
 };
 
