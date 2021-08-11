@@ -9,6 +9,9 @@ export const CLOSE_ADD_PROJECT = 'CLOSE_ADD_PROJECT_MODAL';
 export const SHOW_DELETE_PROJECT = 'SHOW_DELETE_PROJECT_MODAL';
 export const CLOSE_DELETE_PROJECT = 'CLOSE_DELETE_PROJECT_MODAL';
 
+export const SHOW_EDIT_PROJECT = 'SHOW_EDIT_PROJECT_MODAL';
+export const CLOSE_EDIT_PROJECT = 'CLOSE_EDIT_PROJECT_MODAL';
+
 
 // MODAL ACTION CREATORS
 
@@ -37,4 +40,13 @@ export const openDeleteProjectModalAction = () => dispatch => {
 
 export const closeDeleteProjectModalAction = () => dispatch => {
     dispatch({ type: CLOSE_DELETE_PROJECT});
+};
+
+// Edit Project Modal
+export const openEditProjectModalAction = () => dispatch => {
+    dispatch({ type: SHOW_EDIT_PROJECT });
+};
+
+export const closeEditProjectModalAction = () => dispatch => {
+    dispatch({ type: CLOSE_EDIT_PROJECT });
 };

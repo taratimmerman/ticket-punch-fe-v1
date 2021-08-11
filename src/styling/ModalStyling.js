@@ -94,7 +94,8 @@ export const ModalAction = styled.h3`
 
 export const ModalItem = styled.span`
     margin: 0 8px;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    text-align: center;
 
     &.red {
         color: #E2445C;
@@ -128,7 +129,6 @@ export const ModalButtonContainer = styled.div`
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    margin: 40px 0 0 0;
 
     @media screen and (max-width: 400px) {
         width: 60%;

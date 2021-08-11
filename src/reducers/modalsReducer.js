@@ -4,7 +4,9 @@ import {
     SHOW_ADD_PROJECT,
     CLOSE_ADD_PROJECT,
     SHOW_DELETE_PROJECT,
-    CLOSE_DELETE_PROJECT
+    CLOSE_DELETE_PROJECT,
+    SHOW_EDIT_PROJECT,
+    CLOSE_EDIT_PROJECT
 } from '../actions/modalActions';
 
 // INITIAL MODAL STATE
@@ -12,7 +14,8 @@ import {
 const initialModalState = {
     showUserLoginModal: true,
     showAddProjectModal: false,
-    showDeleteProjectModal: false
+    showDeleteProjectModal: false,
+    showEditProjectModal: false
 };
 
 // MODALS REDUCER
@@ -41,6 +44,7 @@ export const modalsReducer = (state = initialModalState, action) => {
                 ...state,
                 showAddProjectModal: false
             };
+        // DELETE PROJECT MODAL
         case SHOW_DELETE_PROJECT:
             return {
                 ...state,
@@ -51,7 +55,17 @@ export const modalsReducer = (state = initialModalState, action) => {
                 ...state,
                 showDeleteProjectModal: false
             };
-        // DELETE PROJECT MODAL
+        // EDIT PROJECT MODAL
+        case SHOW_EDIT_PROJECT:
+            return {
+                ...state,
+                showEditProjectModal: true
+            };
+        case CLOSE_EDIT_PROJECT:
+            return {
+                ...state,
+                showEditProjectModal: false
+            };
         default:
             return state;
     }

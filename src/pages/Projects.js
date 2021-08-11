@@ -143,11 +143,6 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
                         : null}
 
                     <ModalButtonContainer>
-                        <OutlineButton
-                            className="green restrict"
-                            onClick={() => closeModalAction()}
-                        >Cancel</OutlineButton>
-
                         <SolidButton
                             type="submit"
                             className="green restrict"
@@ -155,6 +150,13 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
                     </ModalButtonContainer>
 
                 </StyledForm>
+
+                <ModalButtonContainer>
+                    <OutlineButton
+                        className="green restrict"
+                        onClick={() => closeModalAction()}
+                    >Cancel</OutlineButton>
+                </ModalButtonContainer>
 
             </ModalContainer>
 
@@ -175,7 +177,7 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
                     <CardContainer>
                         {projects.filter(project => (
                             project.status === "done"
-                            )).map(project => (<div key={project.id} onClick={() => targetProjectAction(project.id, project.title, project.description, project.status)}>
+                        )).map(project => (<div key={project.id} onClick={() => targetProjectAction(project.id, project.title, project.description, project.status)}>
                             <ProjectCard key={project.id} id={project.id} title={project.title} description={project.description} status={project.status} />
                         </div>
                         ))}

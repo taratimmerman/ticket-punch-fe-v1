@@ -9,7 +9,7 @@ import { VscHistory } from 'react-icons/vsc';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { openDeleteProjectModalAction, closeDeleteProjectModalAction } from '../actions/modalActions';
+import { openDeleteProjectModalAction, closeDeleteProjectModalAction, openEditProjectModalAction, closeEditProjectModalAction } from '../actions/modalActions';
 import { deleteProjectAction, editProjectAction } from '../actions/projectActions';
 import { activeUserId } from '../helpers/getUserId';
 import {
@@ -61,7 +61,6 @@ const ProjectCard = (props) => {
 
     const [setActive, setActiveState] = useState("");
     const [setHeight, setHeightState] = useState("0px");
-    const [setEditProjectIsOpen, setEditProjectIsOpenState] = useState(false);
 
     const card = useRef(null);
 
@@ -121,7 +120,7 @@ const ProjectCard = (props) => {
                 {props.archived ? null :
                     <CardButtonWrapper>
                         <CardButton onClick={() => props.openDeleteProjectModalAction()}>Delete</CardButton>
-                        <CardButton onClick={() => setEditProjectIsOpenState(true)}>Edit</CardButton>
+                        <CardButton onClick={() => props.openEditProjectModalAction()}>Edit</CardButton>
                     </CardButtonWrapper>}
             </ContentWrapper>
 
@@ -150,8 +149,8 @@ const ProjectCard = (props) => {
             {/* EDIT PROJECT MODAL */}
             <ModalContainer
                 className="purple"
-                isOpen={setEditProjectIsOpen}
-                onRequestClose={() => setEditProjectIsOpenState(false)}
+                isOpen={props.showEditModal}
+                onRequestClose={() => props.closeEditProjectModalAction()}
                 closeTimeoutMS={200}
                 contentLabel="modal"
             >
@@ -214,18 +213,23 @@ const ProjectCard = (props) => {
                     <SubActionContainer>
                         <SubAction>These changes cannot be undone</SubAction>
                     </SubActionContainer>
-                    <ModalButtonContainer>
-                        <OutlineButton
-                            className="purple restrict"
-                            onClick={() => setEditProjectIsOpenState(false)}
-                        >Cancel</OutlineButton>
 
+                    <ModalButtonContainer>
                         <SolidButton
                             type="submit"
                             className="purple restrict"
                         >Edit Project</SolidButton>
                     </ModalButtonContainer>
+
                 </StyledForm>
+
+                <ModalButtonContainer>
+                    <OutlineButton
+                        className="purple restrict"
+                        onClick={() => props.closeEditProjectModalAction()}
+                    >Cancel</OutlineButton>
+                </ModalButtonContainer>
+
             </ModalContainer>
 
         </CardContainer>
@@ -248,7 +252,10 @@ ProjectCard.propTypes = {
     openDeleteProjectModalAction: PropTypes.func,
     closeDeleteProjectModalAction: PropTypes.func,
     showDeleteModal: PropTypes.bool,
-    editProjectAction: PropTypes.func
+    editProjectAction: PropTypes.func,
+    openEditProjectModalAction: PropTypes.func,
+    closeEditProjectModalAction: PropTypes.func,
+    showEditModal: PropTypes.bool
 };
 
 const mapStateToProps = (state) => {
@@ -257,7 +264,8 @@ const mapStateToProps = (state) => {
         projectTitle: state.projectReducer.projectTitle,
         projectDescription: state.projectReducer.projectDescription,
         projectStatus: state.projectReducer.projectStatus,
-        showDeleteModal: state.modalsReducer.showDeleteProjectModal
+        showDeleteModal: state.modalsReducer.showDeleteProjectModal,
+        showEditModal: state.modalsReducer.showEditProjectModal
     };
 };
 
@@ -266,7 +274,9 @@ const mapDispatchToProps = (dispatch) => {
         deleteProjectAction: deleteProjectAction,
         openDeleteProjectModalAction: openDeleteProjectModalAction,
         closeDeleteProjectModalAction: closeDeleteProjectModalAction,
-        editProjectAction: editProjectAction
+        editProjectAction: editProjectAction,
+        openEditProjectModalAction: openEditProjectModalAction,
+        closeEditProjectModalAction: closeEditProjectModalAction
     }, dispatch);
 };
 
