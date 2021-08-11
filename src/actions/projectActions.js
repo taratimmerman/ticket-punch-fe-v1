@@ -77,6 +77,7 @@ export const createProjectAction = (user_id, title, description, status) => disp
                 payload: res.data
             });
             dispatch(closeAddProjectModalAction());
+            dispatch(getAllProjectsByUserAction(activeUserId));
         })
         .catch(err => {
             dispatch({
@@ -86,11 +87,11 @@ export const createProjectAction = (user_id, title, description, status) => disp
         });
 };
 
-export const editProjectAction = (projectId, projectEdits) => dispatch => {
+export const editProjectAction = (projectId, userId, projectTitle, projectDescription, projectStatus) => dispatch => {
     dispatch({ type: UPDATEPROJECT_REQUEST });
 
     axiosWithAuth()
-        .put(`${API_URL}/projects/${projectId}`, projectEdits)
+        .put(`${API_URL}/projects/${projectId}`, { projectTitle, userId, projectDescription, projectStatus })
         .then(res => {
             dispatch({
                 type: UPDATEPROJECT_SUCCESS,
@@ -126,6 +127,6 @@ export const deleteProjectAction = projectId => dispatch => {
         });
 };
 
-export const targetProjectAction = (projectId, projectTitle) => dispatch => {
-    dispatch({ type: TARGET_PROJECT, projectId, projectTitle });
+export const targetProjectAction = (projectId, projectTitle, projectDescription, projectStatus) => dispatch => {
+    dispatch({ type: TARGET_PROJECT, projectId, projectTitle, projectDescription, projectStatus});
 };

@@ -25,7 +25,9 @@ const initialProjectState = {
     status: '',
     error: null,
     projectId: 0,
-    projectTitle: ''
+    projectTitle: '',
+    projectDescription: '',
+    projectStatus: ''
 };
 
 // PROJECT REDUCER
@@ -139,7 +141,9 @@ export const projectReducer = (state = initialProjectState, action) => {
             return {
                 ...state,
                 projectId: action.projectId,
-                projectTitle: action.projectTitle
+                projectTitle: action.projectTitle,
+                projectDescription: action.projectDescription,
+                projectStatus: action.projectStatus
             };
         default:
             return state;

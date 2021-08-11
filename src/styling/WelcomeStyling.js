@@ -49,7 +49,6 @@ export const SubActionContainer = styled.div`
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin: 16px 0;
 `;
 
 export const SubAction = styled.span`

@@ -107,6 +107,10 @@ export const ModalItem = styled.span`
     &.green {
         color: #00C875;
     }
+
+    &.purple {
+        color: #A25DDC;
+    }
 `;
 
 export const ModalDetails = styled.span`

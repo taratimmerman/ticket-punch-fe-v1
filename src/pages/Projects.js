@@ -56,7 +56,6 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
 
         createProjectAction(user_id, title, description, status);
         reset();
-        getAllProjectsAction(activeUserId);
     };
 
     const handleError = (errors) => console.log(errors);
@@ -130,7 +129,7 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
 
                     <SolidTextArea
                         type="text"
-                        {...register('description')}
+                        {...register('description', newProjectValidation.description)}
                         name="description"
                         placeholder="Enter the project description"
                     />
@@ -165,7 +164,7 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
                     <CardContainer>
                         {projects.filter(project => (
                             project.status === "working_on_it"
-                        )).map(project => (<div key={project.id} onClick={() => targetProjectAction(project.id, project.title)}>
+                        )).map(project => (<div key={project.id} onClick={() => targetProjectAction(project.id, project.title, project.description, project.status)}>
                             <ProjectCard key={project.id} id={project.id} title={project.title} description={project.description} status={project.status} />
                         </div>
                         ))}
@@ -176,7 +175,7 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
                     <CardContainer>
                         {projects.filter(project => (
                             project.status === "done"
-                            )).map(project => (<div key={project.id} onClick={() => targetProjectAction(project.id, project.title)}>
+                            )).map(project => (<div key={project.id} onClick={() => targetProjectAction(project.id, project.title, project.description, project.status)}>
                             <ProjectCard key={project.id} id={project.id} title={project.title} description={project.description} status={project.status} />
                         </div>
                         ))}

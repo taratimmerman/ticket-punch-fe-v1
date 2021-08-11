@@ -1,14 +1,17 @@
 import React, { useState, useRef } from 'react';
 
 import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
 import { BsTrash } from 'react-icons/bs';
 import { GiBoxingGlove } from 'react-icons/gi';
+import { MdError } from 'react-icons/md';
 import { VscHistory } from 'react-icons/vsc';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { openDeleteProjectModalAction, closeDeleteProjectModalAction } from '../actions/modalActions';
-import { deleteProjectAction } from '../actions/projectActions';
+import { deleteProjectAction, editProjectAction } from '../actions/projectActions';
+import { activeUserId } from '../helpers/getUserId';
 import {
     CardContainer,
     TitleWrapper,
@@ -35,14 +38,26 @@ import {
     SolidDropdown,
     SolidTextArea,
     OutlineButton,
-    SolidButton
+    SolidButton,
+    InlineErrorWrapper,
+    InlineErrorIcon,
+    InlineError
 } from '../styling/PageStyling';
 import {
-    CTA,
+    SubActionContainer,
     SubAction
 } from '../styling/WelcomeStyling';
 
 const ProjectCard = (props) => {
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({
+        mode: "onBlur",
+        defaultValues: {
+            title: `${props.projectTitle}`,
+            description: `${props.projectDescription}`,
+            status: `${props.projectStatus}`
+        }
+    });
 
     const [setActive, setActiveState] = useState("");
     const [setHeight, setHeightState] = useState("0px");
@@ -56,6 +71,29 @@ const ProjectCard = (props) => {
             setActive === "active" ? "0px" : `${card.current.scrollHeight}px`
         );
     }
+
+    const handleEditProject = (projectEdits) => {
+        const projectId = props.projectId;
+        const user_id = activeUserId;
+        const title = projectEdits.title.trim();
+        const description = projectEdits.description.trim();
+        const status = projectEdits.status.trim();
+        console.log(projectEdits);
+
+        editProjectAction(projectId, user_id, title, description, status);
+        reset();
+    };
+
+    const handleError = (errors) => console.log(errors);
+
+    const editProjectValidation = {
+        title: {
+            required: "Please enter the project title"
+        },
+        description: {
+            required: "Please enter the project description"
+        }
+    };
 
     return (
         <CardContainer>
@@ -121,53 +159,73 @@ const ProjectCard = (props) => {
                     <GiBoxingGlove />
                 </ModalCircle>
 
-                <CTA>Edit Project</CTA>
-                <StyledForm>
+                <ModalAction>Edit <ModalItem className="purple">{`${props.projectTitle}`}</ModalItem> Project</ModalAction>
+                <StyledForm onSubmit={handleSubmit(handleEditProject, handleError)}>
                     <StyledLabel
-                        htmlFor="project-name"
-                    >Project Name</StyledLabel>
+                        htmlFor="title"
+                    >Project Title</StyledLabel>
 
                     <SolidInput
                         type="text"
-                        name="project-name"
-                        placeholder="Project Name"
+                        {...register('title', editProjectValidation.title)}
+                        name="title"
+                        placeholder={`${props.projectTitle}`}
                     />
+                    {errors.title ?
+                        <InlineErrorWrapper>
+                            <InlineErrorIcon>
+                                <MdError />
+                            </InlineErrorIcon>
+                            <InlineError>{errors.title.message}</InlineError>
+                        </InlineErrorWrapper>
+                        : null}
 
                     <StyledLabel
-                        htmlFor="project-description"
+                        htmlFor="description"
                     >Project Description</StyledLabel>
 
                     <SolidTextArea
                         type="text"
-                        name="project-description"
-                        placeholder="Project Description"
+                        {...register('description', editProjectValidation.description)}
+                        name="description"
+                        placeholder={`${props.projectDescription}`}
                     />
+                    {errors.description ?
+                        <InlineErrorWrapper>
+                            <InlineErrorIcon>
+                                <MdError />
+                            </InlineErrorIcon>
+                            <InlineError>{errors.description.message}</InlineError>
+                        </InlineErrorWrapper>
+                        : null}
 
                     <StyledLabel
-                        htmlFor="project-status"
+                        htmlFor="status"
                     >Project Status</StyledLabel>
 
-                    <SolidDropdown name="project-status">
+                    <SolidDropdown
+                        name="status"
+                        {...register('status')}
+                    >
                         <option>---</option>
-                        <option value="stuck">Stuck</option>
-                        <option value="working-on-it">Working on it</option>
+                        <option value="working_on_it">Working on it</option>
                         <option value="done">Done</option>
                     </SolidDropdown>
+                    <SubActionContainer>
+                        <SubAction>These changes cannot be undone</SubAction>
+                    </SubActionContainer>
+                    <ModalButtonContainer>
+                        <OutlineButton
+                            className="purple restrict"
+                            onClick={() => setEditProjectIsOpenState(false)}
+                        >Cancel</OutlineButton>
+
+                        <SolidButton
+                            type="submit"
+                            className="purple restrict"
+                        >Edit Project</SolidButton>
+                    </ModalButtonContainer>
                 </StyledForm>
-
-                <SubAction>These changes cannot be undone</SubAction>
-
-                <ModalButtonContainer>
-                    <OutlineButton
-                        className="purple restrict"
-                        onClick={() => setEditProjectIsOpenState(false)}
-                    >Cancel</OutlineButton>
-
-                    <SolidButton
-                        type="submit"
-                        className="purple restrict"
-                    >Edit Project</SolidButton>
-                </ModalButtonContainer>
             </ModalContainer>
 
         </CardContainer>
@@ -184,6 +242,8 @@ ProjectCard.propTypes = {
     id: PropTypes.number,
     projectId: PropTypes.number,
     projectTitle: PropTypes.string,
+    projectDescription: PropTypes.string,
+    projectStatus: PropTypes.string,
     deleteProjectAction: PropTypes.func,
     openDeleteProjectModalAction: PropTypes.func,
     closeDeleteProjectModalAction: PropTypes.func,
@@ -194,6 +254,8 @@ const mapStateToProps = (state) => {
     return {
         projectId: state.projectReducer.projectId,
         projectTitle: state.projectReducer.projectTitle,
+        projectDescription: state.projectReducer.projectDescription,
+        projectStatus: state.projectReducer.projectStatus,
         showDeleteModal: state.modalsReducer.showDeleteProjectModal
     };
 };
@@ -202,7 +264,8 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         deleteProjectAction: deleteProjectAction,
         openDeleteProjectModalAction: openDeleteProjectModalAction,
-        closeDeleteProjectModalAction: closeDeleteProjectModalAction
+        closeDeleteProjectModalAction: closeDeleteProjectModalAction,
+        editProjectAction: editProjectAction
     }, dispatch);
 };
 
