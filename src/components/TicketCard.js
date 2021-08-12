@@ -8,7 +8,9 @@ import { VscHistory } from 'react-icons/vsc';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { openDeleteTicketModalAction, closeDeleteTicketModalAction } from '../actions/modalActions';
 import { getProjectByIdAction } from '../actions/projectActions';
+import { deleteTicketAction } from '../actions/ticketActions';
 import {
     CardContainer,
     TitleWrapper,
@@ -25,7 +27,8 @@ import {
     ModalContainer,
     ModalCircle,
     ModalButtonContainer,
-    ModalAction
+    ModalAction,
+    ModalItem
 } from '../styling/ModalStyling';
 import {
     SolidButton,
@@ -45,7 +48,6 @@ const TicketCard = props => {
 
     const [setActive, setActiveState] = useState("");
     const [setHeight, setHeightState] = useState("0px");
-    const [setDeleteTicketIsOpen, setDeleteTicketIsOpenState] = useState(false);
     const [setEditTicketIsOpen, setEditTicketIsOpenState] = useState(false);
 
     const card = useRef(null);
@@ -87,7 +89,7 @@ const TicketCard = props => {
 
                 {props.archived ? null :
                     <CardButtonWrapper>
-                        <CardButton onClick={() => setDeleteTicketIsOpenState(true)}>Delete</CardButton>
+                        <CardButton onClick={() => props.openDeleteTicketModalAction()}>Delete</CardButton>
                         <CardButton onClick={() => setEditTicketIsOpenState(true)}>Edit</CardButton>
                     </CardButtonWrapper>}
             </ContentWrapper>
@@ -95,19 +97,19 @@ const TicketCard = props => {
             {/* DELETE TICKET MODAL */}
             <ModalContainer
                 className="red"
-                isOpen={setDeleteTicketIsOpen} onRequestClose={() => setDeleteTicketIsOpenState(false)}
+                isOpen={props.showDeleteModal} onRequestClose={() => props.closeDeleteTicketModalAction()}
                 closeTimeoutMS={200}
                 contentLabel="modal"
             >
                 <ModalCircle className="red">
                     <BsTrash />
                 </ModalCircle>
-                <ModalAction>Delete Ticket?</ModalAction>
+                <ModalAction>Delete <ModalItem className="red">{`${props.ticketTitle}`}</ModalItem> Ticket?</ModalAction>
                 <SubAction>This action cannot be undone</SubAction>
 
                 <ModalButtonContainer>
-                    <OutlineButton className="red restrict" onClick={() => setDeleteTicketIsOpenState(false)}>Cancel</OutlineButton>
-                    <SolidButton className="red restrict">Delete Ticket</SolidButton>
+                    <OutlineButton className="red restrict" onClick={() => props.closeDeleteTicketModalAction()}>Cancel</OutlineButton>
+                    <SolidButton className="red restrict" onClick={() => props.deleteTicketAction(props.ticketId)}>Delete Ticket</SolidButton>
                 </ModalButtonContainer>
             </ModalContainer>
 
@@ -200,21 +202,33 @@ TicketCard.propTypes = {
     description: PropTypes.string,
     status: PropTypes.string,
     id: PropTypes.number,
+    ticketId: PropTypes.number,
+    ticketTitle: PropTypes.string,
     getProjectByIdAction: PropTypes.func,
     projectId: PropTypes.number,
     ticket: PropTypes.object,
-    project: PropTypes.object
+    project: PropTypes.object,
+    deleteTicketAction: PropTypes.func,
+    openDeleteTicketModalAction: PropTypes.func,
+    closeDeleteTicketModalAction: PropTypes.func,
+    showDeleteModal: PropTypes.bool
 };
 
 const mapStateToProps = (state) => {
     return {
-        project: state.projectReducer.project
+        project: state.projectReducer.project,
+        ticketId: state.ticketReducer.ticketId,
+        ticketTitle: state.ticketReducer.ticketTitle,
+        showDeleteModal: state.modalReducer.showDeleteProjectModal
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        getProjectByIdAction: getProjectByIdAction
+        getProjectByIdAction: getProjectByIdAction,
+        deleteTicketAction: deleteTicketAction,
+        openDeleteTicketModalAction: openDeleteTicketModalAction,
+        closeDeleteTicketModalAction: closeDeleteTicketModalAction
     }, dispatch);
 };
 

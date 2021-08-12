@@ -159,7 +159,7 @@ Login.propTypes = {
 const mapStateToProps = (state) => {
     return {
         errorMessage: state.loginReducer.error,
-        showModal: state.modalsReducer.showUserLoginModal
+        showModal: state.modalReducer.showUserLoginModal
     };
 };
 

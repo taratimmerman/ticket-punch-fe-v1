@@ -1,5 +1,5 @@
 import { API_URL, axiosWithAuth } from '../helpers/axiosWithAuth';
-import { activeUserId } from '../helpers/getUserId';
+import { getUserId } from '../helpers/getUserId';
 import { closeAddTicketModalAction } from './modalActions';
 
 // TICKET ACTION TYPES (CONSTANTS)
@@ -77,7 +77,7 @@ export const createTicketAction = (user_id, title, description, status, bug, pro
                 payload: res.data
             });
             dispatch(closeAddTicketModalAction());
-            dispatch(getAllTicketsByUserAction(activeUserId));
+            dispatch(getAllTicketsByUserAction(getUserId()));
         })
         .catch(err => {
             dispatch({
@@ -125,6 +125,6 @@ export const deleteTicketAction = ticketId => dispatch => {
         });
 };
 
-export const targetTicketAcion = (ticketId, ticketTitle, ticketDescription, ticketStatus, ticketBug, ticketProjectId) => dispatch => {
-    dispatch({ type: TARGET_TICKET, ticketId, ticketTitle, ticketDescription, ticketStatus, ticketBug, ticketProjectId });
+export const targetTicketAcion = (ticketId, ticketTitle, ticketDescription, ticketStatus, ticketBug, ticketArchived, ticketProjectId) => dispatch => {
+    dispatch({ type: TARGET_TICKET, ticketId, ticketTitle, ticketDescription, ticketStatus, ticketBug, ticketArchived, ticketProjectId });
 };

@@ -1,5 +1,5 @@
 import { API_URL, axiosWithAuth } from '../helpers/axiosWithAuth';
-import { activeUserId } from '../helpers/getUserId';
+import { getUserId } from '../helpers/getUserId';
 import { closeAddProjectModalAction, closeDeleteProjectModalAction, closeEditProjectModalAction } from './modalActions';
 
 // PROJECT ACTION TYPES (CONSTANTS)
@@ -77,7 +77,7 @@ export const createProjectAction = (user_id, title, description, status) => disp
                 payload: res.data
             });
             dispatch(closeAddProjectModalAction());
-            dispatch(getAllProjectsByUserAction(activeUserId));
+            dispatch(getAllProjectsByUserAction(getUserId()));
         })
         .catch(err => {
             dispatch({
@@ -98,7 +98,7 @@ export const editProjectAction = (id, user_id, title, description, status) => di
                 payload: res.data
             });
             dispatch(closeEditProjectModalAction());
-            dispatch(getAllProjectsByUserAction(activeUserId));
+            dispatch(getAllProjectsByUserAction(getUserId()));
         })
         .catch(err => {
             dispatch({
@@ -119,7 +119,7 @@ export const deleteProjectAction = projectId => dispatch => {
                 payload: res.data
             });
             dispatch(closeDeleteProjectModalAction());
-            dispatch(getAllProjectsByUserAction(activeUserId));
+            dispatch(getAllProjectsByUserAction(getUserId()));
         })
         .catch(err => {
             dispatch({

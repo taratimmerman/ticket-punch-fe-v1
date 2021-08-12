@@ -10,7 +10,7 @@ import { bindActionCreators } from 'redux';
 import { openAddProjectModalAction, closeAddProjectModalAction } from '../actions/modalActions';
 import { createProjectAction, getAllProjectsByUserAction, targetProjectAction } from '../actions/projectActions';
 import ProjectCard from '../components/ProjectCard';
-import { activeUserId } from '../helpers/getUserId';
+import { getUserId } from '../helpers/getUserId';
 import {
     ModalAction,
     ModalContainer,
@@ -41,7 +41,7 @@ import {
 const Projects = ({ getAllProjectsAction, projects, createProjectAction, openModalAction, closeModalAction, showModal, targetProjectAction }) => {
 
     useEffect(() => {
-        getAllProjectsAction(activeUserId);
+        getAllProjectsAction(getUserId());
     }, []);
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
@@ -49,7 +49,7 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
     });
 
     const handleCreateProject = (newProject) => {
-        const user_id = activeUserId;
+        const user_id = getUserId();
         const title = newProject.title.trim();
         const description = newProject.description.trim();
         const status = newProject.status.trim();

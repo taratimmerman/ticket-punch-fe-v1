@@ -9,9 +9,9 @@ import { bindActionCreators } from 'redux';
 
 import { openAddTicketModalAction, closeAddTicketModalAction } from '../actions/modalActions';
 import { getAllProjectsByUserAction } from '../actions/projectActions';
-import { createTicketAction, getAllTicketsByUserAction } from '../actions/ticketActions';
+import { createTicketAction, getAllTicketsByUserAction, targetTicketAcion } from '../actions/ticketActions';
 import TicketCard from '../components/TicketCard';
-import { activeUserId } from '../helpers/getUserId';
+import { getUserId } from '../helpers/getUserId';
 import {
     ModalContainer,
     ModalCircle,
@@ -38,11 +38,11 @@ import {
     InlineError
 } from '../styling/PageStyling';
 
-const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects, createTicketAction, openModalAction, closeModalAction, showModal}) => {
+const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects, createTicketAction, openModalAction, closeModalAction, showModal, targetTicketAcion }) => {
 
     useEffect(() => {
-        getAllTicketsAction(activeUserId);
-        getAllProjectsAction(activeUserId);
+        getAllTicketsAction(getUserId());
+        getAllProjectsAction(getUserId());
     }, []);
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
@@ -50,7 +50,7 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects,
     });
 
     const handleCreateTicket = (newTicket) => {
-        const user_id = activeUserId;
+        const user_id = getUserId();
         const title = newTicket.title.trim();
         const description = newTicket.description.trim();
         const status = newTicket.status;
@@ -202,7 +202,7 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects,
                     <CardContainer>
                         {tickets.filter(ticket => (
                             ticket.status === "stuck"
-                        )).map(ticket => (<div key={ticket.id}>
+                        )).map(ticket => (<div key={ticket.id} onClick={() => targetTicketAcion(ticket.id, ticket.title, ticket.description, ticket.status, ticket.bug, ticket.archived, ticket.project_id)}>
                             <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} bug={ticket.bug} projectId={ticket.project_id} />
                         </div>
                         ))}
@@ -213,7 +213,7 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects,
                     <CardContainer>
                         {tickets.filter(ticket => (
                             ticket.status === "working_on_it"
-                        )).map(ticket => (<div key={ticket.id}>
+                        )).map(ticket => (<div key={ticket.id} onClick={() => targetTicketAcion(ticket.id, ticket.title, ticket.description, ticket.status, ticket.bug, ticket.archived, ticket.project_id)}>
                             <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} bug={ticket.bug} projectId={ticket.project_id} />
                         </div>
                         ))}
@@ -224,7 +224,7 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects,
                     <CardContainer>
                         {tickets.filter(ticket => (
                             ticket.status === "done"
-                        )).map(ticket => (<div key={ticket.id}>
+                        )).map(ticket => (<div key={ticket.id} onClick={() => targetTicketAcion(ticket.id, ticket.title, ticket.description, ticket.status, ticket.bug, ticket.archived, ticket.project_id)}>
                             <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} bug={ticket.bug} projectId={ticket.project_id} />
                         </div>
                         ))}
@@ -243,7 +243,8 @@ Tickets.propTypes = {
     createTicketAction: PropTypes.func,
     openModalAction: PropTypes.func,
     closeModalAction: PropTypes.func,
-    showModal: PropTypes.bool
+    showModal: PropTypes.bool,
+    targetTicketAcion: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -260,7 +261,8 @@ const mapDispatchToProps = (dispatch) => {
         getAllProjectsAction: getAllProjectsByUserAction,
         createTicketAction: createTicketAction,
         openModalAction: openAddTicketModalAction,
-        closeModalAction: closeAddTicketModalAction
+        closeModalAction: closeAddTicketModalAction,
+        targetTicketAcion: targetTicketAcion
     }, dispatch);
 };
 

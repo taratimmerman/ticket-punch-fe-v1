@@ -1,3 +1,13 @@
-const getUser = JSON.parse(localStorage.getItem('user'));
+export const getUserId = () => {
+    let user;
+    let activeUserId;
 
-export const activeUserId = getUser.id;
+    if (localStorage.getItem('user')) {
+        user = JSON.parse(localStorage.getItem('user'));
+        activeUserId = user.id;
+    } else {
+        null;
+    }
+
+    return activeUserId;
+};

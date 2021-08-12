@@ -11,7 +11,7 @@ import { bindActionCreators } from 'redux';
 
 import { openDeleteProjectModalAction, closeDeleteProjectModalAction, openEditProjectModalAction, closeEditProjectModalAction } from '../actions/modalActions';
 import { deleteProjectAction, editProjectAction } from '../actions/projectActions';
-import { activeUserId } from '../helpers/getUserId';
+import { getUserId } from '../helpers/getUserId';
 import {
     CardContainer,
     TitleWrapper,
@@ -73,7 +73,7 @@ const ProjectCard = (props) => {
 
     const handleEditProject = (projectEdits) => {
         const id = props.projectId;
-        const user_id = activeUserId;
+        const user_id = getUserId();
         const title = projectEdits.title.trim();
         const description = projectEdits.description.trim();
         const status = projectEdits.status.trim();
@@ -271,8 +271,8 @@ const mapStateToProps = (state) => {
         projectTitle: state.projectReducer.projectTitle,
         projectDescription: state.projectReducer.projectDescription,
         projectStatus: state.projectReducer.projectStatus,
-        showDeleteModal: state.modalsReducer.showDeleteProjectModal,
-        showEditModal: state.modalsReducer.showEditProjectModal
+        showDeleteModal: state.modalReducer.showDeleteProjectModal,
+        showEditModal: state.modalReducer.showEditProjectModal
     };
 };
 
