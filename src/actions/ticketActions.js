@@ -64,11 +64,11 @@ export const getTicketByIdAction = ticketId => dispatch => {
         });
 };
 
-export const createTicketAction = (user_id, title, description, status, bug, project_id, project_title) => dispatch => {
+export const createTicketAction = (user_id, title, description, status, bug, project_id) => dispatch => {
     dispatch({ type: CREATE_TICKET_REQUEST });
 
     axiosWithAuth()
-        .post(`${API_URL}/tickets`, { user_id, title, description, status, bug, project_id, project_title })
+        .post(`${API_URL}/tickets`, { user_id, title, description, status, bug, project_id })
         .then(res => {
             dispatch({
                 type: CREATE_TICKET_SUCCESS,

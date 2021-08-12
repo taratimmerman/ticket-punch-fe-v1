@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { getAllProjectsByUserAction } from '../actions/projectActions';
-import { getAllTicketsByUserAction } from '../actions/ticketActions';
+import { createTicketAction, getAllTicketsByUserAction } from '../actions/ticketActions';
 import TicketCard from '../components/TicketCard';
 import { activeUserId } from '../helpers/getUserId';
 import {
@@ -37,7 +37,7 @@ import {
     InlineError
 } from '../styling/PageStyling';
 
-const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects }) => {
+const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects, createTicketAction }) => {
 
     useEffect(() => {
         getAllTicketsAction(activeUserId);
@@ -51,8 +51,15 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects 
     const [newTicketIsOpen, setNewTicketIsOpen] = useState(false);
 
     const handleCreateTicket = (newTicket) => {
-        console.log(newTicket);
+        const user_id = activeUserId;
+        const title = newTicket.title.trim();
+        const description = newTicket.description.trim();
+        const status = newTicket.status;
+        const bug = newTicket.bug;
+        const project_id = newTicket.projectTitle;
+        console.log('New ticket: ', user_id, title, description, status, bug, project_id);
 
+        createTicketAction(user_id, title, description, status, bug, project_id);
         reset();
     };
 
@@ -135,10 +142,13 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects 
                         : null}
 
                     <StyledLabel
-                        htmlFor="project-name"
-                    >Project Name</StyledLabel>
+                        htmlFor="projectTitle"
+                    >Project Title</StyledLabel>
 
-                    <SolidDropdown name="project-name">
+                    <SolidDropdown
+                    name="projectTitle"
+                    {...register('projectTitle')}
+                    >
                         <option>---</option>
                         {projects.map(project => (
                             <option key={project.id} value={project.id}>{project.title}</option>
@@ -146,10 +156,13 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects 
                     </SolidDropdown>
 
                     <StyledLabel
-                        htmlFor="ticket-status"
+                        htmlFor="status"
                     >Ticket Status</StyledLabel>
 
-                    <SolidDropdown name="ticket-status">
+                    <SolidDropdown
+                    name="status"
+                    {...register('status')}
+                    >
                         <option>---</option>
                         <option value="stuck">Stuck</option>
                         <option value="working_on_it">Working on it</option>
@@ -160,7 +173,10 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects 
                         htmlFor="bug"
                     >Is this a bug ticket?</StyledLabel>
 
-                    <SolidDropdown name="bug">
+                    <SolidDropdown
+                    name="bug"
+                    {...register('bug')}
+                    >
                         <option>---</option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>
@@ -189,7 +205,7 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects 
                         {tickets.filter(ticket => (
                             ticket.status === "stuck"
                         )).map(ticket => (<div key={ticket.id}>
-                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} projectId={ticket.project_id} />
+                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} bug={ticket.bug} projectId={ticket.project_id} />
                         </div>
                         ))}
                     </CardContainer>
@@ -200,7 +216,7 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects 
                         {tickets.filter(ticket => (
                             ticket.status === "working_on_it"
                         )).map(ticket => (<div key={ticket.id}>
-                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} projectId={ticket.project_id} />
+                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} bug={ticket.bug} projectId={ticket.project_id} />
                         </div>
                         ))}
                     </CardContainer>
@@ -211,7 +227,7 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects 
                         {tickets.filter(ticket => (
                             ticket.status === "done"
                         )).map(ticket => (<div key={ticket.id}>
-                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} projectId={ticket.project_id} />
+                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} bug={ticket.bug} projectId={ticket.project_id} />
                         </div>
                         ))}
                     </CardContainer>
@@ -225,7 +241,8 @@ Tickets.propTypes = {
     getAllTicketsAction: PropTypes.func,
     tickets: PropTypes.array,
     getAllProjectsAction: PropTypes.func,
-    projects: PropTypes.array
+    projects: PropTypes.array,
+    createTicketAction: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -238,7 +255,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         getAllTicketsAction: getAllTicketsByUserAction,
-        getAllProjectsAction: getAllProjectsByUserAction
+        getAllProjectsAction: getAllProjectsByUserAction,
+        createTicketAction: createTicketAction
     }, dispatch);
 };
 
