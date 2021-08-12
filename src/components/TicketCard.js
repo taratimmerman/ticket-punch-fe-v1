@@ -69,7 +69,10 @@ const TicketCard = props => {
                 style={{ maxHeight: `${setHeight}` }}
                 className={`${setActive}`}
             >
-                <CardLabel>Project Name</CardLabel>
+                <CardLabel>Ticket ID</CardLabel>
+                <CardProject>{props.id}</CardProject>
+
+                <CardLabel>Project Title</CardLabel>
                 <CardProject>{props.project}</CardProject>
 
                 <CardLabel>Ticket Description</CardLabel>
@@ -192,7 +195,8 @@ TicketCard.propTypes = {
     archived: PropTypes.bool,
     description: PropTypes.string,
     project: PropTypes.string,
-    status: PropTypes.string
+    status: PropTypes.string,
+    id: PropTypes.number
 };
 
 export default TicketCard;

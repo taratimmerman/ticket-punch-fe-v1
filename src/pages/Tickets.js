@@ -1,8 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+import PropTypes from 'prop-types';
 import { IoTicketOutline } from 'react-icons/io5';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { getAllTicketsByUserAction } from '../actions/ticketActions';
 import TicketCard from '../components/TicketCard';
+import { activeUserId } from '../helpers/getUserId';
 import {
     ModalContainer,
     ModalCircle,
@@ -26,9 +31,11 @@ import {
     SolidTextArea
 } from '../styling/PageStyling';
 
+const Tickets = ({ getAllTicketsAction, tickets }) => {
 
-
-const Tickets = () => {
+    useEffect(() => {
+        getAllTicketsAction(activeUserId);
+    }, []);
 
     const [newTicketIsOpen, setNewTicketIsOpen] = useState(false);
 
@@ -39,6 +46,7 @@ const Tickets = () => {
                 <SolidButton className="purple restrict" onClick={() => setNewTicketIsOpen(true)}>New Ticket</SolidButton>
             </PageTitleWrapper>
 
+            {/* New Ticket Modal */}
             <ModalContainer
                 className="green"
                 isOpen={newTicketIsOpen}
@@ -117,22 +125,34 @@ const Tickets = () => {
                 <Bar className="stuck">
                     <StatusTitle>Stuck</StatusTitle>
                     <CardContainer>
-                        <TicketCard bug={true} title={"Deploy to Heroku"} project={"Ticket Punch"} description={"The voodoo sacerdos suscitat mortuos comedere carnem. Search for solum oculi eorum defunctis cerebro."} status={"Stuck"} />
+                        {tickets.filter(ticket => (
+                            ticket.status === "stuck"
+                        )).map(ticket => (<div key={ticket.id}>
+                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} projectTitle={ticket.ticketProjectTitle} />
+                        </div>
+                        ))}
                     </CardContainer>
                 </Bar>
                 <Bar className="working-on-it">
                     <StatusTitle>Working on it</StatusTitle>
                     <CardContainer>
-                        <TicketCard title={"Create GitHub repo"} project={"Ticket Punch"} description={"Praesent break yo neck, yall mi non maurizzle go to hizzle bibendizzle. Aliquam lacinia funky fresh lectizzle."} status={"Working on it"} />
-                        <TicketCard title={"Build and style login flow"} project={"Ticket Punch"} description={"With pretty stories for which theres little good evidence prime number encyclopaedia galactica network of wormholes colonies extraplanetary."} status={"Working on it"}/>
-                        <TicketCard title={"Build and style navbar"} project={"Ticket Punch"} description={"Flair is what marks the difference between artistry and mere competence. Commander William Riker of the Starship Enterprise."} status={"Working on it"} />
+                        {tickets.filter(ticket => (
+                            ticket.status === "working_on_it"
+                        )).map(ticket => (<div key={ticket.id}>
+                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} projectTitle={ticket.ticketProjectTitle}/>
+                        </div>
+                        ))}
                     </CardContainer>
                 </Bar>
                 <Bar className="done">
                     <StatusTitle>Done</StatusTitle>
                     <CardContainer>
-                        <TicketCard title={"Design site wireframes"} project={"Ticket Punch"} status={"Done"} description={"I guess it's better to be lucky than good. Is it my imagination, or have tempers become a little frayed on the ship lately?"} />
-                        <TicketCard title={"Research app idea"} project={"Ticket Punch"} status={"Done"} description={"The Enterprise computer system is controlled by three primary main processor cores, cross-linked with a redundant melacortz ramistat."} />
+                    {tickets.filter(ticket => (
+                            ticket.status === "done"
+                        )).map(ticket => (<div key={ticket.id}>
+                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} projectTitle={ticket.ticketProjectTitle}/>
+                        </div>
+                        ))}
                     </CardContainer>
                 </Bar>
             </KanbanContainer>
@@ -140,4 +160,21 @@ const Tickets = () => {
     );
 };
 
-export default Tickets;
+Tickets.propTypes = {
+    getAllTicketsAction: PropTypes.func,
+    tickets: PropTypes.array
+};
+
+const mapStateToProps = (state) => {
+    return {
+        tickets: state.ticketReducer.tickets
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        getAllTicketsAction: getAllTicketsByUserAction
+    }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tickets);

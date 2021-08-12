@@ -4,6 +4,7 @@ import { loginReducer } from './loginReducer';
 import { modalsReducer } from './modalsReducer';
 import { projectReducer } from './projectReducer';
 import { registrationReducer } from './registrationReducer';
+import { ticketReducer } from './ticketReducer';
 import { userReducer } from './userReducer';
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   modalsReducer,
   projectReducer,
   registrationReducer,
+  ticketReducer,
   userReducer
 });
 

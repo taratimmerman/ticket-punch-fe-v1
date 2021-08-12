@@ -31,7 +31,8 @@ const initialTicketState = {
     ticketDescription: '',
     ticketStatus: '',
     ticketBug: false,
-    ticketProjectId: 0
+    ticketProjectId: 0,
+    ticketProjectTitle: '',
 };
 
 // TICKET REDUCER
@@ -149,7 +150,8 @@ export const ticketReducer = (state = initialTicketState, action) => {
                 ticketDescription: action.ticketDescription,
                 ticketStatus: action.ticketStatus,
                 ticketBug: action.ticketBug,
-                ticketProjectId: action.ticketProjectId
+                ticketProjectId: action.ticketProjectId,
+                ticketProjectTitle: action.ticketProjectTitle
             };
         default:
             return state;

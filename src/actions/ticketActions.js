@@ -26,8 +26,8 @@ export const TARGET_TICKET = 'TICKETS_TARGET_TICKET';
 
 // TICKET ACTION CREATORS
 
-export const getAllTIcketsByUserAction = userId => dispatch => {
-    dispatch({ type: GET_ALL_SUCCESS });
+export const getAllTicketsByUserAction = userId => dispatch => {
+    dispatch({ type: GET_ALL_REQUEST });
 
     axiosWithAuth()
         .get(`${API_URL}/tickets/user/${userId}`)
@@ -64,11 +64,11 @@ export const getTicketByIdAction = ticketId => dispatch => {
         });
 };
 
-export const createTicketAction = (user_id, title, description, status, bug, project_id) => dispatch => {
+export const createTicketAction = (user_id, title, description, status, bug, project_id, project_title) => dispatch => {
     dispatch({ type: CREATE_TICKET_REQUEST });
 
     axiosWithAuth()
-        .post(`${API_URL}/tickets`, { user_id, title, description, status, bug, project_id })
+        .post(`${API_URL}/tickets`, { user_id, title, description, status, bug, project_id, project_title })
         .then(res => {
             dispatch({
                 type: CREATE_TICKET_SUCCESS,
