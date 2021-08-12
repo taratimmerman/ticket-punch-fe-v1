@@ -209,7 +209,7 @@ Projects.propTypes = {
 const mapStateToProps = (state) => {
     return {
         projects: state.projectReducer.projects,
-        showModal: state.modalsReducer.showAddProjectModal
+        showModal: state.modalReducer.showAddProjectModal
     };
 };
 

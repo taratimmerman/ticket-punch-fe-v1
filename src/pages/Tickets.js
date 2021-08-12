@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
@@ -7,6 +7,7 @@ import { MdError } from 'react-icons/md';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { openAddTicketModalAction, closeAddTicketModalAction } from '../actions/modalActions';
 import { getAllProjectsByUserAction } from '../actions/projectActions';
 import { createTicketAction, getAllTicketsByUserAction } from '../actions/ticketActions';
 import TicketCard from '../components/TicketCard';
@@ -37,7 +38,7 @@ import {
     InlineError
 } from '../styling/PageStyling';
 
-const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects, createTicketAction }) => {
+const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects, createTicketAction, openModalAction, closeModalAction, showModal}) => {
 
     useEffect(() => {
         getAllTicketsAction(activeUserId);
@@ -48,8 +49,6 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects,
         mode: "onBlur"
     });
 
-    const [newTicketIsOpen, setNewTicketIsOpen] = useState(false);
-
     const handleCreateTicket = (newTicket) => {
         const user_id = activeUserId;
         const title = newTicket.title.trim();
@@ -57,7 +56,6 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects,
         const status = newTicket.status;
         const bug = newTicket.bug;
         const project_id = newTicket.projectTitle;
-        console.log('New ticket: ', user_id, title, description, status, bug, project_id);
 
         createTicketAction(user_id, title, description, status, bug, project_id);
         reset();
@@ -86,14 +84,14 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects,
         <PageContainer className="page">
             <PageTitleWrapper>
                 <PageTitle>Tickets</PageTitle>
-                <SolidButton className="purple restrict" onClick={() => setNewTicketIsOpen(true)}>New Ticket</SolidButton>
+                <SolidButton className="purple restrict" onClick={() => openModalAction()}>New Ticket</SolidButton>
             </PageTitleWrapper>
 
             {/* New Ticket Modal */}
             <ModalContainer
                 className="green"
-                isOpen={newTicketIsOpen}
-                onRequestClose={() => setNewTicketIsOpen(false)}
+                isOpen={showModal}
+                onRequestClose={() => closeModalAction()}
                 closeTimeoutMS={200}
                 contentLabel="modal"
             >
@@ -193,7 +191,7 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects,
                 <ModalButtonContainer>
                     <OutlineButton
                         className="green restrict"
-                        onClick={() => setNewTicketIsOpen(false)}
+                        onClick={() => closeModalAction()}
                     >Cancel</OutlineButton>
                 </ModalButtonContainer>
             </ModalContainer>
@@ -242,13 +240,17 @@ Tickets.propTypes = {
     tickets: PropTypes.array,
     getAllProjectsAction: PropTypes.func,
     projects: PropTypes.array,
-    createTicketAction: PropTypes.func
+    createTicketAction: PropTypes.func,
+    openModalAction: PropTypes.func,
+    closeModalAction: PropTypes.func,
+    showModal: PropTypes.bool
 };
 
 const mapStateToProps = (state) => {
     return {
         tickets: state.ticketReducer.tickets,
-        projects: state.projectReducer.projects
+        projects: state.projectReducer.projects,
+        showModal: state.modalReducer.showAddTicketModal
     };
 };
 
@@ -256,7 +258,9 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         getAllTicketsAction: getAllTicketsByUserAction,
         getAllProjectsAction: getAllProjectsByUserAction,
-        createTicketAction: createTicketAction
+        createTicketAction: createTicketAction,
+        openModalAction: openAddTicketModalAction,
+        closeModalAction: closeAddTicketModalAction
     }, dispatch);
 };
 

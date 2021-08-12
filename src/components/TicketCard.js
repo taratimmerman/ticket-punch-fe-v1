@@ -207,7 +207,6 @@ TicketCard.propTypes = {
 };
 
 const mapStateToProps = (state) => {
-    console.log(state.projectReducer.project);
     return {
         project: state.projectReducer.project
     };

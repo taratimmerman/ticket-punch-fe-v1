@@ -6,7 +6,9 @@ import {
     SHOW_DELETE_PROJECT,
     CLOSE_DELETE_PROJECT,
     SHOW_EDIT_PROJECT,
-    CLOSE_EDIT_PROJECT
+    CLOSE_EDIT_PROJECT,
+    SHOW_ADD_TICKET,
+    CLOSE_ADD_TICKET
 } from '../actions/modalActions';
 
 // INITIAL MODAL STATE
@@ -15,12 +17,13 @@ const initialModalState = {
     showUserLoginModal: true,
     showAddProjectModal: false,
     showDeleteProjectModal: false,
-    showEditProjectModal: false
+    showEditProjectModal: false,
+    showAddTicketModal: false
 };
 
 // MODALS REDUCER
 
-export const modalsReducer = (state = initialModalState, action) => {
+export const modalReducer = (state = initialModalState, action) => {
     switch (action.type) {
         // LOGIN MODAL
         case SHOW_LOGIN:
@@ -65,6 +68,17 @@ export const modalsReducer = (state = initialModalState, action) => {
             return {
                 ...state,
                 showEditProjectModal: false
+            };
+        // ADD TICKET MODAL
+        case SHOW_ADD_TICKET:
+            return {
+                ...state,
+                showAddTicketModal: true
+            };
+        case CLOSE_ADD_TICKET:
+            return {
+                ...state,
+                showAddTicketModal: false
             };
         default:
             return state;

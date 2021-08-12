@@ -1,4 +1,6 @@
 import { API_URL, axiosWithAuth } from '../helpers/axiosWithAuth';
+import { activeUserId } from '../helpers/getUserId';
+import { closeAddTicketModalAction } from './modalActions';
 
 // TICKET ACTION TYPES (CONSTANTS)
 
@@ -74,6 +76,8 @@ export const createTicketAction = (user_id, title, description, status, bug, pro
                 type: CREATE_TICKET_SUCCESS,
                 payload: res.data
             });
+            dispatch(closeAddTicketModalAction());
+            dispatch(getAllTicketsByUserAction(activeUserId));
         })
         .catch(err => {
             dispatch({

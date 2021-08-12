@@ -77,7 +77,6 @@ const ProjectCard = (props) => {
         const title = projectEdits.title.trim();
         const description = projectEdits.description.trim();
         const status = projectEdits.status.trim();
-        console.log(id, user_id, title, description, status);
 
         props.editProjectAction(id, user_id, title, description, status);
         reset();
