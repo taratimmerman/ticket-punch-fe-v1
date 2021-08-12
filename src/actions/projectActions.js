@@ -41,7 +41,7 @@ export const getAllProjectsByUserAction = userId => dispatch => {
         })
         .catch(err => {
             dispatch({
-                type: GETPROJECT_FAILURE,
+                type: GETALL_FAILURE,
                 payload: err.message
             });
         });
