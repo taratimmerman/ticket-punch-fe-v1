@@ -219,7 +219,7 @@ const mapStateToProps = (state) => {
         project: state.projectReducer.project,
         ticketId: state.ticketReducer.ticketId,
         ticketTitle: state.ticketReducer.ticketTitle,
-        showDeleteModal: state.modalReducer.showDeleteProjectModal
+        showDeleteModal: state.modalReducer.showDeleteTicketModal
     };
 };
 

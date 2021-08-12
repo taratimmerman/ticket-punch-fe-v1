@@ -1,6 +1,6 @@
 import { API_URL, axiosWithAuth } from '../helpers/axiosWithAuth';
 import { getUserId } from '../helpers/getUserId';
-import { closeAddTicketModalAction } from './modalActions';
+import { closeAddTicketModalAction, closeDeleteTicketModalAction } from './modalActions';
 
 // TICKET ACTION TYPES (CONSTANTS)
 
@@ -116,6 +116,8 @@ export const deleteTicketAction = ticketId => dispatch => {
                 type: DELETE_TICKET_SUCCESS,
                 payload: res.data
             });
+            dispatch(closeDeleteTicketModalAction());
+            dispatch(getAllTicketsByUserAction(getUserId()));
         })
         .catch(err => {
             dispatch({

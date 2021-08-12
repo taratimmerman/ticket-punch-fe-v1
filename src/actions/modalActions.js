@@ -71,5 +71,5 @@ export const openDeleteTicketModalAction = () => dispatch => {
 };
 
 export const closeDeleteTicketModalAction = () => dispatch => {
-    dispatch({ type: CLOSE_DELETE_TICKET});
+    dispatch({ type: CLOSE_DELETE_TICKET });
 };
