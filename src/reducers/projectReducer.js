@@ -21,6 +21,7 @@ import {
 
 const initialProjectState = {
     projects: [],
+    project: {},
     loading: false,
     status: '',
     error: null,
@@ -66,7 +67,7 @@ export const projectReducer = (state = initialProjectState, action) => {
             return {
                 ...state,
                 loading: false,
-                projects: action.payload,
+                project: action.payload,
                 status: 'Success'
             };
         case GETPROJECT_FAILURE:

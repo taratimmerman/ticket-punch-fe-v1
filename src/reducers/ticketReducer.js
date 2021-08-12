@@ -23,6 +23,7 @@ import {
 
 const initialTicketState = {
     tickets: [],
+    ticket: {},
     loading: false,
     status: '',
     error: null,
@@ -71,7 +72,7 @@ export const ticketReducer = (state = initialTicketState, action) => {
             return {
                 ...state,
                 loading: false,
-                tickets: action.payload,
+                ticket: action.payload,
                 status: 'Success'
             };
         case GET_TICKET_FAILURE:

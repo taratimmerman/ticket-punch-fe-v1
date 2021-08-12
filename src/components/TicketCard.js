@@ -5,7 +5,10 @@ import { BsTrash } from 'react-icons/bs';
 import { ImBug } from "react-icons/im";
 import { IoTicketOutline } from 'react-icons/io5';
 import { VscHistory } from 'react-icons/vsc';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
+import { getProjectByIdAction } from '../actions/projectActions';
 import {
     CardContainer,
     TitleWrapper,
@@ -52,6 +55,7 @@ const TicketCard = props => {
         setHeightState(
             setActive === "active" ? "0px" : `${card.current.scrollHeight}px`
         );
+        props.getProjectByIdAction(props.projectId);
     }
 
     return (
@@ -73,7 +77,7 @@ const TicketCard = props => {
                 <CardProject>{props.id}</CardProject>
 
                 <CardLabel>Project Title</CardLabel>
-                <CardProject>{props.project}</CardProject>
+                <CardProject>{props.project.title}</CardProject>
 
                 <CardLabel>Ticket Description</CardLabel>
                 <CardDescription>{props.description}</CardDescription>
@@ -194,9 +198,25 @@ TicketCard.propTypes = {
     bug: PropTypes.bool,
     archived: PropTypes.bool,
     description: PropTypes.string,
-    project: PropTypes.string,
     status: PropTypes.string,
-    id: PropTypes.number
+    id: PropTypes.number,
+    getProjectByIdAction: PropTypes.func,
+    projectId: PropTypes.number,
+    ticket: PropTypes.object,
+    project: PropTypes.object
 };
 
-export default TicketCard;
+const mapStateToProps = (state) => {
+    console.log(state.projectReducer.project);
+    return {
+        project: state.projectReducer.project
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        getProjectByIdAction: getProjectByIdAction
+    }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TicketCard);

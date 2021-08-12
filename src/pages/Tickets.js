@@ -189,7 +189,7 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects 
                         {tickets.filter(ticket => (
                             ticket.status === "stuck"
                         )).map(ticket => (<div key={ticket.id}>
-                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} projectId={ticket.ticketProjectId} />
+                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} projectId={ticket.project_id} />
                         </div>
                         ))}
                     </CardContainer>
@@ -200,7 +200,7 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects 
                         {tickets.filter(ticket => (
                             ticket.status === "working_on_it"
                         )).map(ticket => (<div key={ticket.id}>
-                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} projectId={ticket.ticketProjectId} />
+                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} projectId={ticket.project_id} />
                         </div>
                         ))}
                     </CardContainer>
@@ -211,7 +211,7 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects 
                         {tickets.filter(ticket => (
                             ticket.status === "done"
                         )).map(ticket => (<div key={ticket.id}>
-                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} projectId={ticket.ticketProjectId} />
+                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} projectId={ticket.project_id} />
                         </div>
                         ))}
                     </CardContainer>
