@@ -123,4 +123,4 @@ export const deleteTicketAction = ticketId => dispatch => {
 
 export const targetTicketAcion = (ticketId, ticketTitle, ticketDescription, ticketStatus, ticketBug, ticketProjectId) => dispatch => {
     dispatch({ type: TARGET_TICKET, ticketId, ticketTitle, ticketDescription, ticketStatus, ticketBug, ticketProjectId });
-}
+};

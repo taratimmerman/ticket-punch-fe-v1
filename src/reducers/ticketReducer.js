@@ -1,149 +1,155 @@
+// IMPORTING TICKET ACTION CONSTANTS
+
 import {
-    GETALL_REQUEST,
-    GETALL_SUCCESS,
-    GETALL_FAILURE,
-    GETPROJECT_REQUEST,
-    GETPROJECT_SUCCESS,
-    GETPROJECT_FAILURE,
-    CREATEPROJECT_REQUEST,
-    CREATEPROJECT_SUCCESS,
-    CREATEPROJECT_FAILURE,
-    UPDATEPROJECT_REQUEST,
-    UPDATEPROJECT_SUCCESS,
-    UPDATEPROJECT_FAILURE,
-    DELETEPROJECT_REQUEST,
-    DELETEPROJECT_SUCCESS,
-    DELETEPROJECT_FAILURE,
-    TARGET_PROJECT
-} from '../actions/projectActions';
+    GET_ALL_REQUEST,
+    GET_ALL_SUCCESS,
+    GET_ALL_FAILURE,
+    GET_TICKET_REQUEST,
+    GET_TICKET_SUCCESS,
+    GET_TICKET_FAILURE,
+    CREATE_TICKET_REQUEST,
+    CREATE_TICKET_SUCCESS,
+    CREATE_TICKET_FAILURE,
+    UPDATE_TICKET_REQUEST,
+    UPDATE_TICKET_SUCCESS,
+    UPDATE_TICKET_FAILURE,
+    DELETE_TICKET_REQUEST,
+    DELETE_TICKET_SUCCESS,
+    DELETE_TICKET_FAILURE,
+    TARGET_TICKET
+} from '../actions/ticketActions';
 
-// INITIAL PROJECT STATE
+// INITIAL TICKET STATE
 
-const initialProjectState = {
-    projects: [],
+const initialTicketState = {
+    tickets: [],
     loading: false,
     status: '',
     error: null,
-    projectId: 0,
-    projectTitle: '',
-    projectDescription: '',
-    projectStatus: ''
+    ticketId: 0,
+    ticketTitle: '',
+    ticketDescription: '',
+    ticketStatus: '',
+    ticketBug: false,
+    ticketProjectId: 0
 };
 
-// PROJECT REDUCER
+// TICKET REDUCER
 
-export const projectReducer = (state = initialProjectState, action) => {
+export const ticketReducer = (state = initialTicketState, action) => {
     switch (action.type) {
-        // GET ALL PROJECTS BY USER
-        case GETALL_REQUEST:
+        // GET ALL TICKETS BY USER
+        case GET_ALL_REQUEST:
             return {
                 ...state,
                 loading: true,
                 status: 'Pending...'
             };
-        case GETALL_SUCCESS:
+        case GET_ALL_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                projects: action.payload,
+                tickets: action.payload,
                 status: 'Success'
             };
-        case GETALL_FAILURE:
+        case GET_ALL_FAILURE:
             return {
                 ...state,
                 loading: false,
                 error: action.payload,
                 status: 'Failed'
             };
-        // GET PROJECT BY ID
-        case GETPROJECT_REQUEST:
+        // GET TICKET BY ID
+        case GET_TICKET_REQUEST:
             return {
                 ...state,
                 loading: true,
                 status: 'Pending...'
             };
-        case GETPROJECT_SUCCESS:
+        case GET_TICKET_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                projects: action.payload,
+                tickets: action.payload,
                 status: 'Success'
             };
-        case GETPROJECT_FAILURE:
+        case GET_TICKET_FAILURE:
             return {
                 ...state,
                 loading: false,
                 error: action.payload,
                 status: 'Failed'
             };
-        // CREATE PROJECT
-        case CREATEPROJECT_REQUEST:
+        // CREATE TICKET
+        case CREATE_TICKET_REQUEST:
             return {
                 ...state,
                 loading: true,
                 status: 'Pending...'
             };
-        case CREATEPROJECT_SUCCESS:
+        case CREATE_TICKET_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 status: 'Success'
             };
-        case CREATEPROJECT_FAILURE:
+        case CREATE_TICKET_FAILURE:
             return {
                 ...state,
                 loading: false,
                 error: action.payload,
                 status: 'Failed'
             };
-        // UPDATE PROJECT BY ID
-        case UPDATEPROJECT_REQUEST:
+        // UPDATE TICKET BY ID
+        case UPDATE_TICKET_REQUEST:
             return {
                 ...state,
                 loading: true,
                 status: 'Pending...'
             };
-        case UPDATEPROJECT_SUCCESS:
+        case UPDATE_TICKET_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 status: 'Success'
             };
-        case UPDATEPROJECT_FAILURE:
+        case UPDATE_TICKET_FAILURE:
             return {
                 ...state,
                 loading: false,
                 error: action.payload,
                 status: 'Failed'
             };
-        // DELETE PROJECT BY ID
-        case DELETEPROJECT_REQUEST:
+        // DELET TICKET BY ID
+        case DELETE_TICKET_REQUEST:
             return {
                 ...state,
                 loading: true,
                 status: 'Pending...'
             };
-        case DELETEPROJECT_SUCCESS:
+        case DELETE_TICKET_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 status: 'Success'
             };
-        case DELETEPROJECT_FAILURE:
+        case DELETE_TICKET_FAILURE:
             return {
                 ...state,
                 loading: false,
                 error: action.payload,
                 status: 'Failed'
             };
-        // TARGET PROJECT
-        case TARGET_PROJECT:
+        // TARGET TICKET
+        case TARGET_TICKET:
             return {
                 ...state,
-                projectId: action.projectId,
-                projectTitle: action.projectTitle,
-                projectDescription: action.projectDescription,
-                projectStatus: action.projectStatus
+                ticketId: action.ticketId,
+                ticketTitle: action.ticketTitle,
+                ticketDescription: action.ticketDescription,
+                ticketStatus: action.ticketStatus,
+                ticketBug: action.ticketBug,
+                ticketProjectId: action.ticketProjectId
             };
         default:
             return state;
