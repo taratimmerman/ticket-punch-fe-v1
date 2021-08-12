@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
 import { IoTicketOutline } from 'react-icons/io5';
+import { MdError } from 'react-icons/md';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import { getAllProjectsByUserAction } from '../actions/projectActions';
 import { getAllTicketsByUserAction } from '../actions/ticketActions';
 import TicketCard from '../components/TicketCard';
 import { activeUserId } from '../helpers/getUserId';
@@ -28,16 +31,49 @@ import {
     StyledForm,
     StyledLabel,
     SolidDropdown,
-    SolidTextArea
+    SolidTextArea,
+    InlineErrorWrapper,
+    InlineErrorIcon,
+    InlineError
 } from '../styling/PageStyling';
 
-const Tickets = ({ getAllTicketsAction, tickets }) => {
+const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects }) => {
 
     useEffect(() => {
         getAllTicketsAction(activeUserId);
+        getAllProjectsAction(activeUserId);
     }, []);
 
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({
+        mode: "onBlur"
+    });
+
     const [newTicketIsOpen, setNewTicketIsOpen] = useState(false);
+
+    const handleCreateTicket = (newTicket) => {
+        console.log(newTicket);
+
+        reset();
+    };
+
+    const handleError = (errors) => console.log(errors);
+
+    const newTicketValidation = {
+        title: {
+            required: "Please enter the ticket title",
+            maxLength: {
+                value: 30,
+                message: "Ticket titles must be less than 30 characters"
+            }
+        },
+        description: {
+            required: "Please enter the ticket description",
+            maxLength: {
+                value: 140,
+                message: "Ticket descriptions must be less than 30 characters"
+            }
+        }
+    };
 
     return (
         <PageContainer className="page">
@@ -58,26 +94,45 @@ const Tickets = ({ getAllTicketsAction, tickets }) => {
                     <IoTicketOutline />
                 </ModalCircle>
                 <ModalAction>Add Ticket</ModalAction>
-                <StyledForm>
+                <StyledForm onSubmit={handleSubmit(handleCreateTicket, handleError)}>
                     <StyledLabel
-                        htmlFor="ticket-name"
+                        htmlFor="title"
                     >Ticket Name</StyledLabel>
 
                     <SolidInput
                         type="text"
-                        name="ticket-name"
-                        placeholder="Ticket Name"
+                        {...register('title', newTicketValidation.title)}
+                        name="title"
+                        className={`${errors.title ? "error" : null}`}
+                        placeholder="Enter the ticket title"
                     />
+                    {errors.title ?
+                        <InlineErrorWrapper>
+                            <InlineErrorIcon>
+                                <MdError />
+                            </InlineErrorIcon>
+                            <InlineError>{errors.title.message}</InlineError>
+                        </InlineErrorWrapper>
+                        : null}
 
                     <StyledLabel
-                        htmlFor="ticket-description"
+                        htmlFor="description"
                     >Ticket Description</StyledLabel>
 
                     <SolidTextArea
                         type="text"
-                        name="ticket-description"
-                        placeholder="Ticket Description"
+                        {...register('description', newTicketValidation.description)}
+                        name="description"
+                        placeholder="Enter the ticket description"
                     />
+                    {errors.description ?
+                        <InlineErrorWrapper>
+                            <InlineErrorIcon>
+                                <MdError />
+                            </InlineErrorIcon>
+                            <InlineError>{errors.description.message}</InlineError>
+                        </InlineErrorWrapper>
+                        : null}
 
                     <StyledLabel
                         htmlFor="project-name"
@@ -85,6 +140,9 @@ const Tickets = ({ getAllTicketsAction, tickets }) => {
 
                     <SolidDropdown name="project-name">
                         <option>---</option>
+                        {projects.map(project => (
+                            <option key={project.id} value={project.id}>{project.title}</option>
+                        ))}
                     </SolidDropdown>
 
                     <StyledLabel
@@ -107,17 +165,20 @@ const Tickets = ({ getAllTicketsAction, tickets }) => {
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                     </SolidDropdown>
+
+                    <ModalButtonContainer>
+                        <SolidButton
+                            type="submit"
+                            className="green restrict"
+                        >Add Ticket</SolidButton>
+                    </ModalButtonContainer>
+
                 </StyledForm>
                 <ModalButtonContainer>
                     <OutlineButton
                         className="green restrict"
                         onClick={() => setNewTicketIsOpen(false)}
                     >Cancel</OutlineButton>
-
-                    <SolidButton
-                        type="submit"
-                        className="green restrict"
-                    >Add Ticket</SolidButton>
                 </ModalButtonContainer>
             </ModalContainer>
 
@@ -128,7 +189,7 @@ const Tickets = ({ getAllTicketsAction, tickets }) => {
                         {tickets.filter(ticket => (
                             ticket.status === "stuck"
                         )).map(ticket => (<div key={ticket.id}>
-                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} projectTitle={ticket.ticketProjectTitle} />
+                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} projectId={ticket.ticketProjectId} />
                         </div>
                         ))}
                     </CardContainer>
@@ -139,7 +200,7 @@ const Tickets = ({ getAllTicketsAction, tickets }) => {
                         {tickets.filter(ticket => (
                             ticket.status === "working_on_it"
                         )).map(ticket => (<div key={ticket.id}>
-                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} projectTitle={ticket.ticketProjectTitle}/>
+                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} projectId={ticket.ticketProjectId} />
                         </div>
                         ))}
                     </CardContainer>
@@ -147,10 +208,10 @@ const Tickets = ({ getAllTicketsAction, tickets }) => {
                 <Bar className="done">
                     <StatusTitle>Done</StatusTitle>
                     <CardContainer>
-                    {tickets.filter(ticket => (
+                        {tickets.filter(ticket => (
                             ticket.status === "done"
                         )).map(ticket => (<div key={ticket.id}>
-                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} projectTitle={ticket.ticketProjectTitle}/>
+                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} projectId={ticket.ticketProjectId} />
                         </div>
                         ))}
                     </CardContainer>
@@ -162,18 +223,22 @@ const Tickets = ({ getAllTicketsAction, tickets }) => {
 
 Tickets.propTypes = {
     getAllTicketsAction: PropTypes.func,
-    tickets: PropTypes.array
+    tickets: PropTypes.array,
+    getAllProjectsAction: PropTypes.func,
+    projects: PropTypes.array
 };
 
 const mapStateToProps = (state) => {
     return {
-        tickets: state.ticketReducer.tickets
+        tickets: state.ticketReducer.tickets,
+        projects: state.projectReducer.projects
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        getAllTicketsAction: getAllTicketsByUserAction
+        getAllTicketsAction: getAllTicketsByUserAction,
+        getAllProjectsAction: getAllProjectsByUserAction
     }, dispatch);
 };
 
