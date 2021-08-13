@@ -10,6 +10,7 @@ import { bindActionCreators } from 'redux';
 import { openAddTicketModalAction, closeAddTicketModalAction } from '../actions/modalActions';
 import { getAllProjectsByUserAction } from '../actions/projectActions';
 import { createTicketAction, getAllTicketsByUserAction, targetTicketAcion } from '../actions/ticketActions';
+import ErrorMessage from '../components/ErrorMessage';
 import TicketCard from '../components/TicketCard';
 import { getUserId } from '../helpers/getUserId';
 import {
@@ -38,7 +39,7 @@ import {
     InlineError
 } from '../styling/PageStyling';
 
-const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects, createTicketAction, openModalAction, closeModalAction, showModal, targetTicketAcion }) => {
+const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects, createTicketAction, openModalAction, closeModalAction, showModal, targetTicketAcion, errorMessage }) => {
 
     useEffect(() => {
         getAllTicketsAction(getUserId());
@@ -99,6 +100,9 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects,
                     <IoTicketOutline />
                 </ModalCircle>
                 <ModalAction>Add Ticket</ModalAction>
+
+                <ErrorMessage error={errorMessage} />
+
                 <StyledForm onSubmit={handleSubmit(handleCreateTicket, handleError)}>
                     <StyledLabel
                         htmlFor="title"
@@ -244,14 +248,16 @@ Tickets.propTypes = {
     openModalAction: PropTypes.func,
     closeModalAction: PropTypes.func,
     showModal: PropTypes.bool,
-    targetTicketAcion: PropTypes.func
+    targetTicketAcion: PropTypes.func,
+    errorMessage: PropTypes.string
 };
 
 const mapStateToProps = (state) => {
     return {
         tickets: state.ticketReducer.tickets,
         projects: state.projectReducer.projects,
-        showModal: state.modalReducer.showAddTicketModal
+        showModal: state.modalReducer.showAddTicketModal,
+        errorMessage: state.ticketReducer.error
     };
 };
 

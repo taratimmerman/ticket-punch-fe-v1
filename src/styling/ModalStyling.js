@@ -93,7 +93,7 @@ export const ModalAction = styled.h3`
 `;
 
 export const ModalItem = styled.span`
-    margin: 0 8px;
+    margin: 0 5px;
     font-size: 1.3rem;
     text-align: center;
 

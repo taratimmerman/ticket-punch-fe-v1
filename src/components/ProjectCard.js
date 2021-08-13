@@ -47,6 +47,7 @@ import {
     SubActionContainer,
     SubAction
 } from '../styling/WelcomeStyling';
+import ErrorMessage from './ErrorMessage';
 
 const ProjectCard = (props) => {
 
@@ -76,8 +77,11 @@ const ProjectCard = (props) => {
         const user_id = getUserId();
         const title = projectEdits.title.trim();
         const description = projectEdits.description.trim();
-        const status = projectEdits.status.trim();
+        const status = projectEdits.status;
 
+        console.log('Project edits: ', id, user_id, title, description, status);
+        console.log('Project title type: ', typeof title);
+        console.log('Projects object: ', projectEdits);
         props.editProjectAction(id, user_id, title, description, status);
         reset();
     };
@@ -143,6 +147,8 @@ const ProjectCard = (props) => {
                 </ModalCircle>
                 <ModalAction>Delete<ModalItem className="red">{`${props.projectTitle}`}</ModalItem>Project?</ModalAction>
 
+                <ErrorMessage error={props.errorMessage} />
+
                 <ModalDetails>Related tickets will also be deleted</ModalDetails>
 
                 <SubAction>This action cannot be undone</SubAction>
@@ -166,6 +172,9 @@ const ProjectCard = (props) => {
                 </ModalCircle>
 
                 <ModalAction>Edit <ModalItem className="purple">{`${props.projectTitle}`}</ModalItem> Project</ModalAction>
+                
+                <ErrorMessage error={props.errorMessage} />
+
                 <StyledForm onSubmit={handleSubmit(handleEditProject, handleError)}>
                     <StyledLabel
                         htmlFor="title"
@@ -262,7 +271,8 @@ ProjectCard.propTypes = {
     editProjectAction: PropTypes.func,
     openEditProjectModalAction: PropTypes.func,
     closeEditProjectModalAction: PropTypes.func,
-    showEditModal: PropTypes.bool
+    showEditModal: PropTypes.bool,
+    errorMessage: PropTypes.string
 };
 
 const mapStateToProps = (state) => {
@@ -272,7 +282,8 @@ const mapStateToProps = (state) => {
         projectDescription: state.projectReducer.projectDescription,
         projectStatus: state.projectReducer.projectStatus,
         showDeleteModal: state.modalReducer.showDeleteProjectModal,
-        showEditModal: state.modalReducer.showEditProjectModal
+        showEditModal: state.modalReducer.showEditProjectModal,
+        errorMessage: state.projectReducer.error
     };
 };
 

@@ -9,6 +9,7 @@ import { bindActionCreators } from 'redux';
 
 import { openAddProjectModalAction, closeAddProjectModalAction } from '../actions/modalActions';
 import { createProjectAction, getAllProjectsByUserAction, targetProjectAction } from '../actions/projectActions';
+import ErrorMessage from '../components/ErrorMessage';
 import ProjectCard from '../components/ProjectCard';
 import { getUserId } from '../helpers/getUserId';
 import {
@@ -38,7 +39,7 @@ import {
     InlineError
 } from '../styling/PageStyling';
 
-const Projects = ({ getAllProjectsAction, projects, createProjectAction, openModalAction, closeModalAction, showModal, targetProjectAction }) => {
+const Projects = ({ getAllProjectsAction, projects, createProjectAction, openModalAction, closeModalAction, showModal, targetProjectAction, errorMessage }) => {
 
     useEffect(() => {
         getAllProjectsAction(getUserId());
@@ -97,6 +98,9 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
                     <GiBoxingGlove />
                 </ModalCircle>
                 <ModalAction>Add Project</ModalAction>
+
+                <ErrorMessage error={errorMessage} />
+
                 <StyledForm onSubmit={handleSubmit(handleCreateProject, handleError)}>
                     <StyledLabel
                         htmlFor="title"
@@ -203,13 +207,15 @@ Projects.propTypes = {
     openModalAction: PropTypes.func,
     closeModalAction: PropTypes.func,
     showModal: PropTypes.bool,
-    targetProjectAction: PropTypes.func
+    targetProjectAction: PropTypes.func,
+    errorMessage: PropTypes.string
 };
 
 const mapStateToProps = (state) => {
     return {
         projects: state.projectReducer.projects,
-        showModal: state.modalReducer.showAddProjectModal
+        showModal: state.modalReducer.showAddProjectModal,
+        errorMessage: state.projectReducer.error
     };
 };
 
