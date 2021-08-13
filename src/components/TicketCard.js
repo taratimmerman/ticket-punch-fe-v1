@@ -10,7 +10,7 @@ import { VscHistory } from 'react-icons/vsc';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { openDeleteTicketModalAction, closeDeleteTicketModalAction } from '../actions/modalActions';
+import { openDeleteTicketModalAction, closeDeleteTicketModalAction, openEditTicketModalAction, closeEditTicketModalAction } from '../actions/modalActions';
 import { getProjectByIdAction } from '../actions/projectActions';
 import { deleteTicketAction, editTicketAction } from '../actions/ticketActions';
 import { getUserId } from '../helpers/getUserId';
@@ -67,7 +67,6 @@ const TicketCard = props => {
 
     const [setActive, setActiveState] = useState("");
     const [setHeight, setHeightState] = useState("0px");
-    const [setEditTicketIsOpen, setEditTicketIsOpenState] = useState(false);
 
     const card = useRef(null);
 
@@ -145,7 +144,7 @@ const TicketCard = props => {
                 {props.archived ? null :
                     <CardButtonWrapper>
                         <CardButton onClick={() => props.openDeleteTicketModalAction()}>Delete</CardButton>
-                        <CardButton onClick={() => setEditTicketIsOpenState(true)}>Edit</CardButton>
+                        <CardButton onClick={() => props.openEditTicketModalAction()}>Edit</CardButton>
                     </CardButtonWrapper>}
             </ContentWrapper>
 
@@ -174,8 +173,8 @@ const TicketCard = props => {
             {/* EDIT TICKET MODAL */}
             <ModalContainer
                 className="purple"
-                isOpen={setEditTicketIsOpen}
-                onRequestClose={() => setEditTicketIsOpenState(false)}
+                isOpen={props.showEditModal}
+                onRequestClose={() => props.closeEditTicketModalAction()}
                 closeTimeoutMS={200}
                 contentLabel="modal"
             >
@@ -293,7 +292,7 @@ const TicketCard = props => {
                 <ModalButtonContainer>
                     <OutlineButton
                         className="purple restrict"
-                        onClick={() => setEditTicketIsOpenState(false)}
+                        onClick={() => props.closeEditTicketModalAction()}
                     >Cancel</OutlineButton>
                 </ModalButtonContainer>
             </ModalContainer>
@@ -326,6 +325,9 @@ TicketCard.propTypes = {
     closeDeleteTicketModalAction: PropTypes.func,
     showDeleteModal: PropTypes.bool,
     editTicketAction: PropTypes.func,
+    openEditTicketModalAction: PropTypes.func,
+    closeEditTicketModalAction: PropTypes.func,
+    showEditModal: PropTypes.bool,
     errorMessage: PropTypes.string
 };
 
@@ -336,6 +338,7 @@ const mapStateToProps = (state) => {
         ticketId: state.ticketReducer.ticketId,
         ticketTitle: state.ticketReducer.ticketTitle,
         showDeleteModal: state.modalReducer.showDeleteTicketModal,
+        showEditModal: state.modalReducer.showEditTicketModal,
         errorMessage: state.ticketReducer.error
     };
 };
@@ -346,7 +349,9 @@ const mapDispatchToProps = (dispatch) => {
         deleteTicketAction: deleteTicketAction,
         openDeleteTicketModalAction: openDeleteTicketModalAction,
         closeDeleteTicketModalAction: closeDeleteTicketModalAction,
-        editTicketAction: editTicketAction
+        editTicketAction: editTicketAction,
+        openEditTicketModalAction: openEditTicketModalAction,
+        closeEditTicketModalAction: closeEditTicketModalAction
     }, dispatch);
 };
 

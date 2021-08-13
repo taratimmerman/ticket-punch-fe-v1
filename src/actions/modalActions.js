@@ -18,6 +18,9 @@ export const CLOSE_ADD_TICKET = 'CLOSE_ADD_TICKET_MODAL';
 export const SHOW_DELETE_TICKET = 'SHOW_DELETE_TICKET_MODAL';
 export const CLOSE_DELETE_TICKET = 'CLOSE_DELETE_TICKET_MODAL';
 
+export const SHOW_EDIT_TICKET = 'SHOW_EDIT_TICKET_MODAL';
+export const CLOSE_EDIT_TICKET = 'CLOSE_EDIT_TICKET_MODAL';
+
 // MODAL ACTION CREATORS
 
 // Login Modal
@@ -72,4 +75,13 @@ export const openDeleteTicketModalAction = () => dispatch => {
 
 export const closeDeleteTicketModalAction = () => dispatch => {
     dispatch({ type: CLOSE_DELETE_TICKET });
+};
+
+// Edit Ticket Modal
+export const openEditTicketModalAction = () => dispatch => {
+    dispatch({ type: SHOW_EDIT_TICKET });
+};
+
+export const closeEditTicketModalAction = () => dispatch => {
+    dispatch({ type: CLOSE_EDIT_TICKET });
 };
