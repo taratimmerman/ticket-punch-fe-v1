@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { history } from '../App';
 import { API_URL , axiosWithAuth } from '../helpers/axiosWithAuth';
-import { closeLoginModalAction } from './modalActions';
+import { closeLoginModalAction, closeWelcomeModalAction } from './modalActions';
 
 // USER ACTION TYPES
 
@@ -72,6 +72,8 @@ export const registerUserAction = ( email , password ) => dispatch => {
                 type: REGISTER_SUCCESS,
                 payload: res.data
             });
+            dispatch(loginUserAction( email, password ));
+            dispatch(closeWelcomeModalAction());
         })
         .catch(err => {
             dispatch({

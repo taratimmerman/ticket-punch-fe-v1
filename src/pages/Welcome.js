@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { MdError } from 'react-icons/md';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
-import { loginUserAction, registerUserAction } from '../actions/userActions';
+import { closeWelcomeModalAction } from '../actions/modalActions';
+import { registerUserAction } from '../actions/userActions';
 import Google from '../assets/google-icon.svg';
 import LinkedIn from '../assets/logo_linkedin.png';
 import Slack from '../assets/logo_slack.png';
@@ -34,27 +34,17 @@ import {
     StyledLink
 } from '../styling/WelcomeStyling';
 
-const Welcome = ({ registerAction, loginAction }) => {
-
-    const [welcomeIsOpen, setWelcomeIsOpen] = useState(true);
+const Welcome = ({ registerAction, closeModalAction, showModal, errorMessage }) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onBlur"
     });
-
-    const history = useHistory();
 
     const handleRegistration = (user) => {
         const email = user.email.trim();
         const password = user.password.trim();
 
         registerAction(email, password);
-
-        loginAction(email, password);
-
-        setWelcomeIsOpen(false);
-
-        history.push('/projects');
     };
     const handleError = (errors) => console.log(errors);
 
@@ -78,15 +68,15 @@ const Welcome = ({ registerAction, loginAction }) => {
     return (
         <WelcomeContainer
             className="purple"
-            isOpen={welcomeIsOpen}
-            onRequestClose={() => setWelcomeIsOpen(true)}
+            isOpen={showModal}
+            onRequestClose={() => closeModalAction()}
             shouldCloseOnOverlayClick={false}
             closeTimeoutMS={200}
             contentLabel="modal">
             <AppTitle>Welcome to Ticket Punch</AppTitle>
             <CTA>{"Let's get started"}</CTA>
 
-            <ErrorMessage/>
+            <ErrorMessage error={errorMessage} />
 
             <StyledForm onSubmit={handleSubmit(handleRegistration, handleError)}>
                 <StyledLabel
@@ -168,20 +158,23 @@ const Welcome = ({ registerAction, loginAction }) => {
 
 Welcome.propTypes = {
     registerAction: PropTypes.func,
-    loginAction: PropTypes.func
+    openModalAction: PropTypes.func,
+    closeModalAction: PropTypes.func,
+    showModal: PropTypes.bool,
+    errorMessage: PropTypes.string
 };
 
 const mapStateToProps = (state) => {
     return {
-        registering: state.registration,
-        loggingIn: state.login
+        showModal: state.modalReducer.showWelcomeModal,
+        errorMessage: state.registrationReducer.error
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         registerAction: registerUserAction,
-        loginAction: loginUserAction
+        closeModalAction: closeWelcomeModalAction
     }, dispatch);
 };
 
