@@ -100,7 +100,7 @@ const ProjectCard = (props) => {
             required: "Please enter the project description",
             maxLength: {
                 value: 140,
-                message: "Project descriptions must be less than 30 characters"
+                message: "Project descriptions must be less than 140 characters"
             }
         }
     };
@@ -225,6 +225,7 @@ const ProjectCard = (props) => {
                         <option>---</option>
                         <option value="working_on_it">Working on it</option>
                         <option value="done">Done</option>
+                        <option value="archived">Archived</option>
                     </SolidDropdown>
                     <SubActionContainer>
                         <SubAction>These changes cannot be undone</SubAction>

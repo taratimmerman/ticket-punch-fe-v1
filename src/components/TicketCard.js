@@ -46,7 +46,7 @@ import {
     InlineError
 } from '../styling/PageStyling';
 import {
-    CTA,
+    SubActionContainer,
     SubAction
 } from '../styling/WelcomeStyling';
 import ErrorMessage from './ErrorMessage';
@@ -109,7 +109,7 @@ const TicketCard = props => {
             required: "Please enter the ticket description",
             maxLength: {
                 value: 140,
-                message: "Ticket descriptions must be less than 30 characters"
+                message: "Ticket descriptions must be less than 140 characters"
             }
         }
     };
@@ -159,9 +159,9 @@ const TicketCard = props => {
                     <BsTrash />
                 </ModalCircle>
                 <ModalAction>Delete <ModalItem className="red">{`${props.ticketTitle}`}</ModalItem> Ticket?</ModalAction>
-                
+
                 <ErrorMessage error={props.errorMessage} />
-                
+
                 <SubAction>This action cannot be undone</SubAction>
 
                 <ModalButtonContainer>
@@ -181,8 +181,8 @@ const TicketCard = props => {
                 <ModalCircle className="purple">
                     <IoTicketOutline />
                 </ModalCircle>
-                <CTA>Edit <ModalItem className="purple">{`${props.ticketTitle}`}</ModalItem> Ticket</CTA>
-                
+                <ModalAction>Edit <ModalItem className="purple">{`${props.ticketTitle}`}</ModalItem> Ticket</ModalAction>
+
                 <ErrorMessage error={props.errorMessage} />
 
                 <StyledForm onSubmit={handleSubmit(handleEditTicket, handleError)}>
@@ -226,13 +226,13 @@ const TicketCard = props => {
 
                     <StyledLabel
                         htmlFor="projectTitle"
-                    >Project Name</StyledLabel>
+                    >Project Title</StyledLabel>
 
                     <SolidDropdown
                         name="projectTitle"
                         {...register('projectTitle')}
                     >
-                        <option>---</option>
+                        <option disabled selected>{props.projectTitle}</option>
                         {props.projects.map(project => (
                             <option key={project.id} value={project.id}>{project.title}</option>
                         ))}
@@ -246,7 +246,7 @@ const TicketCard = props => {
                         name="status"
                         {...register('status')}
                     >
-                        <option>---</option>
+                        <option disabled selected>{props.ticketStatus}</option>
                         <option value="stuck">Stuck</option>
                         <option value="working_on_it">Working on it</option>
                         <option value="done">Done</option>
@@ -260,7 +260,7 @@ const TicketCard = props => {
                         name="bug"
                         {...register('bug')}
                     >
-                        <option>---</option>
+                        <option disabled selected>{props.ticketBug}</option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                     </SolidDropdown>
@@ -273,12 +273,14 @@ const TicketCard = props => {
                         name="archived"
                         {...register('archived')}
                     >
-                        <option>---</option>
+                        <option disabled selected>{props.ticketArchived}</option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                     </SolidDropdown>
 
-                    <SubAction>These changes cannot be undone</SubAction>
+                    <SubActionContainer>
+                        <SubAction>These changes cannot be undone</SubAction>
+                    </SubActionContainer>
 
                     <ModalButtonContainer>
                         <SolidButton
@@ -337,6 +339,11 @@ const mapStateToProps = (state) => {
         projects: state.projectReducer.projects,
         ticketId: state.ticketReducer.ticketId,
         ticketTitle: state.ticketReducer.ticketTitle,
+        ticketDescription: state.ticketReducer.ticketDescription,
+        ticketStatus: state.ticketReducer.ticketStatus,
+        projectTitle: state.ticketReducer.projectTitle,
+        ticketBug: state.ticketReducer.ticketBug,
+        ticketArchived: state.ticketReducer.ticketArchived,
         showDeleteModal: state.modalReducer.showDeleteTicketModal,
         showEditModal: state.modalReducer.showEditTicketModal,
         errorMessage: state.ticketReducer.error

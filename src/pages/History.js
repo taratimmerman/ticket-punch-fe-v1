@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { getAllProjectsByUserAction } from '../actions/projectActions';
+import { getAllTicketsByUserAction } from '../actions/ticketActions';
 import ProjectCard from '../components/ProjectCard';
 import TicketCard from '../components/TicketCard';
+import{ getUserId } from '../helpers/getUserId';
 import {
     PageContainer,
     PageTitleWrapper,
@@ -12,28 +19,67 @@ import {
     CardContainer
 } from '../styling/PageStyling';
 
-const History = () => {
+const History = ({ getAllProjectsAction, projects, getAllTicketsAction, tickets}) => {
+
+    useEffect(() => {
+        getAllProjectsAction(getUserId());
+        getAllTicketsAction(getUserId());
+    }, []);
+
     return (
         <PageContainer className="page">
             <PageTitleWrapper>
                 <PageTitle>History</PageTitle>
             </PageTitleWrapper>
             <KanbanContainer>
+                
                 <Bar className="archive">
                     <StatusTitle>Archived Projects</StatusTitle>
                     <CardContainer>
-                    <ProjectCard archived={true} title={"Graduate from Lambda"} description={"Recently graduated with 960 certified hours, from a full-time, intensive, mastery-based Software Development and Computer Science bootcamp."} status={"Archived"} />
+                        {projects.filter(project => (
+                            project.status === "archived"
+                        )).map(project => (
+                            <ProjectCard key={project.id} id={project.id} title={project.title} description={project.description} status={project.status} archived={project.archived}/>
+                        ))}
                     </CardContainer>
                 </Bar>
+
                 <Bar className="archive">
                     <StatusTitle>Archived Tickets</StatusTitle>
                     <CardContainer>
-                    <TicketCard archived={true} title={"Plan out app idea"} project={"Ticket Punch"} description={"Mr. Worf, you do remember how to fire phasers? Well, that's certainly good to know."} status={"Archived"} />
+                        {tickets.filter(ticket => (
+                            ticket.status === "archived"
+                        )).map(ticket => (
+                            <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} bug={ticket.bug} archived={ticket.archived} projectId={ticket.project_id} />
+                        ))}
                     </CardContainer>
                 </Bar>
+           
             </KanbanContainer>
         </PageContainer>
     );
 };
 
-export default History;
+History.propTypes = {
+    getAllProjectsAction: PropTypes.func,
+    getAllTicketsAction: PropTypes.func,
+    projects: PropTypes.array,
+    tickets: PropTypes.array
+};
+
+const mapStateToProps = (state) => {
+    console.log(state);
+    return {
+        projects: state.projectReducer.projects,
+        tickets: state.ticketReducer.tickets
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        getAllProjectsAction: getAllProjectsByUserAction,
+        getAllTicketsAction: getAllTicketsByUserAction
+    }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(History);
