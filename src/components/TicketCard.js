@@ -13,7 +13,7 @@ import { bindActionCreators } from 'redux';
 import { openDeleteTicketModalAction, closeDeleteTicketModalAction, openEditTicketModalAction, closeEditTicketModalAction } from '../actions/modalActions';
 import { getProjectByIdAction } from '../actions/projectActions';
 import { deleteTicketAction, editTicketAction } from '../actions/ticketActions';
-import { getUserId } from '../helpers/getUserId';
+import { getUserId } from '../helpers/getUserInfo';
 import {
     CardContainer,
     TitleWrapper,

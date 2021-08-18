@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 import { BsPencil, BsTrash } from 'react-icons/bs';
@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
 
-import { logoutUserAction } from '../actions/userActions';
+import { logoutUserAction, getUserByIdAction } from '../actions/userActions';
+import { getUserId, getUsername } from '../helpers/getUserInfo';
 import {
     ModalContainer,
     ModalCircle,
@@ -29,11 +30,14 @@ import {
     SubAction
 } from '../styling/WelcomeStyling';
 
-const Profile = ({ logoutAction }) => {
+const Profile = ({ logoutAction, getUserByIdAction, user }) => {
 
     const [deleteIsOpen, setDeleteIsOpen] = useState(false);
     const [editIsOpen, setEditIsOpen] = useState(false);
 
+    useEffect(() => {
+        getUserByIdAction(getUserId());
+    }, []);
 
     return (
         <ProfileContainer className="page">
@@ -43,13 +47,15 @@ const Profile = ({ logoutAction }) => {
             </PageTitleWrapper>
             <ProfileInfoContainer>
                 <VscAccount fontSize={"9rem"} />
-                <Username>Guest</Username>
+                <Username>{getUsername()}</Username>
+                <ModalAction>{user.email}</ModalAction>
             </ProfileInfoContainer>
             <ProfileActionContainer>
                 <ProfileActionWrapper onClick={() => setDeleteIsOpen(true)}>
                     <BsTrash />
                 </ProfileActionWrapper>
 
+                {/* DELETE ACCOUNT MODAL */}
                 <ModalContainer
                     className="red"
                     isOpen={deleteIsOpen} onRequestClose={() => setDeleteIsOpen(false)}
@@ -79,6 +85,7 @@ const Profile = ({ logoutAction }) => {
                     <BsPencil />
                 </ProfileActionWrapper>
 
+                {/* EDIT ACCOUNT MODAL */}
                 <ModalContainer
                     className="purple"
                     isOpen={editIsOpen} onRequestClose={() => setEditIsOpen(false)}
@@ -137,16 +144,25 @@ const Profile = ({ logoutAction }) => {
 };
 
 Profile.propTypes = {
-    logoutAction: PropTypes.func
+    logoutAction: PropTypes.func,
+    getUserByIdAction: PropTypes.func,
+    user: PropTypes.object
+};
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.userReducer.user
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        logoutAction: logoutUserAction
+        logoutAction: logoutUserAction,
+        getUserByIdAction: getUserByIdAction
     }, dispatch);
 };
 
-export default connect(null, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
 
 // STYLED COMPONENTS:
 

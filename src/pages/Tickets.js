@@ -12,7 +12,7 @@ import { getAllProjectsByUserAction } from '../actions/projectActions';
 import { createTicketAction, getAllTicketsByUserAction, targetTicketAcion } from '../actions/ticketActions';
 import ErrorMessage from '../components/ErrorMessage';
 import TicketCard from '../components/TicketCard';
-import { getUserId } from '../helpers/getUserId';
+import { getUserId } from '../helpers/getUserInfo';
 import {
     ModalContainer,
     ModalCircle,

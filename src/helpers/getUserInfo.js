@@ -11,3 +11,17 @@ export const getUserId = () => {
 
     return activeUserId;
 };
+
+export const getUsername = () => {
+    let user;
+    let username;
+
+    if (localStorage.getItem('user')) {
+        user = JSON.parse(localStorage.getItem('user'));
+        username = user.username;
+    } else {
+        null;
+    }
+
+    return username;
+};

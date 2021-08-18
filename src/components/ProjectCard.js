@@ -11,7 +11,7 @@ import { bindActionCreators } from 'redux';
 
 import { openDeleteProjectModalAction, closeDeleteProjectModalAction, openEditProjectModalAction, closeEditProjectModalAction } from '../actions/modalActions';
 import { deleteProjectAction, editProjectAction } from '../actions/projectActions';
-import { getUserId } from '../helpers/getUserId';
+import { getUserId } from '../helpers/getUserInfo';
 import {
     CardContainer,
     TitleWrapper,

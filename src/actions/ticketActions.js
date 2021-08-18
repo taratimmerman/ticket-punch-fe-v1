@@ -1,5 +1,5 @@
 import { API_URL, axiosWithAuth } from '../helpers/axiosWithAuth';
-import { getUserId } from '../helpers/getUserId';
+import { getUserId } from '../helpers/getUserInfo';
 import { closeAddTicketModalAction, closeDeleteTicketModalAction, closeEditTicketModalAction } from './modalActions';
 
 // TICKET ACTION TYPES (CONSTANTS)

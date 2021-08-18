@@ -1,5 +1,5 @@
 import { API_URL, axiosWithAuth } from '../helpers/axiosWithAuth';
-import { getUserId } from '../helpers/getUserId';
+import { getUserId } from '../helpers/getUserInfo';
 import { closeAddProjectModalAction, closeDeleteProjectModalAction, closeEditProjectModalAction } from './modalActions';
 
 // PROJECT ACTION TYPES (CONSTANTS)

@@ -11,7 +11,7 @@ import { openAddProjectModalAction, closeAddProjectModalAction } from '../action
 import { createProjectAction, getAllProjectsByUserAction, targetProjectAction } from '../actions/projectActions';
 import ErrorMessage from '../components/ErrorMessage';
 import ProjectCard from '../components/ProjectCard';
-import { getUserId } from '../helpers/getUserId';
+import { getUserId } from '../helpers/getUserInfo';
 import {
     ModalAction,
     ModalContainer,
@@ -20,7 +20,6 @@ import {
 } from '../styling/ModalStyling';
 import {
     PageContainer,
-    Greeting,
     PageTitleWrapper,
     PageTitle,
     SolidButton,
@@ -80,7 +79,6 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
 
     return (
         <PageContainer className="page">
-            <Greeting>Welcome to Ticket Punch</Greeting>
             <PageTitleWrapper>
                 <PageTitle>Projects</PageTitle>
                 <SolidButton className="purple restrict" onClick={() => openModalAction()}>New Project</SolidButton>

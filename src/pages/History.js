@@ -8,7 +8,7 @@ import { getAllProjectsByUserAction } from '../actions/projectActions';
 import { getAllTicketsByUserAction } from '../actions/ticketActions';
 import ProjectCard from '../components/ProjectCard';
 import TicketCard from '../components/TicketCard';
-import{ getUserId } from '../helpers/getUserId';
+import{ getUserId } from '../helpers/getUserInfo';
 import {
     PageContainer,
     PageTitleWrapper,
