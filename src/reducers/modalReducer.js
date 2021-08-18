@@ -3,6 +3,8 @@ import {
     CLOSE_LOGIN,
     SHOW_WELCOME,
     CLOSE_WELCOME,
+    SHOW_HELP,
+    CLOSE_HELP,
     SHOW_ADD_PROJECT,
     CLOSE_ADD_PROJECT,
     SHOW_DELETE_PROJECT,
@@ -22,6 +24,7 @@ import {
 const initialModalState = {
     showUserLoginModal: true,
     showWelcomeModal: true,
+    showHelpModal: false,
     showAddProjectModal: false,
     showDeleteProjectModal: false,
     showEditProjectModal: false,
@@ -55,6 +58,17 @@ export const modalReducer = (state = initialModalState, action) => {
             return {
                 ...state,
                 showWelcomeModal: false
+            };
+        // HELP MODAL
+        case SHOW_HELP:
+            return {
+                ...state,
+                showHelpModal: true
+            };
+        case CLOSE_HELP:
+            return {
+                ...state,
+                showHelpModal: false
             };
         // ADD PROJECT MODAL
         case SHOW_ADD_PROJECT:

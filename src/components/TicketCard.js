@@ -250,6 +250,7 @@ const TicketCard = props => {
                         <option value="stuck">Stuck</option>
                         <option value="working_on_it">Working on it</option>
                         <option value="done">Done</option>
+                        <option value="archived">Archive</option>
                     </SolidDropdown>
 
                     <StyledLabel

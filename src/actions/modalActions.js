@@ -6,6 +6,9 @@ export const CLOSE_LOGIN = 'CLOSE_USER_LOGIN_MODAL';
 export const SHOW_WELCOME = 'SHOW_USER_WELCOME_MODAL';
 export const CLOSE_WELCOME = 'CLOSE_USER_WELCOME_MODAL';
 
+export const SHOW_HELP = 'SHOW_HELP_MODAL';
+export const CLOSE_HELP = 'CLOSE_HELP_MODAL';
+
 export const SHOW_ADD_PROJECT = 'SHOW_ADD_PROJECT_MODAL';
 export const CLOSE_ADD_PROJECT = 'CLOSE_ADD_PROJECT_MODAL';
 
@@ -42,6 +45,15 @@ export const openWelcomeModalAction = () => dispatch => {
 
 export const closeWelcomeModalAction = () => dispatch => {
     dispatch({ type: CLOSE_WELCOME });
+};
+
+// Help Modal
+export const openHelpModalAction = () => dispatch => {
+    dispatch({ type: SHOW_HELP });
+};
+
+export const closeHelpModalAction = () => dispatch => {
+    dispatch({ type: CLOSE_HELP });
 };
 
 // Add Project Modal

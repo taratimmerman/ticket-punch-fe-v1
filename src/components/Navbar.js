@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 
+import PropTypes from 'prop-types';
 import { GiBoxingGlove } from 'react-icons/gi';
 import { IoTicketOutline, IoHelpCircleOutline } from 'react-icons/io5';
 import { VscHistory, VscAccount } from 'react-icons/vsc';
+import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
 
+import { openHelpModalAction, closeHelpModalAction } from '../actions/modalActions';
 import {
     ModalContainer,
     ModalCircle,
@@ -18,9 +22,7 @@ import {
     OutlineButton,
 } from '../styling/PageStyling';
 
-const Navbar = () => {
-
-    const [questionsIsOpen, setQuestionsIsOpen] = useState(false);
+const Navbar = ({ openHelpModalAction, closeHelpModalAction, showHelpModal }) => {
 
     return (
         <NavContainer>
@@ -43,17 +45,17 @@ const Navbar = () => {
             </NavChunk>
 
             <NavChunk>
-                <HelpIcon onClick={() => setQuestionsIsOpen(true)}>
+                <HelpIcon onClick={() => openHelpModalAction()}>
                     <IoHelpCircleOutline />
                     <LinkTitle>Help</LinkTitle>
                 </HelpIcon>
 
-                <ModalContainer
-                className="yellow"
-                isOpen={questionsIsOpen}
-                onRequestClose={() => setQuestionsIsOpen(false)}
-                closeTimeoutMS={200}
-                contentLabel="modal"
+                < ModalContainer
+                    className="yellow"
+                    isOpen={showHelpModal}
+                    onRequestClose={() => closeHelpModalAction()}
+                    closeTimeoutMS={200}
+                    contentLabel="modal"
                 >
                     <ModalCircle className="yellow">
                         <IoHelpCircleOutline />
@@ -61,10 +63,10 @@ const Navbar = () => {
                     <ModalAction>Questions?</ModalAction>
                     <ModalDetails>Email the dev!</ModalDetails>
                     <ModalButtonContainer>
-                        <OutlineButton className="yellow restrict" onClick={() => setQuestionsIsOpen(false)}>Cancel</OutlineButton>
+                        <OutlineButton className="yellow restrict" onClick={() => closeHelpModalAction()}>Cancel</OutlineButton>
                         <SolidButton className="yellow restrict">Email Tara</SolidButton>
                     </ModalButtonContainer>
-                </ModalContainer>
+                </ModalContainer >
 
                 <StyledNavLink to="/profile">
                     <VscAccount />
@@ -76,7 +78,26 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
+Navbar.propTypes = {
+    openHelpModalAction: PropTypes.func,
+    closeHelpModalAction: PropTypes.func,
+    showHelpModal: PropTypes.bool
+};
+
+const mapStateToProps = (state) => {
+    return {
+        showHelpModal: state.modalReducer.showHelpModal
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({
+        openHelpModalAction: openHelpModalAction,
+        closeHelpModalAction: closeHelpModalAction
+    }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
 
 // STYLED COMPONENTS BELOW:
 
