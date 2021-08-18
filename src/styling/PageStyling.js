@@ -292,8 +292,32 @@ export const SolidTextArea = styled.textarea`
     height: 80px;
     width: 100%;
 
-    :focus {
-        outline: none;
+    &.red {
+        :focus {
+            outline-color: #E2445C;
+        }
+    }
+
+    &.yellow {
+        :focus {
+            outline-color: #FDAB3D;
+        }
+    }
+
+    &.green {
+        :focus {
+            outline-color: #00C875;
+        }
+    }
+
+    &.purple {
+        :focus {
+            outline-color: #A25DDC;
+        }
+    }
+
+    &.error {
+        border: 1px solid #E2445C;
     }
 `;
 
