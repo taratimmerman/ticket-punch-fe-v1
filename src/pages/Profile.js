@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
 
-import { openEditAccountModalAction, closeEditAccountModalAction } from '../actions/modalActions';
+import { openDeleteAccountModalAction, closeDeleteAccountModalAction, openEditAccountModalAction, closeEditAccountModalAction } from '../actions/modalActions';
 import { logoutUserAction, getUserByIdAction, updateUserAction } from '../actions/userActions';
 import ErrorMessage from '../components/ErrorMessage';
 import { getUserId, getUsername } from '../helpers/getUserInfo';
@@ -37,13 +37,11 @@ import {
     SubAction
 } from '../styling/WelcomeStyling';
 
-const Profile = ({ logoutAction, getUserByIdAction, user, updateUserAction, openEditAccountModalAction, closeEditAccountModalAction, showEditModal, errorMessage }) => {
+const Profile = ({ logoutAction, getUserByIdAction, user, openDeleteAccountModalAction, closeDeleteAccountModalAction, showDeleteModal, updateUserAction, openEditAccountModalAction, closeEditAccountModalAction, showEditModal, errorMessage }) => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
         mode: "onBlur"
     });
-
-    const [deleteIsOpen, setDeleteIsOpen] = useState(false);
 
     useEffect(() => {
         getUserByIdAction(getUserId());
@@ -90,14 +88,14 @@ const Profile = ({ logoutAction, getUserByIdAction, user, updateUserAction, open
                 <ModalAction>{user.email}</ModalAction>
             </ProfileInfoContainer>
             <ProfileActionContainer>
-                <ProfileActionWrapper onClick={() => setDeleteIsOpen(true)}>
+                <ProfileActionWrapper onClick={() => openDeleteAccountModalAction()}>
                     <BsTrash />
                 </ProfileActionWrapper>
 
                 {/* DELETE ACCOUNT MODAL */}
                 <ModalContainer
                     className="red"
-                    isOpen={deleteIsOpen} onRequestClose={() => setDeleteIsOpen(false)}
+                    isOpen={showDeleteModal} onRequestClose={() => closeDeleteAccountModalAction()}
                     closeTimeoutMS={200}
                     contentLabel="modal"
                 >
@@ -115,7 +113,7 @@ const Profile = ({ logoutAction, getUserByIdAction, user, updateUserAction, open
                     <ModalDetails>This action cannot be undone</ModalDetails>
 
                     <ModalButtonContainer>
-                        <OutlineButton className="red restrict" onClick={() => setDeleteIsOpen(false)}>Cancel</OutlineButton>
+                        <OutlineButton className="red restrict" onClick={() => closeDeleteAccountModalAction()}>Cancel</OutlineButton>
                         <SolidButton className="red restrict">Delete Account</SolidButton>
                     </ModalButtonContainer>
                 </ModalContainer>
@@ -207,6 +205,9 @@ Profile.propTypes = {
     getUserByIdAction: PropTypes.func,
     user: PropTypes.object,
     updateUserAction: PropTypes.func,
+    openDeleteAccountModalAction: PropTypes.func,
+    closeDeleteAccountModalAction: PropTypes.func,
+    showDeleteModal: PropTypes.bool,
     openEditAccountModalAction: PropTypes.func,
     closeEditAccountModalAction: PropTypes.func,
     showEditModal: PropTypes.bool,
@@ -216,6 +217,7 @@ Profile.propTypes = {
 const mapStateToProps = (state) => {
     return {
         user: state.userReducer.user,
+        showDeleteModal: state.modalReducer.showDeleteAccountModal,
         showEditModal: state.modalReducer.showEditAccountModal,
         errorMessage: state.userReducer.error
     };
@@ -226,6 +228,8 @@ const mapDispatchToProps = (dispatch) => {
         logoutAction: logoutUserAction,
         getUserByIdAction: getUserByIdAction,
         updateUserAction: updateUserAction,
+        openDeleteAccountModalAction: openDeleteAccountModalAction,
+        closeDeleteAccountModalAction: closeDeleteAccountModalAction,
         openEditAccountModalAction: openEditAccountModalAction,
         closeEditAccountModalAction: closeEditAccountModalAction
     }, dispatch);

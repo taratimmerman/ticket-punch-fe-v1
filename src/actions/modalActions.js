@@ -27,6 +27,9 @@ export const CLOSE_DELETE_TICKET = 'CLOSE_DELETE_TICKET_MODAL';
 export const SHOW_EDIT_TICKET = 'SHOW_EDIT_TICKET_MODAL';
 export const CLOSE_EDIT_TICKET = 'CLOSE_EDIT_TICKET_MODAL';
 
+export const SHOW_DELETE_ACCOUNT = 'SHOW_DELETE_ACCOUNT_MODAL';
+export const CLOSE_DELETE_ACCOUNT = 'CLOSE_DELETE_ACCOUNT_MODAL';
+
 export const SHOW_EDIT_ACCOUNT = 'SHOW_EDIT_ACCOUNT_MODAL';
 export const CLOSE_EDIT_ACCOUNT = 'CLOSE_EDIT_ACCOUNT_MODAL';
 
@@ -111,6 +114,15 @@ export const openEditTicketModalAction = () => dispatch => {
 
 export const closeEditTicketModalAction = () => dispatch => {
     dispatch({ type: CLOSE_EDIT_TICKET });
+};
+
+// Delete Account Modal
+export const openDeleteAccountModalAction = () => dispatch => {
+    dispatch({ type: SHOW_DELETE_ACCOUNT });
+};
+
+export const closeDeleteAccountModalAction = () => dispatch => {
+    dispatch({ type: CLOSE_DELETE_ACCOUNT });
 };
 
 // Edit Account Modal
