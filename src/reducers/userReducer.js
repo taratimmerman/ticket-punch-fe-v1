@@ -17,6 +17,7 @@ import {
 
 export const initialUserState = {
     users: [],
+    user: {},
     status: '',
     error: null
 };

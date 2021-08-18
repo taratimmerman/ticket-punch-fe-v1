@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
 import { BsPencil, BsTrash } from 'react-icons/bs';
+import { MdError } from 'react-icons/md';
 import { VscAccount } from 'react-icons/vsc';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
 
-import { logoutUserAction, getUserByIdAction } from '../actions/userActions';
+import { logoutUserAction, getUserByIdAction, updateUserAction } from '../actions/userActions';
 import { getUserId, getUsername } from '../helpers/getUserInfo';
 import {
     ModalContainer,
     ModalCircle,
     ModalAction,
+    ModalItem,
     ModalDetails,
     ModalButtonContainer
 } from '../styling/ModalStyling';
@@ -23,14 +26,20 @@ import {
     SolidButton,
     SolidInput,
     StyledForm,
-    StyledLabel
+    StyledLabel,
+    InlineErrorWrapper,
+    InlineErrorIcon,
+    InlineError
 } from '../styling/PageStyling';
 import {
-    CTA,
     SubAction
 } from '../styling/WelcomeStyling';
 
-const Profile = ({ logoutAction, getUserByIdAction, user }) => {
+const Profile = ({ logoutAction, getUserByIdAction, user, updateUserAction }) => {
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm({
+        mode: "onBlur"
+    });
 
     const [deleteIsOpen, setDeleteIsOpen] = useState(false);
     const [editIsOpen, setEditIsOpen] = useState(false);
@@ -38,6 +47,35 @@ const Profile = ({ logoutAction, getUserByIdAction, user }) => {
     useEffect(() => {
         getUserByIdAction(getUserId());
     }, []);
+
+    const handleEditUser = (userEdits) => {
+        console.log(userEdits);
+        const userId = getUserId();
+        const email = userEdits.email.trim();
+        const password = userEdits.password.trim();
+
+        updateUserAction(userId, email, password);
+        reset;
+    };
+
+    const handleError = (errors) => console.log(errors);
+
+    const editUserValidation = {
+        email: {
+            required: "Please enter your email address",
+            pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: "Enter in the format: name@company.com"
+            }
+        },
+        password: {
+            required: "Please enter your password",
+            minLength: {
+                value: 6,
+                message: "Passwords must be six or more characters"
+            }
+        }
+    };
 
     return (
         <ProfileContainer className="page">
@@ -96,45 +134,63 @@ const Profile = ({ logoutAction, getUserByIdAction, user }) => {
                         <BsPencil />
                     </ModalCircle>
 
-                    <CTA>Edit Account</CTA>
+                    <ModalAction>Edit<ModalItem className="purple">{getUsername()}</ModalItem>Account</ModalAction>
 
-                    <StyledForm>
+                    <StyledForm onSubmit={handleSubmit(handleEditUser, handleError)}>
                         <StyledLabel
-                            htmlFor="username"
-                        >Edit Username</StyledLabel>
+                            htmlFor="email"
+                        >Edit Email</StyledLabel>
 
                         <SolidInput
                             type="text"
-                            name="username"
-                            placeholder="Username"
+                            {...register('email', editUserValidation.email)}
+                            name="email"
+                            className={`purple ${errors.email ? "error" : null}`}
+                            placeholder={user.email}
                         />
+                        {errors.email ?
+                            <InlineErrorWrapper>
+                                <InlineErrorIcon>
+                                    <MdError />
+                                </InlineErrorIcon>
+                                <InlineError>{errors.email.message}</InlineError>
+                            </InlineErrorWrapper>
+                            : null}
 
                         <StyledLabel
                             htmlFor="password"
-                        >Update Password</StyledLabel>
+                        >Edit Password</StyledLabel>
 
                         <SolidInput
                             type="password"
+                            {...register('password', editUserValidation.password)}
                             name="password"
-                            placeholder="Password"
+                            className={`purple ${errors.password ? "error" : null}`}
+                            placeholder="Enter current or new password"
                         />
+                        {errors.password ?
+                            <InlineErrorWrapper>
+                                <InlineErrorIcon>
+                                    <MdError />
+                                </InlineErrorIcon>
+                                <InlineError>{errors.password.message}</InlineError>
+                            </InlineErrorWrapper>
+                            : null}
 
-                        <StyledLabel
-                            htmlFor="verify-password"
-                        >Verify Password</StyledLabel>
-
-                        <SolidInput
-                            type="password"
-                            name="verify-password"
-                            placeholder="Verify Password"
-                        />
+                        <ModalButtonContainer>
+                            <SolidButton
+                                className="purple restrict"
+                                type="submit"
+                            >
+                                Edit Account
+                            </SolidButton>
+                        </ModalButtonContainer>
                     </StyledForm>
 
                     <SubAction>These changes cannot be undone</SubAction>
 
                     <ModalButtonContainer>
                         <OutlineButton className="purple restrict" onClick={() => setEditIsOpen(false)}>Cancel</OutlineButton>
-                        <SolidButton className="purple restrict" type="submit">Edit Account</SolidButton>
                     </ModalButtonContainer>
                 </ModalContainer>
 
@@ -146,7 +202,8 @@ const Profile = ({ logoutAction, getUserByIdAction, user }) => {
 Profile.propTypes = {
     logoutAction: PropTypes.func,
     getUserByIdAction: PropTypes.func,
-    user: PropTypes.object
+    user: PropTypes.object,
+    updateUserAction: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -158,7 +215,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         logoutAction: logoutUserAction,
-        getUserByIdAction: getUserByIdAction
+        getUserByIdAction: getUserByIdAction,
+        updateUserAction: updateUserAction
     }, dispatch);
 };
 

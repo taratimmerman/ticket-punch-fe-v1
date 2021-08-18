@@ -30,9 +30,8 @@ export const msgDevAction = (name, email, question) => dispatch => {
                 type: MSG_DEV_SUCCESS,
                 payload: res.data
             });
-            setTimeout(() => {
-                closeHelpModalAction();
-            }, 15000);
+            closeHelpModalAction();
+
         })
         .catch(err => {
             dispatch({

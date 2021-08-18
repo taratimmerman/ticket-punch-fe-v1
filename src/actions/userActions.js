@@ -121,11 +121,11 @@ export const getUserByIdAction = userId => dispatch => {
         });
 };
 
-export const updateUserAction = (userId, userObj) => dispatch => {
+export const updateUserAction = (userId, email, password) => dispatch => {
     dispatch({ type: UPDATE_REQUEST });
 
     axiosWithAuth()
-        .put(`${API_URL}/users/${userId}`, userObj)
+        .put(`${API_URL}/users/${userId}`, {email, password})
         .then(res => {
             dispatch({
                 type: UPDATE_SUCCESS,
