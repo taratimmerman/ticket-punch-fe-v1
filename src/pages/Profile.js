@@ -9,7 +9,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
 
+import { openEditAccountModalAction, closeEditAccountModalAction } from '../actions/modalActions';
 import { logoutUserAction, getUserByIdAction, updateUserAction } from '../actions/userActions';
+import ErrorMessage from '../components/ErrorMessage';
 import { getUserId, getUsername } from '../helpers/getUserInfo';
 import {
     ModalContainer,
@@ -35,14 +37,13 @@ import {
     SubAction
 } from '../styling/WelcomeStyling';
 
-const Profile = ({ logoutAction, getUserByIdAction, user, updateUserAction }) => {
+const Profile = ({ logoutAction, getUserByIdAction, user, updateUserAction, openEditAccountModalAction, closeEditAccountModalAction, showEditModal, errorMessage }) => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
         mode: "onBlur"
     });
 
     const [deleteIsOpen, setDeleteIsOpen] = useState(false);
-    const [editIsOpen, setEditIsOpen] = useState(false);
 
     useEffect(() => {
         getUserByIdAction(getUserId());
@@ -119,14 +120,14 @@ const Profile = ({ logoutAction, getUserByIdAction, user, updateUserAction }) =>
                     </ModalButtonContainer>
                 </ModalContainer>
 
-                <ProfileActionWrapper onClick={() => setEditIsOpen(true)}>
+                <ProfileActionWrapper onClick={() => openEditAccountModalAction()}>
                     <BsPencil />
                 </ProfileActionWrapper>
 
                 {/* EDIT ACCOUNT MODAL */}
                 <ModalContainer
                     className="purple"
-                    isOpen={editIsOpen} onRequestClose={() => setEditIsOpen(false)}
+                    isOpen={showEditModal} onRequestClose={() => closeEditAccountModalAction()}
                     closeTimeoutMS={200}
                     contentLabel="modal"
                 >
@@ -135,6 +136,8 @@ const Profile = ({ logoutAction, getUserByIdAction, user, updateUserAction }) =>
                     </ModalCircle>
 
                     <ModalAction>Edit<ModalItem className="purple">{getUsername()}</ModalItem>Account</ModalAction>
+
+                    <ErrorMessage error={errorMessage} />
 
                     <StyledForm onSubmit={handleSubmit(handleEditUser, handleError)}>
                         <StyledLabel
@@ -190,7 +193,7 @@ const Profile = ({ logoutAction, getUserByIdAction, user, updateUserAction }) =>
                     <SubAction>These changes cannot be undone</SubAction>
 
                     <ModalButtonContainer>
-                        <OutlineButton className="purple restrict" onClick={() => setEditIsOpen(false)}>Cancel</OutlineButton>
+                        <OutlineButton className="purple restrict" onClick={() => closeEditAccountModalAction()}>Cancel</OutlineButton>
                     </ModalButtonContainer>
                 </ModalContainer>
 
@@ -203,12 +206,18 @@ Profile.propTypes = {
     logoutAction: PropTypes.func,
     getUserByIdAction: PropTypes.func,
     user: PropTypes.object,
-    updateUserAction: PropTypes.func
+    updateUserAction: PropTypes.func,
+    openEditAccountModalAction: PropTypes.func,
+    closeEditAccountModalAction: PropTypes.func,
+    showEditModal: PropTypes.bool,
+    errorMessage: PropTypes.string
 };
 
 const mapStateToProps = (state) => {
     return {
-        user: state.userReducer.user
+        user: state.userReducer.user,
+        showEditModal: state.modalReducer.showEditAccountModal,
+        errorMessage: state.userReducer.error
     };
 };
 
@@ -216,7 +225,9 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         logoutAction: logoutUserAction,
         getUserByIdAction: getUserByIdAction,
-        updateUserAction: updateUserAction
+        updateUserAction: updateUserAction,
+        openEditAccountModalAction: openEditAccountModalAction,
+        closeEditAccountModalAction: closeEditAccountModalAction
     }, dispatch);
 };
 

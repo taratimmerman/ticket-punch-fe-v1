@@ -16,7 +16,9 @@ import {
     SHOW_DELETE_TICKET,
     CLOSE_DELETE_TICKET,
     SHOW_EDIT_TICKET,
-    CLOSE_EDIT_TICKET
+    CLOSE_EDIT_TICKET,
+    SHOW_EDIT_ACCOUNT,
+    CLOSE_EDIT_ACCOUNT
 } from '../actions/modalActions';
 
 // INITIAL MODAL STATE
@@ -30,7 +32,8 @@ const initialModalState = {
     showEditProjectModal: false,
     showAddTicketModal: false,
     showDeleteTicketModal: false,
-    showEditTicketModal: false
+    showEditTicketModal: false,
+    showEditAccountModal: false
 };
 
 // MODALS REDUCER
@@ -135,6 +138,17 @@ export const modalReducer = (state = initialModalState, action) => {
             return {
                 ...state,
                 showEditTicketModal: false
+            };
+        // EDIT ACCOUNT MODAL
+        case SHOW_EDIT_ACCOUNT:
+            return {
+                ...state,
+                showEditAccountModal: true
+            };
+        case CLOSE_EDIT_ACCOUNT:
+            return {
+                ...state,
+                showEditAccountModal: false
             };
         default:
             return state;

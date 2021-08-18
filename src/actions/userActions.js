@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { history } from '../App';
 import { API_URL , axiosWithAuth } from '../helpers/axiosWithAuth';
-import { closeLoginModalAction, closeWelcomeModalAction } from './modalActions';
+import { closeLoginModalAction, closeWelcomeModalAction, closeEditAccountModalAction } from './modalActions';
 
 // USER ACTION TYPES
 
@@ -131,6 +131,7 @@ export const updateUserAction = (userId, email, password) => dispatch => {
                 type: UPDATE_SUCCESS,
                 payload: res.data
             });
+            dispatch(closeEditAccountModalAction());
         })
         .catch(err => {
             dispatch({
