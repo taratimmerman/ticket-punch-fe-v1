@@ -1,6 +1,5 @@
 import React from 'react';
 
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { GiBoxingGlove } from 'react-icons/gi';
@@ -12,6 +11,7 @@ import { NavLink } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
 
+import { msgDevAction } from '../actions/helpActions';
 import { openHelpModalAction, closeHelpModalAction } from '../actions/modalActions';
 import ErrorMessage from '../components/ErrorMessage';
 import SuccessMessage from '../components/SuccessMessage';
@@ -34,7 +34,7 @@ import {
     InlineError
 } from '../styling/PageStyling';
 
-const Navbar = ({ openHelpModalAction, closeHelpModalAction, showHelpModal }) => {
+const Navbar = ({ openHelpModalAction, closeHelpModalAction, showHelpModal, msgDevAction }) => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
         mode: "onBlur"
@@ -43,35 +43,14 @@ const Navbar = ({ openHelpModalAction, closeHelpModalAction, showHelpModal }) =>
     let errorMessage;
     let successMessage;
 
-    const handleMsgDev = async (message) => {
+    const handleMsgDev = (message) => {
         console.log(message);
         const name = message.name.trim();
         const email = message.email.trim();
         const question = message.question.trim();
 
-        const webHookURL = 'https://hooks.slack.com/services/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';
-
-        const data = {
-            'text': `NAME: ${name}\n EMAIL: ${email}\n MESSAGE: ${question}`
-        };
-
-        let res = await axios.post(webHookURL, JSON.stringify(data), {
-            withCredentials: false,
-            transformRequest: [(data, headers) => {
-                delete headers.post['Content-Type'];
-                return data;
-            }]
-        });
-
-        if(res.status === 200) {
-            successMessage="Thank you for reaching out! Tara will get back to you shortly.";
-            reset();
-            setTimeout(() => {
-                closeHelpModalAction();
-            }, 15000);
-        } else {
-            errorMessage="Error sending message. Please try again later!";
-        }
+        msgDevAction(name, email, question);
+        reset();
     };
 
     const handleError = (errors) => console.log(errors);
@@ -235,7 +214,8 @@ const Navbar = ({ openHelpModalAction, closeHelpModalAction, showHelpModal }) =>
 Navbar.propTypes = {
     openHelpModalAction: PropTypes.func,
     closeHelpModalAction: PropTypes.func,
-    showHelpModal: PropTypes.bool
+    showHelpModal: PropTypes.bool,
+    msgDevAction: PropTypes.func
 };
 
 const mapStateToProps = (state) => {
@@ -247,7 +227,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         openHelpModalAction: openHelpModalAction,
-        closeHelpModalAction: closeHelpModalAction
+        closeHelpModalAction: closeHelpModalAction,
+        msgDevAction: msgDevAction
     }, dispatch);
 };
 

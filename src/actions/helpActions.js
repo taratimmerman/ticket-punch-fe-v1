@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { closeHelpModalAction } from '../actions/modalActions';
 
-const webHookURL = 'https://hooks.slack.com/services/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';
+const webHookURL = 'https://hooks.slack.com/services/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';
 
 // HELP ACTION TYPES
 export const MSG_DEV_REQUEST = "HELP_MSG_DEV_REQUEST";
