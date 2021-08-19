@@ -50,6 +50,10 @@ export const CardSectionWrapper = styled.div`
     display: flex;
     align-items: stretch;
     justify-content: space-between;
+
+    @media screen and (max-width: 500px) {
+        flex-direction: column;
+    }
 `;
 
 export const CardSectionLeft = styled.div`
@@ -135,4 +139,11 @@ export const CardButtonWrapper = styled.div`
     flex-direction: column;
     align-items: space-between;
     justify-content: space-between;
+
+    @media screen and (max-width: 500px) {
+        width: 85%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
 `;
