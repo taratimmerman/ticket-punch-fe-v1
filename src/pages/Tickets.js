@@ -75,7 +75,7 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects,
             required: "Please enter the ticket description",
             maxLength: {
                 value: 140,
-                message: "Ticket descriptions must be less than 30 characters"
+                message: "Ticket descriptions must be less than 140 characters"
             }
         }
     };

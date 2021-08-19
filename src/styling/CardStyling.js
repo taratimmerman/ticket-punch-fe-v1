@@ -91,6 +91,7 @@ export const CardDescription = styled.p`
     margin: 0 8px;
     font-size: 0.875rem;
     font-weight: bold;
+    overflow-wrap: anywhere;
 `;
 
 export const CardStatus = styled.p`
