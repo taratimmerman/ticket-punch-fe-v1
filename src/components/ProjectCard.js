@@ -11,7 +11,6 @@ import { bindActionCreators } from 'redux';
 
 import { openDeleteProjectModalAction, closeDeleteProjectModalAction, openEditProjectModalAction, closeEditProjectModalAction } from '../actions/modalActions';
 import { deleteProjectAction, editProjectAction } from '../actions/projectActions';
-import Button from '../components/Button/Button';
 import { getUserId } from '../helpers/getUserInfo';
 import {
     CardContainer,
@@ -48,6 +47,7 @@ import {
     SubActionContainer,
     SubAction
 } from '../styling/WelcomeStyling';
+import Button from './button/Button';
 import ErrorMessage from './ErrorMessage';
 
 const ProjectCard = (props) => {

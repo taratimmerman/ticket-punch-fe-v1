@@ -10,7 +10,7 @@ import { bindActionCreators } from 'redux';
 import { openAddTicketModalAction, closeAddTicketModalAction } from '../actions/modalActions';
 import { getAllProjectsByUserAction } from '../actions/projectActions';
 import { createTicketAction, getAllTicketsByUserAction, targetTicketAcion } from '../actions/ticketActions';
-import Button from '../components/Button/Button';
+import Button from '../components/button/Button';
 import ErrorMessage from '../components/ErrorMessage';
 import TicketCard from '../components/TicketCard';
 import { getUserId } from '../helpers/getUserInfo';

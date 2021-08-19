@@ -11,9 +11,12 @@ import { registerUserAction } from '../actions/userActions';
 import Google from '../assets/google-icon.svg';
 import LinkedIn from '../assets/logo_linkedin.png';
 import Slack from '../assets/logo_slack.png';
+import Button from '../components/button/Button';
 import ErrorMessage from '../components/ErrorMessage';
 import {
-    SolidButton,
+    ModalButtonContainer
+} from '../styling/ModalStyling';
+import {
     SolidInput,
     StyledForm,
     StyledLabel,
@@ -119,11 +122,13 @@ const Welcome = ({ registerAction, closeModalAction, showModal, errorMessage }) 
                     </InlineErrorWrapper>
                     : null}
 
-
-                <SolidButton
-                    type="submit"
-                    className="purple"
-                >Create Account</SolidButton>
+                <ModalButtonContainer>
+                    <Button
+                        type="submit"
+                        className="purple extended"
+                        text={"Create Account"}
+                    />
+                </ModalButtonContainer>
 
             </StyledForm>
 

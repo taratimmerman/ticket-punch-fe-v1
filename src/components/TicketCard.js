@@ -13,7 +13,6 @@ import { bindActionCreators } from 'redux';
 import { openDeleteTicketModalAction, closeDeleteTicketModalAction, openEditTicketModalAction, closeEditTicketModalAction } from '../actions/modalActions';
 import { getProjectByIdAction } from '../actions/projectActions';
 import { deleteTicketAction, editTicketAction } from '../actions/ticketActions';
-import Button from '../components/Button/Button';
 import { getUserId } from '../helpers/getUserInfo';
 import {
     CardContainer,
@@ -50,6 +49,7 @@ import {
     SubActionContainer,
     SubAction
 } from '../styling/WelcomeStyling';
+import Button from './button/Button';
 import ErrorMessage from './ErrorMessage';
 
 const TicketCard = props => {

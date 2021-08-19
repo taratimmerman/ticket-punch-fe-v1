@@ -11,9 +11,12 @@ import { loginUserAction } from '../actions/userActions';
 import Google from '../assets/google-icon.svg';
 import LinkedIn from '../assets/logo_linkedin.png';
 import Slack from '../assets/logo_slack.png';
+import Button from '../components/button/Button';
 import ErrorMessage from '../components/ErrorMessage';
 import {
-    SolidButton,
+    ModalButtonContainer
+} from '../styling/ModalStyling';
+import {
     SolidInput,
     StyledForm,
     StyledLabel,
@@ -114,11 +117,14 @@ const Login = ({ loginAction, errorMessage, openLoginAction, showModal }) => {
                         <InlineError>{errors.password.message}</InlineError>
                     </InlineErrorWrapper>
                     : null}
-
-                <SolidButton
-                    type="submit"
-                    className="purple"
-                >Sign In</SolidButton>
+                
+                <ModalButtonContainer>
+                    <Button
+                        type="submit"
+                        className="purple extended"
+                        text={"Sign In"}
+                    />
+                </ModalButtonContainer>
             </StyledForm>
 
             <SubActionContainer>

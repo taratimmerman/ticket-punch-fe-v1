@@ -13,7 +13,6 @@ import styled from 'styled-components';
 
 import { msgDevAction } from '../actions/helpActions';
 import { openHelpModalAction, closeHelpModalAction } from '../actions/modalActions';
-import Button from '../components/Button/Button';
 import ErrorMessage from '../components/ErrorMessage';
 import SuccessMessage from '../components/SuccessMessage';
 import {
@@ -32,6 +31,7 @@ import {
     InlineErrorIcon,
     InlineError
 } from '../styling/PageStyling';
+import Button from './button/Button';
 
 const Navbar = ({ openHelpModalAction, closeHelpModalAction, showHelpModal, msgDevAction }) => {
 

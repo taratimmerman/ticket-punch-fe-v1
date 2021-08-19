@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux';
 
 import { openAddProjectModalAction, closeAddProjectModalAction } from '../actions/modalActions';
 import { createProjectAction, getAllProjectsByUserAction, targetProjectAction } from '../actions/projectActions';
-import Button from '../components/Button/Button';
+import Button from '../components/button/Button';
 import ErrorMessage from '../components/ErrorMessage';
 import ProjectCard from '../components/ProjectCard';
 import { getUserId } from '../helpers/getUserInfo';
