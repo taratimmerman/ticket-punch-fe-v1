@@ -232,7 +232,7 @@ const TicketCard = props => {
                         name="projectTitle"
                         {...register('projectTitle')}
                     >
-                        <option disabled selected>{props.projectTitle}</option>
+                        <option disabled defaultValue>{props.projectTitle}</option>
                         {props.projects.map(project => (
                             <option key={project.id} value={project.id}>{project.title}</option>
                         ))}
@@ -246,7 +246,7 @@ const TicketCard = props => {
                         name="status"
                         {...register('status')}
                     >
-                        <option disabled selected>{props.ticketStatus}</option>
+                        <option disabled defaultValue>{props.ticketStatus}</option>
                         <option value="stuck">Stuck</option>
                         <option value="working_on_it">Working on it</option>
                         <option value="done">Done</option>
@@ -261,7 +261,7 @@ const TicketCard = props => {
                         name="bug"
                         {...register('bug')}
                     >
-                        <option disabled selected>{props.ticketBug}</option>
+                        <option disabled defaultValue>{props.ticketBug}</option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                     </SolidDropdown>
@@ -274,7 +274,7 @@ const TicketCard = props => {
                         name="archived"
                         {...register('archived')}
                     >
-                        <option disabled selected>{props.ticketArchived}</option>
+                        <option disabled defaultValue>{props.ticketArchived}</option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                     </SolidDropdown>

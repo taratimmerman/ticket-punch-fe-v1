@@ -87,11 +87,11 @@ export const createTicketAction = (user_id, title, description, status, bug, pro
         });
 };
 
-export const editTicketAction = (id, user_id, title, description, status, bug, archived, project_id) => dispatch => {
+export const editTicketAction = (id, user_id, project_id, title, description, status, bug, archived) => dispatch => {
     dispatch({ type: UPDATE_TICKET_REQUEST });
 
     axiosWithAuth()
-        .put(`${API_URL}/tickets/${id}`, { user_id, title, description, status, bug, archived, project_id })
+        .put(`${API_URL}/tickets/${id}`, { user_id, project_id, title, description, status, bug, archived})
         .then(res => {
             dispatch({
                 type: UPDATE_TICKET_SUCCESS,
