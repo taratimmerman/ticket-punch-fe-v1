@@ -10,6 +10,7 @@ import { bindActionCreators } from 'redux';
 import { openAddTicketModalAction, closeAddTicketModalAction } from '../actions/modalActions';
 import { getAllProjectsByUserAction } from '../actions/projectActions';
 import { createTicketAction, getAllTicketsByUserAction, targetTicketAcion } from '../actions/ticketActions';
+import Button from '../components/Button/Button';
 import ErrorMessage from '../components/ErrorMessage';
 import TicketCard from '../components/TicketCard';
 import { getUserId } from '../helpers/getUserInfo';
@@ -85,7 +86,7 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects,
         <PageContainer className="page">
             <PageTitleWrapper>
                 <PageTitle>Tickets</PageTitle>
-                <SolidButton className="purple restrict" onClick={() => openModalAction()}>New Ticket</SolidButton>
+                <Button onClick={() => openModalAction()} text={"New Ticket"} className={"purple"}/>
             </PageTitleWrapper>
 
             {/* New Ticket Modal */}

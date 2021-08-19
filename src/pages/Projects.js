@@ -9,6 +9,7 @@ import { bindActionCreators } from 'redux';
 
 import { openAddProjectModalAction, closeAddProjectModalAction } from '../actions/modalActions';
 import { createProjectAction, getAllProjectsByUserAction, targetProjectAction } from '../actions/projectActions';
+import Button from '../components/Button/Button';
 import ErrorMessage from '../components/ErrorMessage';
 import ProjectCard from '../components/ProjectCard';
 import { getUserId } from '../helpers/getUserInfo';
@@ -81,7 +82,7 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
         <PageContainer className="page">
             <PageTitleWrapper>
                 <PageTitle>Projects</PageTitle>
-                <SolidButton className="purple restrict" onClick={() => openModalAction()}>New Project</SolidButton>
+                <Button onClick={() => openModalAction()} text={"New Project"} className={"purple"}/>
             </PageTitleWrapper>
 
             {/* New Project Modal */}
