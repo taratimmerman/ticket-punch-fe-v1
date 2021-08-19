@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { history } from '../App';
 import { API_URL , axiosWithAuth } from '../helpers/axiosWithAuth';
-import { closeLoginModalAction, closeWelcomeModalAction, closeEditAccountModalAction } from './modalActions';
+import { closeLoginModalAction, closeWelcomeModalAction, closeEditAccountModalAction, closeDeleteAccountModalAction } from './modalActions';
 
 // USER ACTION TYPES
 
@@ -151,6 +151,8 @@ export const deleteUserAction = userId => dispatch => {
                 type: DELETE_SUCCESS,
                 payload: res.data
             });
+            dispatch(closeDeleteAccountModalAction());
+            dispatch(logoutUserAction());
         })
         .catch(err => {
             dispatch({

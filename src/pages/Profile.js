@@ -10,7 +10,7 @@ import { bindActionCreators } from 'redux';
 import styled from 'styled-components';
 
 import { openDeleteAccountModalAction, closeDeleteAccountModalAction, openEditAccountModalAction, closeEditAccountModalAction } from '../actions/modalActions';
-import { logoutUserAction, getUserByIdAction, updateUserAction } from '../actions/userActions';
+import { logoutUserAction, getUserByIdAction, deleteUserAction, updateUserAction } from '../actions/userActions';
 import ErrorMessage from '../components/ErrorMessage';
 import { getUserId, getUsername } from '../helpers/getUserInfo';
 import {
@@ -37,7 +37,7 @@ import {
     SubAction
 } from '../styling/WelcomeStyling';
 
-const Profile = ({ logoutAction, getUserByIdAction, user, openDeleteAccountModalAction, closeDeleteAccountModalAction, showDeleteModal, updateUserAction, openEditAccountModalAction, closeEditAccountModalAction, showEditModal, errorMessage }) => {
+const Profile = ({ logoutAction, getUserByIdAction, user, deleteUserAction, openDeleteAccountModalAction, closeDeleteAccountModalAction, showDeleteModal, updateUserAction, openEditAccountModalAction, closeEditAccountModalAction, showEditModal, errorMessage }) => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
         mode: "onBlur"
@@ -103,6 +103,9 @@ const Profile = ({ logoutAction, getUserByIdAction, user, openDeleteAccountModal
                         <BsTrash />
                     </ModalCircle>
                     <ModalAction>Delete Account?</ModalAction>
+
+                    <ErrorMessage error={errorMessage} />
+
                     <ModalDetails>You will permanently lose your:</ModalDetails>
                     <ul>
                         <li>Profile</li>
@@ -114,7 +117,7 @@ const Profile = ({ logoutAction, getUserByIdAction, user, openDeleteAccountModal
 
                     <ModalButtonContainer>
                         <OutlineButton className="red restrict" onClick={() => closeDeleteAccountModalAction()}>Cancel</OutlineButton>
-                        <SolidButton className="red restrict">Delete Account</SolidButton>
+                        <SolidButton className="red restrict" onClick={() => deleteUserAction(getUserId())}>Delete Account</SolidButton>
                     </ModalButtonContainer>
                 </ModalContainer>
 
@@ -205,6 +208,7 @@ Profile.propTypes = {
     getUserByIdAction: PropTypes.func,
     user: PropTypes.object,
     updateUserAction: PropTypes.func,
+    deleteUserAction: PropTypes.func,
     openDeleteAccountModalAction: PropTypes.func,
     closeDeleteAccountModalAction: PropTypes.func,
     showDeleteModal: PropTypes.bool,
@@ -231,7 +235,8 @@ const mapDispatchToProps = (dispatch) => {
         openDeleteAccountModalAction: openDeleteAccountModalAction,
         closeDeleteAccountModalAction: closeDeleteAccountModalAction,
         openEditAccountModalAction: openEditAccountModalAction,
-        closeEditAccountModalAction: closeEditAccountModalAction
+        closeEditAccountModalAction: closeEditAccountModalAction,
+        deleteUserAction: deleteUserAction
     }, dispatch);
 };
 
