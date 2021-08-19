@@ -26,6 +26,7 @@
     border-radius: 12px;
 }
 
+/* PRIMARY EDGE COLORS */
 .edge.purple {
     background: #8236d3;
 }
@@ -54,6 +55,7 @@
     font-weight: bold;
 }
 
+/* PRIMARY FRONT COLORS */
 .front.purple {
     background: #A25DDC;
 }
@@ -68,6 +70,31 @@
 
 .front.green {
     background: #00C875;
+}
+
+/* SECONDARY FRONT COLORS */
+.front.purple.secondary {
+    background: #303134;
+    border: #A25DDC solid 3px;
+    color:#A25DDC;
+}
+
+.front.red.secondary {
+    background: #303134;
+    border: #E2445C solid 3px;
+    color:#E2445C;
+}
+
+.front.yellow.secondary {
+    background: #303134;
+    border: #FDAB3D solid 3px;
+    color:#FDAB3D;
+}
+
+.front.green.secondary {
+    background: #303134;
+    border: #00C875 solid 3px;
+    color:#00C875;
 }
   
 .pushable:hover .front {
