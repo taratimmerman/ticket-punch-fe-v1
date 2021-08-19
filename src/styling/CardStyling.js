@@ -46,6 +46,28 @@ export const ContentWrapper = styled.div`
     }
 `;
 
+export const CardSectionWrapper = styled.div`
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+`;
+
+export const CardSectionLeft = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    flex-grow: 2;
+`;
+
+export const CardSectionRight = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+`;
+
+
 // CARD TEXT
 
 export const CardTitle = styled.h4`
@@ -107,7 +129,9 @@ export const CardButton = styled.button`
 
 export const CardButtonWrapper = styled.div`
     margin: 16px;
+    height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: space-between;
+    justify-content: space-between;
 `;

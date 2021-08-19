@@ -43,6 +43,10 @@
     background: #00943e;
 }
 
+.edge.gray {
+    background: #c6cfd2;
+}
+
 .front {
     display: block;
     position: relative;
@@ -54,6 +58,12 @@
     white-space: nowrap;
     font-weight: bold;
     width: 180px;
+}
+
+.front.condensed {
+    height: 30px;
+    width: 60px;
+    padding: 7px 10px;
 }
 
 /* PRIMARY FRONT COLORS */
@@ -72,6 +82,11 @@
 
 .front.green {
     background: #00C875;
+}
+
+.front.gray {
+    background: #e0e4e6;
+    color: #9AA0A6;
 }
 
 /* SECONDARY FRONT COLORS */

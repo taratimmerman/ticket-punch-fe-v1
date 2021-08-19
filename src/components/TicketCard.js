@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import { BsTrash } from 'react-icons/bs';
+import { BsPencil, BsTrash } from 'react-icons/bs';
 import { ImBug } from "react-icons/im";
 import { IoTicketOutline } from 'react-icons/io5';
 import { MdError } from 'react-icons/md';
@@ -24,8 +24,10 @@ import {
     CardDescription,
     CardStatus,
     CardButtonWrapper,
-    CardButton,
-    CardLabel
+    CardLabel,
+    CardSectionLeft,
+    CardSectionRight,
+    CardSectionWrapper
 } from '../styling/CardStyling';
 import {
     ModalContainer,
@@ -128,23 +130,45 @@ const TicketCard = props => {
                 style={{ maxHeight: `${setHeight}` }}
                 className={`${setActive}`}
             >
-                <CardLabel>Ticket ID</CardLabel>
-                <CardProject>{props.id}</CardProject>
+                <CardSectionWrapper>
 
-                <CardLabel>Project Title</CardLabel>
-                <CardProject>{props.project.title}</CardProject>
+                    <CardSectionLeft>
 
-                <CardLabel>Ticket Description</CardLabel>
-                <CardDescription>{props.description}</CardDescription>
+                        <CardLabel>Ticket ID</CardLabel>
+                        <CardProject>{props.id}</CardProject>
 
-                <CardLabel>Ticket Status</CardLabel>
-                <CardStatus>{props.status}</CardStatus>
+                        <CardLabel>Project Title</CardLabel>
+                        <CardProject>{props.project.title}</CardProject>
 
-                {props.archived ? null :
-                    <CardButtonWrapper>
-                        <CardButton onClick={() => props.openDeleteTicketModalAction()}>Delete</CardButton>
-                        <CardButton onClick={() => props.openEditTicketModalAction()}>Edit</CardButton>
-                    </CardButtonWrapper>}
+                        <CardLabel>Ticket Description</CardLabel>
+                        <CardDescription>{props.description}</CardDescription>
+
+                        <CardLabel>Ticket Status</CardLabel>
+                        <CardStatus>{props.status}</CardStatus>
+
+                    </CardSectionLeft>
+
+                    <CardSectionRight>
+
+                    {props.archived ? null :
+                        <CardButtonWrapper>
+                            <Button
+                                className="gray condensed"
+                                onClick={() => props.openDeleteTicketModalAction()}
+                                text={<BsTrash />}
+                            />
+                            <Button
+                                className="gray condensed"
+                                onClick={() => props.openEditTicketModalAction()}
+                                text={<BsPencil />}
+                            />
+                        </CardButtonWrapper>
+                    }
+
+                    </CardSectionRight>
+
+                </CardSectionWrapper>
+
             </ContentWrapper>
 
             {/* DELETE TICKET MODAL */}
@@ -315,7 +339,7 @@ const TicketCard = props => {
                 </ModalButtonContainer>
             </ModalContainer>
 
-        </CardContainer>
+        </CardContainer >
     );
 };
 

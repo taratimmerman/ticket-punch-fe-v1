@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import { BsTrash } from 'react-icons/bs';
+import { BsPencil, BsTrash } from 'react-icons/bs';
 import { GiBoxingGlove } from 'react-icons/gi';
 import { MdError } from 'react-icons/md';
 import { VscHistory } from 'react-icons/vsc';
@@ -11,6 +11,7 @@ import { bindActionCreators } from 'redux';
 
 import { openDeleteProjectModalAction, closeDeleteProjectModalAction, openEditProjectModalAction, closeEditProjectModalAction } from '../actions/modalActions';
 import { deleteProjectAction, editProjectAction } from '../actions/projectActions';
+import Button from '../components/Button/Button';
 import { getUserId } from '../helpers/getUserInfo';
 import {
     CardContainer,
@@ -20,8 +21,10 @@ import {
     CardDescription,
     CardStatus,
     CardButtonWrapper,
-    CardButton,
-    CardLabel
+    CardLabel,
+    CardSectionLeft,
+    CardSectionRight,
+    CardSectionWrapper
 } from '../styling/CardStyling';
 import {
     ModalContainer,
@@ -37,8 +40,6 @@ import {
     StyledLabel,
     SolidDropdown,
     SolidTextArea,
-    OutlineButton,
-    SolidButton,
     InlineErrorWrapper,
     InlineErrorIcon,
     InlineError
@@ -119,20 +120,41 @@ const ProjectCard = (props) => {
                 style={{ maxHeight: `${setHeight}` }}
                 className={`${setActive}`}
             >
-                <CardLabel>Project ID</CardLabel>
-                <CardDescription>{props.id}</CardDescription>
+                <CardSectionWrapper>
 
-                <CardLabel>Project Description</CardLabel>
-                <CardDescription>{props.description}</CardDescription>
+                    <CardSectionLeft>
 
-                <CardLabel>Project Status</CardLabel>
-                <CardStatus>{props.status}</CardStatus>
+                        <CardLabel>Project ID</CardLabel>
+                        <CardDescription>{props.id}</CardDescription>
 
-                {props.archived ? null :
-                    <CardButtonWrapper>
-                        <CardButton onClick={() => props.openDeleteProjectModalAction()}>Delete</CardButton>
-                        <CardButton onClick={() => props.openEditProjectModalAction()}>Edit</CardButton>
-                    </CardButtonWrapper>}
+                        <CardLabel>Project Description</CardLabel>
+                        <CardDescription>{props.description}</CardDescription>
+
+                        <CardLabel>Project Status</CardLabel>
+                        <CardStatus>{props.status}</CardStatus>
+
+                    </CardSectionLeft>
+
+                    <CardSectionRight>
+
+                        {props.archived ? null :
+                            <CardButtonWrapper>
+                                <Button
+                                    className="gray condensed"
+                                    onClick={() => props.openDeleteProjectModalAction()}
+                                    text={<BsTrash />}
+                                />
+                                <Button
+                                    className="gray condensed"
+                                    onClick={() => props.openEditProjectModalAction()}
+                                    text={<BsPencil />}
+                                />
+                            </CardButtonWrapper>
+                        }
+
+                    </CardSectionRight>
+
+                </CardSectionWrapper>
             </ContentWrapper>
 
             {/* DELETE PROJECT MODAL */}
@@ -151,12 +173,26 @@ const ProjectCard = (props) => {
 
                 <ModalDetails>Related tickets will also be deleted</ModalDetails>
 
-                <SubAction>This action cannot be undone</SubAction>
+                <SubActionContainer>
+                    <SubAction>This action cannot be undone</SubAction>
+                </SubActionContainer>
 
                 <ModalButtonContainer>
-                    <OutlineButton className="red restrict" onClick={() => props.closeDeleteProjectModalAction()}>Cancel</OutlineButton>
-                    <SolidButton className="red restrict" onClick={() => props.deleteProjectAction(props.projectId)}>Delete Project</SolidButton>
+                    <Button
+                        className="red"
+                        onClick={() => props.deleteProjectAction(props.projectId)}
+                        text={"Delete Project"}
+                    />
                 </ModalButtonContainer>
+
+                <ModalButtonContainer>
+                    <Button
+                        className="red secondary"
+                        onClick={() => props.closeDeleteProjectModalAction()}
+                        text={"Cancel"}
+                    />
+                </ModalButtonContainer>
+
             </ModalContainer>
 
             {/* EDIT PROJECT MODAL */}
@@ -172,7 +208,7 @@ const ProjectCard = (props) => {
                 </ModalCircle>
 
                 <ModalAction>Edit <ModalItem className="purple">{`${props.projectTitle}`}</ModalItem> Project</ModalAction>
-                
+
                 <ErrorMessage error={props.errorMessage} />
 
                 <StyledForm onSubmit={handleSubmit(handleEditProject, handleError)}>
@@ -232,19 +268,21 @@ const ProjectCard = (props) => {
                     </SubActionContainer>
 
                     <ModalButtonContainer>
-                        <SolidButton
+                        <Button
                             type="submit"
-                            className="purple restrict"
-                        >Edit Project</SolidButton>
+                            className="purple"
+                            text={"Edit Project"}
+                        />
                     </ModalButtonContainer>
 
                 </StyledForm>
 
                 <ModalButtonContainer>
-                    <OutlineButton
-                        className="purple restrict"
+                    <Button
+                        className="purple secondary"
                         onClick={() => props.closeEditProjectModalAction()}
-                    >Cancel</OutlineButton>
+                        text={"Cancel"}
+                    />
                 </ModalButtonContainer>
 
             </ModalContainer>
