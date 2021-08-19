@@ -37,7 +37,7 @@ import {
     InlineError
 } from '../styling/PageStyling';
 
-const Projects = ({ getAllProjectsAction, projects, createProjectAction, openModalAction, closeModalAction, showModal, targetProjectAction, errorMessage }) => {
+const Projects = ({ getAllProjectsAction, projects, createProjectAction, openModalAction, closeModalAction, showModal, targetProjectAction, errorMessage, isEditing }) => {
 
     useEffect(() => {
         getAllProjectsAction(getUserId());
@@ -80,7 +80,7 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
         <PageContainer className="page">
             <PageTitleWrapper>
                 <PageTitle>Projects</PageTitle>
-                <Button onClick={() => openModalAction()} text={"New Project"} className={"purple"}/>
+                <Button onClick={() => openModalAction()} text={"New Project"} className={"purple"} />
             </PageTitleWrapper>
 
             {/* New Project Modal */}
@@ -177,9 +177,13 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
                     <CardContainer>
                         {projects.filter(project => (
                             project.status === "working_on_it"
-                        )).map(project => (<div key={project.id} onClick={() => targetProjectAction(project.id, project.title, project.description, project.status)}>
-                            <ProjectCard key={project.id} id={project.id} title={project.title} description={project.description} status={project.status} />
-                        </div>
+                        )).map(project => (
+                            <div
+                                key={project.id}
+                                onClick={() => isEditing ? null : targetProjectAction(project.id, project.title, project.description, project.status)}
+                            >
+                                <ProjectCard key={project.id} id={project.id} title={project.title} description={project.description} status={project.status} />
+                            </div>
                         ))}
                     </CardContainer>
                 </Bar>
@@ -188,9 +192,13 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
                     <CardContainer>
                         {projects.filter(project => (
                             project.status === "done"
-                        )).map(project => (<div key={project.id} onClick={() => targetProjectAction(project.id, project.title, project.description, project.status)}>
-                            <ProjectCard key={project.id} id={project.id} title={project.title} description={project.description} status={project.status} />
-                        </div>
+                        )).map(project => (
+                            <div
+                                key={project.id}
+                                onClick={() => isEditing ? null : targetProjectAction(project.id, project.title, project.description, project.status)}
+                            >
+                                <ProjectCard key={project.id} id={project.id} title={project.title} description={project.description} status={project.status} />
+                            </div>
                         ))}
                     </CardContainer>
                 </Bar>
@@ -207,14 +215,16 @@ Projects.propTypes = {
     closeModalAction: PropTypes.func,
     showModal: PropTypes.bool,
     targetProjectAction: PropTypes.func,
-    errorMessage: PropTypes.string
+    errorMessage: PropTypes.string,
+    isEditing: PropTypes.bool
 };
 
 const mapStateToProps = (state) => {
     return {
         projects: state.projectReducer.projects,
         showModal: state.modalReducer.showAddProjectModal,
-        errorMessage: state.projectReducer.error
+        errorMessage: state.projectReducer.error,
+        isEditing: state.modalReducer.showEditProjectModal
     };
 };
 
