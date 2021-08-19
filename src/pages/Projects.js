@@ -23,8 +23,6 @@ import {
     PageContainer,
     PageTitleWrapper,
     PageTitle,
-    SolidButton,
-    OutlineButton,
     KanbanContainer,
     Bar,
     StatusTitle,
@@ -154,19 +152,21 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
                         : null}
 
                     <ModalButtonContainer>
-                        <SolidButton
+                        <Button
                             type="submit"
-                            className="green restrict"
-                        >Add Project</SolidButton>
+                            className="green"
+                            text={"Add Project"}
+                        />
                     </ModalButtonContainer>
 
                 </StyledForm>
 
                 <ModalButtonContainer>
-                    <OutlineButton
-                        className="green restrict"
+                    <Button
+                        className="green secondary"
                         onClick={() => closeModalAction()}
-                    >Cancel</OutlineButton>
+                        text={"Cancel"}
+                    />
                 </ModalButtonContainer>
 
             </ModalContainer>

@@ -24,8 +24,6 @@ import {
     PageContainer,
     PageTitleWrapper,
     PageTitle,
-    SolidButton,
-    OutlineButton,
     KanbanContainer,
     Bar,
     StatusTitle,
@@ -186,18 +184,20 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects,
                     </SolidDropdown>
 
                     <ModalButtonContainer>
-                        <SolidButton
+                        <Button
                             type="submit"
-                            className="green restrict"
-                        >Add Ticket</SolidButton>
+                            className="green"
+                            text={"Add Ticket"}
+                        />
                     </ModalButtonContainer>
 
                 </StyledForm>
                 <ModalButtonContainer>
-                    <OutlineButton
-                        className="green restrict"
+                    <Button
+                        className="green secondary"
                         onClick={() => closeModalAction()}
-                    >Cancel</OutlineButton>
+                        text={"Cancel"}
+                    />
                 </ModalButtonContainer>
             </ModalContainer>
 

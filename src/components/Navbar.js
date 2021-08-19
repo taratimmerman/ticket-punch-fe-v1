@@ -13,6 +13,7 @@ import styled from 'styled-components';
 
 import { msgDevAction } from '../actions/helpActions';
 import { openHelpModalAction, closeHelpModalAction } from '../actions/modalActions';
+import Button from '../components/Button/Button';
 import ErrorMessage from '../components/ErrorMessage';
 import SuccessMessage from '../components/SuccessMessage';
 import {
@@ -23,8 +24,6 @@ import {
     ModalButtonContainer
 } from '../styling/ModalStyling';
 import {
-    SolidButton,
-    OutlineButton,
     SolidInput,
     SolidTextArea,
     StyledForm,
@@ -190,15 +189,22 @@ const Navbar = ({ openHelpModalAction, closeHelpModalAction, showHelpModal, msgD
                             : null}
 
                         <ModalButtonContainer>
-                            <SolidButton
+                            <Button
                                 type="submit"
-                                className="yellow restrict"
-                            >Email Tara</SolidButton>
+                                className="yellow"
+                                text={"Email Tara"}
+                            />
                         </ModalButtonContainer>
                     </StyledForm>
+
                     <ModalButtonContainer>
-                        <OutlineButton className="yellow restrict" onClick={() => closeHelpModalAction()}>Cancel</OutlineButton>
+                        <Button
+                        className="yellow secondary"
+                        onClick={() => closeHelpModalAction()}
+                        text={"Cancel"}
+                        />
                     </ModalButtonContainer>
+
                 </ModalContainer >
 
                 <StyledNavLink to="/profile">

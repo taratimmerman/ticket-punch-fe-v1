@@ -13,6 +13,7 @@ import { bindActionCreators } from 'redux';
 import { openDeleteTicketModalAction, closeDeleteTicketModalAction, openEditTicketModalAction, closeEditTicketModalAction } from '../actions/modalActions';
 import { getProjectByIdAction } from '../actions/projectActions';
 import { deleteTicketAction, editTicketAction } from '../actions/ticketActions';
+import Button from '../components/Button/Button';
 import { getUserId } from '../helpers/getUserInfo';
 import {
     CardContainer,
@@ -34,8 +35,6 @@ import {
     ModalItem
 } from '../styling/ModalStyling';
 import {
-    SolidButton,
-    OutlineButton,
     SolidInput,
     StyledForm,
     StyledLabel,
@@ -162,12 +161,26 @@ const TicketCard = props => {
 
                 <ErrorMessage error={props.errorMessage} />
 
-                <SubAction>This action cannot be undone</SubAction>
+                <SubActionContainer>
+                    <SubAction>This action cannot be undone</SubAction>
+                </SubActionContainer>
 
                 <ModalButtonContainer>
-                    <OutlineButton className="red restrict" onClick={() => props.closeDeleteTicketModalAction()}>Cancel</OutlineButton>
-                    <SolidButton className="red restrict" onClick={() => props.deleteTicketAction(props.ticketId)}>Delete Ticket</SolidButton>
+                    <Button
+                        className="red"
+                        onClick={() => props.deleteTicketAction(props.ticketId)}
+                        text={"Delete Ticket"}
+                    />
                 </ModalButtonContainer>
+
+                <ModalButtonContainer>
+                    <Button
+                        className="red secondary"
+                        onClick={() => props.closeDeleteTicketModalAction()}
+                        text={"Cancel"}
+                    />
+                </ModalButtonContainer>
+
             </ModalContainer>
 
             {/* EDIT TICKET MODAL */}
@@ -284,19 +297,21 @@ const TicketCard = props => {
                     </SubActionContainer>
 
                     <ModalButtonContainer>
-                        <SolidButton
+                        <Button
                             type="submit"
-                            className="purple restrict"
-                        >Edit Ticket</SolidButton>
+                            className="purple"
+                            text={"Edit Ticket"}
+                        />
                     </ModalButtonContainer>
 
                 </StyledForm>
 
                 <ModalButtonContainer>
-                    <OutlineButton
-                        className="purple restrict"
+                    <Button
+                        className="purple secondary"
                         onClick={() => props.closeEditTicketModalAction()}
-                    >Cancel</OutlineButton>
+                        text={"Cancel"}
+                    />
                 </ModalButtonContainer>
             </ModalContainer>
 

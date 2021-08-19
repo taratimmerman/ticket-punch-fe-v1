@@ -11,6 +11,7 @@ import styled from 'styled-components';
 
 import { openDeleteAccountModalAction, closeDeleteAccountModalAction, openEditAccountModalAction, closeEditAccountModalAction } from '../actions/modalActions';
 import { logoutUserAction, getUserByIdAction, deleteUserAction, updateUserAction } from '../actions/userActions';
+import Button from '../components/Button/Button';
 import ErrorMessage from '../components/ErrorMessage';
 import { getUserId, getUsername } from '../helpers/getUserInfo';
 import {
@@ -24,8 +25,6 @@ import {
 import {
     PageTitleWrapper,
     PageTitle,
-    OutlineButton,
-    SolidButton,
     SolidInput,
     StyledForm,
     StyledLabel,
@@ -34,7 +33,8 @@ import {
     InlineError
 } from '../styling/PageStyling';
 import {
-    SubAction
+    SubAction,
+    SubActionContainer
 } from '../styling/WelcomeStyling';
 
 const Profile = ({ logoutAction, getUserByIdAction, user, deleteUserAction, openDeleteAccountModalAction, closeDeleteAccountModalAction, showDeleteModal, updateUserAction, openEditAccountModalAction, closeEditAccountModalAction, showEditModal, errorMessage }) => {
@@ -80,7 +80,11 @@ const Profile = ({ logoutAction, getUserByIdAction, user, deleteUserAction, open
         <ProfileContainer className="page">
             <PageTitleWrapper>
                 <PageTitle>Profile</PageTitle>
-                <OutlineButton className="purple restrict" onClick={() => logoutAction()}>Log out</OutlineButton>
+                <Button
+                    className="purple secondary"
+                    onClick={() => logoutAction()}
+                    text={"Log Out"}
+                />
             </PageTitleWrapper>
             <ProfileInfoContainer>
                 <VscAccount fontSize={"9rem"} />
@@ -116,9 +120,21 @@ const Profile = ({ logoutAction, getUserByIdAction, user, deleteUserAction, open
                     <ModalDetails>This action cannot be undone</ModalDetails>
 
                     <ModalButtonContainer>
-                        <OutlineButton className="red restrict" onClick={() => closeDeleteAccountModalAction()}>Cancel</OutlineButton>
-                        <SolidButton className="red restrict" onClick={() => deleteUserAction(getUserId())}>Delete Account</SolidButton>
+                        <Button
+                        className="red"
+                        onClick={() => deleteUserAction(getUserId())}
+                        text={"Delete Account"}
+                        />
                     </ModalButtonContainer>
+
+                    <ModalButtonContainer>
+                        <Button
+                        className="red secondary"
+                        onClick={() => closeDeleteAccountModalAction()}
+                        text={"Cancel"}
+                        />
+                    </ModalButtonContainer>
+
                 </ModalContainer>
 
                 <ProfileActionWrapper onClick={() => openEditAccountModalAction()}>
@@ -181,20 +197,26 @@ const Profile = ({ logoutAction, getUserByIdAction, user, deleteUserAction, open
                             </InlineErrorWrapper>
                             : null}
 
+
+                        <SubActionContainer>
+                            <SubAction>These changes cannot be undone</SubAction>
+                        </SubActionContainer>
+
                         <ModalButtonContainer>
-                            <SolidButton
-                                className="purple restrict"
+                            <Button
+                                className="purple"
                                 type="submit"
-                            >
-                                Edit Account
-                            </SolidButton>
+                                text={"Edit Account"}
+                            />
                         </ModalButtonContainer>
                     </StyledForm>
 
-                    <SubAction>These changes cannot be undone</SubAction>
-
                     <ModalButtonContainer>
-                        <OutlineButton className="purple restrict" onClick={() => closeEditAccountModalAction()}>Cancel</OutlineButton>
+                        <Button
+                        className="purple secondary"
+                        onClick={() => closeEditAccountModalAction()}
+                        text={"Cancel"}
+                        />
                     </ModalButtonContainer>
                 </ModalContainer>
 

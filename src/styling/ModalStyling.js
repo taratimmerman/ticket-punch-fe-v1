@@ -126,13 +126,8 @@ export const ModalDetails = styled.span`
 
 export const ModalButtonContainer = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     width: 100%;
-
-    @media screen and (max-width: 400px) {
-        width: 60%;
-        flex-direction: column;
-        justify-content: center;
-    }
+    margin: 8px 0;
 `; 
