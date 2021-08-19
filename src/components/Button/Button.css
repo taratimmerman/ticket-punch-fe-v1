@@ -30,6 +30,18 @@
     background: #8236d3;
 }
 
+.edge.red {
+    background: #c81e49;
+}
+
+.edge.yellow {
+    background: #fc811d;
+}
+
+.edge.green {
+    background: #00943e;
+}
+
 .front {
     display: block;
     position: relative;
@@ -42,8 +54,20 @@
     font-weight: bold;
 }
 
-.front.purple{
+.front.purple {
     background: #A25DDC;
+}
+
+.front.red {
+    background: #E2445C;
+}
+
+.front.yellow {
+    background: #FDAB3D;
+}
+
+.front.green {
+    background: #00C875;
 }
   
 .pushable:hover .front {
