@@ -87,7 +87,7 @@ const TicketCard = props => {
         const description = ticketEdits.description.trim();
         const status = ticketEdits.status;
         const bug = ticketEdits.bug === "true" ? true : false;
-        const archived = ticketEdits.archived === "true" ? true : false;
+        const archived = ticketEdits.status === "archived" ? true : false;
 
         console.log(id, user_id, project_id, title, description, status, bug, archived);
         console.log('Ticket title type: ', typeof title);
@@ -299,19 +299,6 @@ const TicketCard = props => {
                         {...register('bug')}
                     >
                         <option disabled defaultValue>{props.ticketBug}</option>
-                        <option value="true">Yes</option>
-                        <option value="false">No</option>
-                    </SolidDropdown>
-
-                    <StyledLabel
-                        htmlFor="archived"
-                    >Would you like to archive this ticket?</StyledLabel>
-
-                    <SolidDropdown
-                        name="archived"
-                        {...register('archived')}
-                    >
-                        <option disabled defaultValue>{props.ticketArchived}</option>
                         <option value="true">Yes</option>
                         <option value="false">No</option>
                     </SolidDropdown>
