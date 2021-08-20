@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
@@ -6,7 +6,7 @@ import { MdError } from 'react-icons/md';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { closeWelcomeModalAction } from '../actions/modalActions';
+import { openWelcomeModalAction, closeWelcomeModalAction } from '../actions/modalActions';
 import { registerUserAction } from '../actions/userActions';
 import Google from '../assets/google-icon.svg';
 import LinkedIn from '../assets/logo_linkedin.png';
@@ -34,7 +34,11 @@ import {
     StyledLink
 } from '../styling/WelcomeStyling';
 
-const Welcome = ({ registerAction, closeModalAction, showModal, errorMessage }) => {
+const Welcome = ({ registerAction, openModalAction, closeModalAction, showModal, errorMessage }) => {
+
+    useEffect(() => {
+        openModalAction();
+    },[]);
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onBlur"
@@ -185,6 +189,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
         registerAction: registerUserAction,
+        openModalAction: openWelcomeModalAction,
         closeModalAction: closeWelcomeModalAction
     }, dispatch);
 };

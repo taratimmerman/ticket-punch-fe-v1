@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
@@ -36,6 +36,10 @@ import {
 
 const Login = ({ loginAction, errorMessage, openLoginAction, showModal }) => {
 
+    useEffect(() => {
+        openLoginAction();
+    }, []);
+
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: "onBlur"
     });
@@ -66,7 +70,7 @@ const Login = ({ loginAction, errorMessage, openLoginAction, showModal }) => {
         <WelcomeContainer
             className="purple"
             isOpen={showModal}
-            onRequestClose={openLoginAction}
+            onRequestClose={openLoginAction()}
             shouldCloseOnOverlayClick={false}
             closeTimeoutMS={200}
             contentLabel="modal">

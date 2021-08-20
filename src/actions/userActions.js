@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { history } from '../App';
-import { API_URL , axiosWithAuth } from '../helpers/axiosWithAuth';
+import { API_URL, axiosWithAuth } from '../helpers/axiosWithAuth';
 import { closeLoginModalAction, closeWelcomeModalAction, closeEditAccountModalAction, closeDeleteAccountModalAction } from './modalActions';
 
 // USER ACTION TYPES
@@ -34,11 +34,11 @@ export const DELETE_FAILURE = 'USERS_DELETE_FAILURE';
 
 // USER ACTION CREATORS
 
-export const loginUserAction = ( email , password ) => dispatch => {
+export const loginUserAction = (email, password) => dispatch => {
     dispatch({ type: LOGIN_REQUEST });
 
     axios
-        .post(`${API_URL}/auth/login`, { email , password })
+        .post(`${API_URL}/auth/login`, { email, password })
         .then(res => {
             dispatch({
                 type: LOGIN_SUCCESS,
@@ -59,20 +59,20 @@ export const loginUserAction = ( email , password ) => dispatch => {
 export const logoutUserAction = () => dispatch => {
     dispatch({ type: LOGOUT });
     localStorage.removeItem('user');
-    history.push('/');
+    history.push('/login');
 };
 
-export const registerUserAction = ( email , password ) => dispatch => {
+export const registerUserAction = (email, password) => dispatch => {
     dispatch({ type: REGISTER_REQUEST });
 
     axios
-        .post(`${API_URL}/auth/register`, {email, password})
+        .post(`${API_URL}/auth/register`, { email, password })
         .then(res => {
             dispatch({
                 type: REGISTER_SUCCESS,
                 payload: res.data
             });
-            dispatch(loginUserAction( email, password ));
+            dispatch(loginUserAction(email, password));
             dispatch(closeWelcomeModalAction());
         })
         .catch(err => {
@@ -125,7 +125,7 @@ export const updateUserAction = (userId, email, password) => dispatch => {
     dispatch({ type: UPDATE_REQUEST });
 
     axiosWithAuth()
-        .put(`${API_URL}/users/${userId}`, {email, password})
+        .put(`${API_URL}/users/${userId}`, { email, password })
         .then(res => {
             dispatch({
                 type: UPDATE_SUCCESS,
