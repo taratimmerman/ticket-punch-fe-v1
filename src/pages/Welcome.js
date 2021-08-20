@@ -31,9 +31,6 @@ import {
     SubActionContainer,
     SubAction,
     OauthProviders,
-    OauthProvider,
-    ProviderName,
-    OauthLogo,
     StyledLink
 } from '../styling/WelcomeStyling';
 
@@ -135,20 +132,29 @@ const Welcome = ({ registerAction, closeModalAction, showModal, errorMessage }) 
             <SubActionContainer>
                 <SubAction>Or sign up with</SubAction>
                 <OauthProviders>
-                    <OauthProvider>
-                        <OauthLogo alt="Google" src={Google} />
-                        <ProviderName>Google</ProviderName>
-                    </OauthProvider>
+                    <Button
+                        className="darkGray oauth"
+                        text={"Google"}
+                        alt={"Google"}
+                        oAuth={true}
+                        logo={Google}
+                    />
 
-                    <OauthProvider>
-                        <OauthLogo alt="Slack" src={Slack} />
-                        <ProviderName>Slack</ProviderName>
-                    </OauthProvider>
+                    <Button
+                        className="darkGray oauth"
+                        text={"Slack"}
+                        alt={"Slack"}
+                        oAuth={true}
+                        logo={Slack}
+                    />
 
-                    <OauthProvider>
-                        <OauthLogo alt="LinkedIn" src={LinkedIn} />
-                        <ProviderName>LinkedIn</ProviderName>
-                    </OauthProvider>
+                    <Button
+                        className="darkGray oauth"
+                        text={"LinkedIn"}
+                        alt={"LinkedIn"}
+                        oAuth={true}
+                        logo={LinkedIn}
+                    />
                 </OauthProviders>
             </SubActionContainer>
 

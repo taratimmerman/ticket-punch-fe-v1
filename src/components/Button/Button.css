@@ -6,6 +6,15 @@
     cursor: pointer;
 }
 
+.pushable.oauth:last-child {
+    margin-right: 8px;
+}
+
+
+.pushable.oauth{
+    margin-left: 8px;
+}
+
 .shadow {
     position: absolute;
     top: 0;
@@ -47,6 +56,10 @@
     background: #c6cfd2;
 }
 
+.edge.darkGray {
+    background: #141414;
+}
+
 .front {
     display: block;
     position: relative;
@@ -70,6 +83,13 @@
     width: 340px;
 }
 
+.front.oauth {
+    font-weight: normal;
+    font-size: 0.90rem;
+    height: 36px;
+    width: 110px;
+}
+
 /* PRIMARY FRONT COLORS */
 .front.purple {
     background: #A25DDC;
@@ -91,6 +111,11 @@
 .front.gray {
     background: #e0e4e6;
     color: #9AA0A6;
+}
+
+.front.darkGray {
+    background: #303134;
+    color: #E8EAED;
 }
 
 /* SECONDARY FRONT COLORS */
