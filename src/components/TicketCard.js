@@ -14,6 +14,7 @@ import { openDeleteTicketModalAction, closeDeleteTicketModalAction, openEditTick
 import { getProjectByIdAction } from '../actions/projectActions';
 import { deleteTicketAction, editTicketAction } from '../actions/ticketActions';
 import { getUserId } from '../helpers/getUserInfo';
+import { humanizeString } from '../helpers/humanizeString';
 import {
     CardContainer,
     TitleWrapper,
@@ -144,7 +145,7 @@ const TicketCard = props => {
                         <CardDescription>{props.description}</CardDescription>
 
                         <CardLabel>Ticket Status</CardLabel>
-                        <CardStatus>{props.status}</CardStatus>
+                        <CardStatus>{humanizeString(props.status)}</CardStatus>
 
                     </CardSectionLeft>
 

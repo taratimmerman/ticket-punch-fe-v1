@@ -12,6 +12,7 @@ import { bindActionCreators } from 'redux';
 import { openDeleteProjectModalAction, closeDeleteProjectModalAction, openEditProjectModalAction, closeEditProjectModalAction } from '../actions/modalActions';
 import { deleteProjectAction, editProjectAction } from '../actions/projectActions';
 import { getUserId } from '../helpers/getUserInfo';
+import { humanizeString } from '../helpers/humanizeString';
 import {
     CardContainer,
     TitleWrapper,
@@ -130,7 +131,7 @@ const ProjectCard = (props) => {
                         <CardDescription>{props.description}</CardDescription>
 
                         <CardLabel>Project Status</CardLabel>
-                        <CardStatus>{props.status}</CardStatus>
+                        <CardStatus>{humanizeString(props.status)}</CardStatus>
 
                     </CardSectionLeft>
 
