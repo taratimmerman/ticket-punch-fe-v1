@@ -79,11 +79,12 @@ const ProjectCard = (props) => {
         const title = projectEdits.title.trim();
         const description = projectEdits.description.trim();
         const status = projectEdits.status;
+        const archived = projectEdits.status === "archived" ? true : false;
 
-        console.log('Project edits: ', id, user_id, title, description, status);
+        console.log('Project edits: ', id, user_id, title, description, status, archived);
         console.log('Project title type: ', typeof title);
         console.log('Projects object: ', projectEdits);
-        props.editProjectAction(id, user_id, title, description, status);
+        props.editProjectAction(id, user_id, title, description, status, archived);
         reset();
     };
 

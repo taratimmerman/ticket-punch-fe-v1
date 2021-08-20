@@ -38,7 +38,7 @@ import {
     InlineError
 } from '../styling/PageStyling';
 
-const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects, createTicketAction, openModalAction, closeModalAction, showModal, targetTicketAcion, errorMessage, isEditing }) => {
+const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects, createTicketAction, openModalAction, closeModalAction, showModal, targetTicketAcion, errorMessage, isEditing, isDeleting }) => {
 
     useEffect(() => {
         getAllTicketsAction(getUserId());
@@ -210,7 +210,7 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects,
                         )).map(ticket => (
                             <div
                                 key={ticket.id}
-                                onClick={() => isEditing ? null : targetTicketAcion(ticket.id, ticket.title, ticket.description, ticket.status, ticket.bug, ticket.archived, ticket.project_id)}
+                                onClick={() => isEditing || isDeleting ? null : targetTicketAcion(ticket.id, ticket.title, ticket.description, ticket.status, ticket.bug, ticket.archived, ticket.project_id)}
                             >
                                 <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} bug={ticket.bug} projectId={ticket.project_id} />
                             </div>
@@ -225,7 +225,7 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects,
                         )).map(ticket => (
                             <div
                                 key={ticket.id}
-                                onClick={() => isEditing ? null : targetTicketAcion(ticket.id, ticket.title, ticket.description, ticket.status, ticket.bug, ticket.archived, ticket.project_id)}
+                                onClick={() => isEditing || isDeleting ? null : targetTicketAcion(ticket.id, ticket.title, ticket.description, ticket.status, ticket.bug, ticket.archived, ticket.project_id)}
                             >
                                 <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} bug={ticket.bug} projectId={ticket.project_id} />
                             </div>
@@ -240,7 +240,7 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects,
                         )).map(ticket => (
                             <div
                                 key={ticket.id}
-                                onClick={() => isEditing ? null : targetTicketAcion(ticket.id, ticket.title, ticket.description, ticket.status, ticket.bug, ticket.archived, ticket.project_id)}
+                                onClick={() => isEditing || isDeleting ? null : targetTicketAcion(ticket.id, ticket.title, ticket.description, ticket.status, ticket.bug, ticket.archived, ticket.project_id)}
                             >
                                 <TicketCard key={ticket.id} id={ticket.id} title={ticket.title} description={ticket.description} status={ticket.status} bug={ticket.bug} projectId={ticket.project_id} />
                             </div>
@@ -263,7 +263,8 @@ Tickets.propTypes = {
     showModal: PropTypes.bool,
     targetTicketAcion: PropTypes.func,
     errorMessage: PropTypes.string,
-    isEditing: PropTypes.bool
+    isEditing: PropTypes.bool,
+    isDeleting: PropTypes.bool
 };
 
 const mapStateToProps = (state) => {
@@ -272,7 +273,8 @@ const mapStateToProps = (state) => {
         projects: state.projectReducer.projects,
         showModal: state.modalReducer.showAddTicketModal,
         errorMessage: state.ticketReducer.error,
-        isEditing: state.modalReducer.showEditTicketModal
+        isEditing: state.modalReducer.showEditTicketModal,
+        isDeleting: state.modalReducer.showDeleteTicketModal
     };
 };
 

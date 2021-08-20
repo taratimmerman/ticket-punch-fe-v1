@@ -37,7 +37,7 @@ import {
     InlineError
 } from '../styling/PageStyling';
 
-const Projects = ({ getAllProjectsAction, projects, createProjectAction, openModalAction, closeModalAction, showModal, targetProjectAction, errorMessage, isEditing }) => {
+const Projects = ({ getAllProjectsAction, projects, createProjectAction, openModalAction, closeModalAction, showModal, targetProjectAction, errorMessage, isEditing, isDeleting }) => {
 
     useEffect(() => {
         getAllProjectsAction(getUserId());
@@ -180,7 +180,7 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
                         )).map(project => (
                             <div
                                 key={project.id}
-                                onClick={() => isEditing ? null : targetProjectAction(project.id, project.title, project.description, project.status)}
+                                onClick={() => isEditing || isDeleting ? null : targetProjectAction(project.id, project.title, project.description, project.status)}
                             >
                                 <ProjectCard key={project.id} id={project.id} title={project.title} description={project.description} status={project.status} />
                             </div>
@@ -195,7 +195,7 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
                         )).map(project => (
                             <div
                                 key={project.id}
-                                onClick={() => isEditing ? null : targetProjectAction(project.id, project.title, project.description, project.status)}
+                                onClick={() => isEditing || isDeleting ? null : targetProjectAction(project.id, project.title, project.description, project.status)}
                             >
                                 <ProjectCard key={project.id} id={project.id} title={project.title} description={project.description} status={project.status} />
                             </div>
@@ -216,7 +216,8 @@ Projects.propTypes = {
     showModal: PropTypes.bool,
     targetProjectAction: PropTypes.func,
     errorMessage: PropTypes.string,
-    isEditing: PropTypes.bool
+    isEditing: PropTypes.bool,
+    isDeleting: PropTypes.bool
 };
 
 const mapStateToProps = (state) => {
@@ -224,7 +225,8 @@ const mapStateToProps = (state) => {
         projects: state.projectReducer.projects,
         showModal: state.modalReducer.showAddProjectModal,
         errorMessage: state.projectReducer.error,
-        isEditing: state.modalReducer.showEditProjectModal
+        isEditing: state.modalReducer.showEditProjectModal,
+        isDeleting: state.modalReducer.showDeleteProjectModal
     };
 };
 
