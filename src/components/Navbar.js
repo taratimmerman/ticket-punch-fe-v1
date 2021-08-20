@@ -274,7 +274,7 @@ const NavChunk = styled.div`
     font-size: 1rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     justify-content: space-evenly;
     width: 100%;
     height: 250px;
@@ -295,9 +295,18 @@ const StyledNavLink = styled(NavLink)`
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 12px;
 
     &.active{
         color: #A25DDC;
+        background-color: #202124;
+    }
+
+    @media screen and (min-width: 720px) {
+        :hover {
+            background-color: #202124;
+            transition: 0.5s ease;
+        }
     }
 
     @media screen and (max-width: 320px) {
@@ -308,7 +317,7 @@ const StyledNavLink = styled(NavLink)`
 const LinkTitle = styled.h5`
     font-size: 0.75rem;
     font-weight: 400;
-    padding: 3px;
+    padding-top: 3px;
 `;
 
 const HelpIcon = styled.div`
@@ -318,6 +327,14 @@ const HelpIcon = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 12px;
+
+    @media screen and (min-width: 720px) {
+        :hover {
+            background-color: #202124;
+            transition: 0.5s ease;
+        }
+    }
 
     @media screen and (max-width: 500px) {
         font-size: 1.5rem;
