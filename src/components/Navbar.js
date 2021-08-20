@@ -296,6 +296,7 @@ const StyledNavLink = styled(NavLink)`
     flex-direction: column;
     align-items: center;
     padding: 12px;
+    transition: 0.3s ease;
 
     &.active{
         color: #A25DDC;
@@ -305,7 +306,6 @@ const StyledNavLink = styled(NavLink)`
     @media screen and (min-width: 720px) {
         :hover {
             background-color: #202124;
-            transition: 0.5s ease;
         }
     }
 
@@ -328,11 +328,11 @@ const HelpIcon = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 12px;
+    transition: 0.3s ease;
 
     @media screen and (min-width: 720px) {
         :hover {
             background-color: #202124;
-            transition: 0.5s ease;
         }
     }
 
