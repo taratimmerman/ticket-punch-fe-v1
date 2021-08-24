@@ -9,8 +9,6 @@ import { bindActionCreators } from 'redux';
 import { openLoginModalAction } from '../actions/modalActions';
 import { loginUserAction } from '../actions/userActions';
 import Google from '../assets/google-icon.svg';
-import LinkedIn from '../assets/logo_linkedin.png';
-import Slack from '../assets/logo_slack.png';
 import Button from '../components/button/Button';
 import ErrorMessage from '../components/ErrorMessage';
 import {
@@ -129,30 +127,14 @@ const Login = ({ loginAction, errorMessage, openLoginAction, showModal }) => {
             </StyledForm>
 
             <SubActionContainer>
-                <SubAction>Or sign in with</SubAction>
+                <SubAction>Or</SubAction>
                 <OauthProviders>
                     <Button
-                        className="darkGray oauth"
-                        text={"Google"}
+                        className="white extended"
+                        text={"Sign in with Google"}
                         alt={"Google"}
                         oAuth={true}
                         logo={Google}
-                    />
-
-                    <Button
-                        className="darkGray oauth"
-                        text={"Slack"}
-                        alt={"Slack"}
-                        oAuth={true}
-                        logo={Slack}
-                    />
-
-                    <Button
-                        className="darkGray oauth"
-                        text={"LinkedIn"}
-                        alt={"LinkedIn"}
-                        oAuth={true}
-                        logo={LinkedIn}
                     />
                 </OauthProviders>
             </SubActionContainer>

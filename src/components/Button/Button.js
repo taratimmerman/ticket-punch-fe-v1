@@ -12,7 +12,7 @@ const Button = props => {
             <span className={`front ${props.className}`}>
                 <ButtonInfoWrapper>
                     {props.oAuth ?
-                        <OauthLogo alt={props.alt} src={props.logo} /> : null
+                        <OauthLogo className={`${props.className}`} alt={props.alt} src={props.logo} /> : null
                     }{props.text}
                 </ButtonInfoWrapper>
             </span>
@@ -22,7 +22,7 @@ const Button = props => {
 };
 
 Button.propTypes = {
-    text: PropTypes.string,
+    text: PropTypes.any,
     onClick: PropTypes.func,
     className: PropTypes.string,
     oAuth: PropTypes.bool,

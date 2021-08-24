@@ -161,7 +161,6 @@ export const OauthProvider = styled.button`
     padding: 4px 20px;
     border-radius: 4px;
     border: none;
-    transition: background .2s ease,transform 50ms;
     display: flex;
     align-items: center;
     justify-content: center;
