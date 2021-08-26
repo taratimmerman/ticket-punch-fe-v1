@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import { MdError } from 'react-icons/md';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -11,16 +10,14 @@ import { loginUserAction } from '../actions/userActions';
 import Google from '../assets/google-icon.svg';
 import Button from '../components/button/Button';
 import ErrorMessage from '../components/errors/ErrorMessage';
+import InlineErrorMessage from '../components/errors/InlineErrorMessage';
 import {
     ModalButtonContainer
 } from '../styling/ModalStyling';
 import {
     SolidInput,
     StyledForm,
-    StyledLabel,
-    InlineErrorWrapper,
-    InlineErrorIcon,
-    InlineError
+    StyledLabel
 } from '../styling/PageStyling';
 import {
     WelcomeContainer,
@@ -89,12 +86,7 @@ const Login = ({ loginAction, errorMessage, openLoginAction, showModal }) => {
                     placeholder="name@company.com"
                 />
                 {errors.email ?
-                    <InlineErrorWrapper>
-                        <InlineErrorIcon>
-                            <MdError />
-                        </InlineErrorIcon>
-                        <InlineError>{errors.email.message}</InlineError>
-                    </InlineErrorWrapper>
+                    <InlineErrorMessage inlineErrorMessage={errors.email.message} />
                     : null}
 
                 <StyledLabel
@@ -109,12 +101,7 @@ const Login = ({ loginAction, errorMessage, openLoginAction, showModal }) => {
                     placeholder="Choose a password"
                 />
                 {errors.password ?
-                    <InlineErrorWrapper>
-                        <InlineErrorIcon>
-                            <MdError />
-                        </InlineErrorIcon>
-                        <InlineError>{errors.password.message}</InlineError>
-                    </InlineErrorWrapper>
+                    <InlineErrorMessage inlineErrorMessage={errors.password.message} />
                     : null}
 
                 <ModalButtonContainer>

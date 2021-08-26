@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { BsPencil, BsTrash } from 'react-icons/bs';
-import { MdError } from 'react-icons/md';
 import { VscAccount } from 'react-icons/vsc';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -13,6 +12,7 @@ import { openDeleteAccountModalAction, closeDeleteAccountModalAction, openEditAc
 import { logoutUserAction, getUserByIdAction, deleteUserAction, updateUserAction } from '../actions/userActions';
 import Button from '../components/button/Button';
 import ErrorMessage from '../components/errors/ErrorMessage';
+import InlineErrorMessage from '../components/errors/InlineErrorMessage';
 import { getUserId, getUsername } from '../helpers/getUserInfo';
 import {
     ModalContainer,
@@ -27,10 +27,7 @@ import {
     PageTitle,
     SolidInput,
     StyledForm,
-    StyledLabel,
-    InlineErrorWrapper,
-    InlineErrorIcon,
-    InlineError
+    StyledLabel
 } from '../styling/PageStyling';
 import {
     SubAction,
@@ -169,12 +166,7 @@ const Profile = ({ logoutAction, getUserByIdAction, user, deleteUserAction, open
                             placeholder={user.email}
                         />
                         {errors.email ?
-                            <InlineErrorWrapper>
-                                <InlineErrorIcon>
-                                    <MdError />
-                                </InlineErrorIcon>
-                                <InlineError>{errors.email.message}</InlineError>
-                            </InlineErrorWrapper>
+                            <InlineErrorMessage inlineErrorMessage={errors.email.message} />
                             : null}
 
                         <StyledLabel
@@ -189,12 +181,7 @@ const Profile = ({ logoutAction, getUserByIdAction, user, deleteUserAction, open
                             placeholder="Enter current or new password"
                         />
                         {errors.password ?
-                            <InlineErrorWrapper>
-                                <InlineErrorIcon>
-                                    <MdError />
-                                </InlineErrorIcon>
-                                <InlineError>{errors.password.message}</InlineError>
-                            </InlineErrorWrapper>
+                            <InlineErrorMessage inlineErrorMessage={errors.email.message}/>
                             : null}
 
 

@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { GiBoxingGlove } from 'react-icons/gi';
-import { MdError } from 'react-icons/md';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -11,6 +10,7 @@ import { openAddProjectModalAction, closeAddProjectModalAction } from '../action
 import { createProjectAction, getAllProjectsByUserAction, targetProjectAction } from '../actions/projectActions';
 import Button from '../components/button/Button';
 import ErrorMessage from '../components/errors/ErrorMessage';
+import InlineErrorMessage from '../components/errors/InlineErrorMessage';
 import ProjectCard from '../components/ProjectCard';
 import { getUserId } from '../helpers/getUserInfo';
 import {
@@ -31,10 +31,7 @@ import {
     StyledForm,
     StyledLabel,
     SolidDropdown,
-    SolidTextArea,
-    InlineErrorWrapper,
-    InlineErrorIcon,
-    InlineError
+    SolidTextArea
 } from '../styling/PageStyling';
 
 const Projects = ({ getAllProjectsAction, projects, createProjectAction, openModalAction, closeModalAction, showModal, targetProjectAction, errorMessage, isEditing, isDeleting }) => {
@@ -111,12 +108,7 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
                         placeholder="Enter the project title"
                     />
                     {errors.title ?
-                        <InlineErrorWrapper>
-                            <InlineErrorIcon>
-                                <MdError />
-                            </InlineErrorIcon>
-                            <InlineError>{errors.title.message}</InlineError>
-                        </InlineErrorWrapper>
+                        <InlineErrorMessage inlineErrorMessage={errors.title.message} />
                         : null}
 
                     <StyledLabel
@@ -143,12 +135,7 @@ const Projects = ({ getAllProjectsAction, projects, createProjectAction, openMod
                         placeholder="Enter the project description"
                     />
                     {errors.description ?
-                        <InlineErrorWrapper>
-                            <InlineErrorIcon>
-                                <MdError />
-                            </InlineErrorIcon>
-                            <InlineError>{errors.description.message}</InlineError>
-                        </InlineErrorWrapper>
+                        <InlineErrorMessage inlineErrorMessage={errors.description.message} />
                         : null}
 
                     <ModalButtonContainer>

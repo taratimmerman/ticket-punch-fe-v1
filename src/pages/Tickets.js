@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { IoTicketOutline } from 'react-icons/io5';
-import { MdError } from 'react-icons/md';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -12,6 +11,7 @@ import { getAllProjectsByUserAction } from '../actions/projectActions';
 import { createTicketAction, getAllTicketsByUserAction, targetTicketAcion } from '../actions/ticketActions';
 import Button from '../components/button/Button';
 import ErrorMessage from '../components/errors/ErrorMessage';
+import InlineErrorMessage from '../components/errors/InlineErrorMessage';
 import TicketCard from '../components/TicketCard';
 import { getUserId } from '../helpers/getUserInfo';
 import {
@@ -32,10 +32,7 @@ import {
     StyledForm,
     StyledLabel,
     SolidDropdown,
-    SolidTextArea,
-    InlineErrorWrapper,
-    InlineErrorIcon,
-    InlineError
+    SolidTextArea
 } from '../styling/PageStyling';
 
 const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects, createTicketAction, openModalAction, closeModalAction, showModal, targetTicketAcion, errorMessage, isEditing, isDeleting }) => {
@@ -115,12 +112,7 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects,
                         placeholder="Enter the ticket title"
                     />
                     {errors.title ?
-                        <InlineErrorWrapper>
-                            <InlineErrorIcon>
-                                <MdError />
-                            </InlineErrorIcon>
-                            <InlineError>{errors.title.message}</InlineError>
-                        </InlineErrorWrapper>
+                        <InlineErrorMessage inlineErrorMessage={errors.title.message} />
                         : null}
 
                     <StyledLabel
@@ -134,12 +126,7 @@ const Tickets = ({ getAllTicketsAction, tickets, getAllProjectsAction, projects,
                         placeholder="Enter the ticket description"
                     />
                     {errors.description ?
-                        <InlineErrorWrapper>
-                            <InlineErrorIcon>
-                                <MdError />
-                            </InlineErrorIcon>
-                            <InlineError>{errors.description.message}</InlineError>
-                        </InlineErrorWrapper>
+                        <InlineErrorMessage inlineErrorMessage={errors.description.message} />
                         : null}
 
                     <StyledLabel

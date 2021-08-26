@@ -347,25 +347,3 @@ export const FormError = styled.p`
     text-align: right;
     padding: 0 16px;
 `;
-
-export const InlineErrorWrapper = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #E2445C;
-    position: relative;
-    top: -10px;
-`;
-
-export const InlineErrorIcon = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 4px 0 0;
-`;
-
-export const InlineError = styled.small`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-`;

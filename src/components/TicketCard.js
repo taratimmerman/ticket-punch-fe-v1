@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import { BsPencil, BsTrash } from 'react-icons/bs';
 import { ImBug } from "react-icons/im";
 import { IoTicketOutline } from 'react-icons/io5';
-import { MdError } from 'react-icons/md';
 import { VscHistory } from 'react-icons/vsc';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -41,10 +40,7 @@ import {
     StyledForm,
     StyledLabel,
     SolidDropdown,
-    SolidTextArea,
-    InlineErrorWrapper,
-    InlineErrorIcon,
-    InlineError
+    SolidTextArea
 } from '../styling/PageStyling';
 import {
     SubActionContainer,
@@ -52,6 +48,7 @@ import {
 } from '../styling/WelcomeStyling';
 import Button from './button/Button';
 import ErrorMessage from './errors/ErrorMessage';
+import InlineErrorMessage from './errors/InlineErrorMessage';
 
 const TicketCard = props => {
 
@@ -235,12 +232,7 @@ const TicketCard = props => {
                         placeholder={`${props.ticketTitle}`}
                     />
                     {errors.title ?
-                        <InlineErrorWrapper>
-                            <InlineErrorIcon>
-                                <MdError />
-                            </InlineErrorIcon>
-                            <InlineError>{errors.title.message}</InlineError>
-                        </InlineErrorWrapper>
+                        <InlineErrorMessage inlineErrorMessage={errors.title.message} />
                         : null}
 
                     <StyledLabel
@@ -254,12 +246,7 @@ const TicketCard = props => {
                         placeholder={`${props.ticketDescription}`}
                     />
                     {errors.description ?
-                        <InlineErrorWrapper>
-                            <InlineErrorIcon>
-                                <MdError />
-                            </InlineErrorIcon>
-                            <InlineError>{errors.description.message}</InlineError>
-                        </InlineErrorWrapper>
+                        <InlineErrorMessage inlineErrorMessage={errors.description.message} />
                         : null}
 
                     <StyledLabel
