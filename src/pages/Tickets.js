@@ -11,7 +11,7 @@ import { openAddTicketModalAction, closeAddTicketModalAction } from '../actions/
 import { getAllProjectsByUserAction } from '../actions/projectActions';
 import { createTicketAction, getAllTicketsByUserAction, targetTicketAcion } from '../actions/ticketActions';
 import Button from '../components/button/Button';
-import ErrorMessage from '../components/ErrorMessage';
+import ErrorMessage from '../components/errors/ErrorMessage';
 import TicketCard from '../components/TicketCard';
 import { getUserId } from '../helpers/getUserInfo';
 import {

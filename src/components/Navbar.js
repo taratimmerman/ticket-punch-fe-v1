@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { GiBoxingGlove } from 'react-icons/gi';
 import { IoTicketOutline, IoHelpCircleOutline } from 'react-icons/io5';
-import { MdError } from 'react-icons/md';
 import { VscHistory, VscAccount } from 'react-icons/vsc';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -13,7 +12,6 @@ import styled from 'styled-components';
 
 import { msgDevAction } from '../actions/helpActions';
 import { openHelpModalAction, closeHelpModalAction } from '../actions/modalActions';
-import ErrorMessage from '../components/ErrorMessage';
 import SuccessMessage from '../components/SuccessMessage';
 import {
     ModalContainer,
@@ -26,12 +24,11 @@ import {
     SolidInput,
     SolidTextArea,
     StyledForm,
-    StyledLabel,
-    InlineErrorWrapper,
-    InlineErrorIcon,
-    InlineError
+    StyledLabel
 } from '../styling/PageStyling';
 import Button from './button/Button';
+import ErrorMessage from './errors/ErrorMessage';
+import InlineErrorMessage from './errors/InlineErrorMessage';
 
 const Navbar = ({ openHelpModalAction, closeHelpModalAction, showHelpModal, msgDevAction }) => {
 
@@ -139,12 +136,7 @@ const Navbar = ({ openHelpModalAction, closeHelpModalAction, showHelpModal, msgD
                             placeholder="Enter your name"
                         />
                         {errors.name ?
-                            <InlineErrorWrapper>
-                                <InlineErrorIcon>
-                                    <MdError />
-                                </InlineErrorIcon>
-                                <InlineError>{errors.name.message}</InlineError>
-                            </InlineErrorWrapper>
+                            <InlineErrorMessage inlineErrorMessage={errors.name.message} />
                             : null}
 
                         <StyledLabel
@@ -160,12 +152,7 @@ const Navbar = ({ openHelpModalAction, closeHelpModalAction, showHelpModal, msgD
                             placeholder="Enter your email"
                         />
                         {errors.email ?
-                            <InlineErrorWrapper>
-                                <InlineErrorIcon>
-                                    <MdError />
-                                </InlineErrorIcon>
-                                <InlineError>{errors.email.message}</InlineError>
-                            </InlineErrorWrapper>
+                            <InlineErrorMessage inlineErrorMessage={errors.email.message} />
                             : null}
 
                         <StyledLabel
@@ -180,12 +167,7 @@ const Navbar = ({ openHelpModalAction, closeHelpModalAction, showHelpModal, msgD
                             placeholder="Enter your question/message"
                         />
                         {errors.question ?
-                            <InlineErrorWrapper>
-                                <InlineErrorIcon>
-                                    <MdError />
-                                </InlineErrorIcon>
-                                <InlineError>{errors.question.message}</InlineError>
-                            </InlineErrorWrapper>
+                            <InlineErrorMessage inlineErrorMessage={errors.question.message}/>
                             : null}
 
                         <ModalButtonContainer>

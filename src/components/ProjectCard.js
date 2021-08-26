@@ -49,7 +49,7 @@ import {
     SubAction
 } from '../styling/WelcomeStyling';
 import Button from './button/Button';
-import ErrorMessage from './ErrorMessage';
+import ErrorMessage from './errors/ErrorMessage';
 
 const ProjectCard = (props) => {
 

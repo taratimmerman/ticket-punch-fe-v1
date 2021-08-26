@@ -10,7 +10,7 @@ import { openWelcomeModalAction, closeWelcomeModalAction } from '../actions/moda
 import { registerUserAction } from '../actions/userActions';
 import Google from '../assets/google-icon.svg';
 import Button from '../components/button/Button';
-import ErrorMessage from '../components/ErrorMessage';
+import ErrorMessage from '../components/errors/ErrorMessage';
 import {
     ModalButtonContainer
 } from '../styling/ModalStyling';

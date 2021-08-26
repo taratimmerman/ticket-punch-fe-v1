@@ -12,7 +12,7 @@ import styled from 'styled-components';
 import { openDeleteAccountModalAction, closeDeleteAccountModalAction, openEditAccountModalAction, closeEditAccountModalAction } from '../actions/modalActions';
 import { logoutUserAction, getUserByIdAction, deleteUserAction, updateUserAction } from '../actions/userActions';
 import Button from '../components/button/Button';
-import ErrorMessage from '../components/ErrorMessage';
+import ErrorMessage from '../components/errors/ErrorMessage';
 import { getUserId, getUsername } from '../helpers/getUserInfo';
 import {
     ModalContainer,
