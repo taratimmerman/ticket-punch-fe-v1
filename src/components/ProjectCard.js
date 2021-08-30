@@ -30,7 +30,6 @@ import {
     ModalCircle,
     ModalButtonContainer,
     ModalAction,
-    ModalDetails,
     ModalItem
 } from '../styling/ModalStyling';
 import {
@@ -47,6 +46,7 @@ import {
 import Button from './button/Button';
 import ErrorMessage from './errors/ErrorMessage';
 import InlineErrorMessage from './errors/InlineErrorMessage';
+import DeleteModal from './modals/DeleteModal';
 
 const ProjectCard = (props) => {
 
@@ -154,43 +154,7 @@ const ProjectCard = (props) => {
                 </CardSectionWrapper>
             </ContentWrapper>
 
-            {/* DELETE PROJECT MODAL */}
-            <ModalContainer
-                className="red"
-                isOpen={props.showDeleteModal} onRequestClose={() => props.closeDeleteProjectModalAction()}
-                closeTimeoutMS={200}
-                contentLabel="modal"
-            >
-                <ModalCircle className="red">
-                    <BsTrash />
-                </ModalCircle>
-                <ModalAction>Delete<ModalItem className="red">{`${props.projectTitle}`}</ModalItem>Project?</ModalAction>
-
-                <ErrorMessage error={props.errorMessage} />
-
-                <ModalDetails>Related tickets will also be deleted</ModalDetails>
-
-                <SubActionContainer>
-                    <SubAction>This action cannot be undone</SubAction>
-                </SubActionContainer>
-
-                <ModalButtonContainer>
-                    <Button
-                        className="red"
-                        onClick={() => props.deleteProjectAction(props.projectId)}
-                        text={"Delete Project"}
-                    />
-                </ModalButtonContainer>
-
-                <ModalButtonContainer>
-                    <Button
-                        className="red secondary"
-                        onClick={() => props.closeDeleteProjectModalAction()}
-                        text={"Cancel"}
-                    />
-                </ModalButtonContainer>
-
-            </ModalContainer>
+            {props.showDeleteModal ? <DeleteModal pageType={"project"}/> : null}
 
             {/* EDIT PROJECT MODAL */}
             <ModalContainer
