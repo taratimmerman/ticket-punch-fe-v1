@@ -13,13 +13,13 @@ import { logoutUserAction, getUserByIdAction, deleteUserAction, updateUserAction
 import Button from '../components/button/Button';
 import ErrorMessage from '../components/errors/ErrorMessage';
 import InlineErrorMessage from '../components/errors/InlineErrorMessage';
+import DeleteModal from '../components/modals/DeleteModal';
 import { getUserId, getUsername } from '../helpers/getUserInfo';
 import {
     ModalContainer,
     ModalCircle,
     ModalAction,
     ModalItem,
-    ModalDetails,
     ModalButtonContainer
 } from '../styling/ModalStyling';
 import {
@@ -34,7 +34,7 @@ import {
     SubActionContainer
 } from '../styling/WelcomeStyling';
 
-const Profile = ({ logoutAction, getUserByIdAction, user, deleteUserAction, openDeleteAccountModalAction, closeDeleteAccountModalAction, showDeleteModal, updateUserAction, openEditAccountModalAction, closeEditAccountModalAction, showEditModal, errorMessage }) => {
+const Profile = ({ logoutAction, getUserByIdAction, user, openDeleteAccountModalAction, showDeleteModal, updateUserAction, openEditAccountModalAction, closeEditAccountModalAction, showEditModal, errorMessage }) => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm({
         mode: "onBlur"
@@ -89,50 +89,12 @@ const Profile = ({ logoutAction, getUserByIdAction, user, deleteUserAction, open
                 <ModalAction>{user.email}</ModalAction>
             </ProfileInfoContainer>
             <ProfileActionContainer>
+                
                 <ProfileActionWrapper onClick={() => openDeleteAccountModalAction()}>
                     <BsTrash />
                 </ProfileActionWrapper>
 
-                {/* DELETE ACCOUNT MODAL */}
-                <ModalContainer
-                    className="red"
-                    isOpen={showDeleteModal} onRequestClose={() => closeDeleteAccountModalAction()}
-                    closeTimeoutMS={200}
-                    contentLabel="modal"
-                >
-                    <ModalCircle className="red">
-                        <BsTrash />
-                    </ModalCircle>
-                    <ModalAction>Delete Account?</ModalAction>
-
-                    <ErrorMessage error={errorMessage} />
-
-                    <ModalDetails>You will permanently lose your:</ModalDetails>
-                    <ul>
-                        <li>Profile</li>
-                        <li>Projects</li>
-                        <li>Tickets</li>
-                    </ul>
-
-                    <ModalDetails>This action cannot be undone</ModalDetails>
-
-                    <ModalButtonContainer>
-                        <Button
-                        className="red"
-                        onClick={() => deleteUserAction(getUserId())}
-                        text={"Delete Account"}
-                        />
-                    </ModalButtonContainer>
-
-                    <ModalButtonContainer>
-                        <Button
-                        className="red secondary"
-                        onClick={() => closeDeleteAccountModalAction()}
-                        text={"Cancel"}
-                        />
-                    </ModalButtonContainer>
-
-                </ModalContainer>
+                {showDeleteModal ? <DeleteModal pageType={"profile"} /> : null}
 
                 <ProfileActionWrapper onClick={() => openEditAccountModalAction()}>
                     <BsPencil />

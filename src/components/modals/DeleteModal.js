@@ -55,7 +55,7 @@ const DeleteModal = props => {
                 closeThisModal = props.closeDeleteTicketModalAction();
                 break;
             case "profile":
-                closeThisModal = props.closeDeleteProjectModalAction();
+                closeThisModal = props.closeDeleteAccountModalAction();
                 break;
             default:
                 closeThisModal = null;
@@ -134,6 +134,18 @@ const DeleteModal = props => {
 
             {props.pageType === "project" ?
                 <ModalDetails>Related tickets will also be deleted</ModalDetails>
+                : null
+            }
+
+            {props.pageType === "profile" ?
+                <>
+                    <ModalDetails>You will permanently lose your:</ModalDetails>
+                    <ul>
+                        <li>Profile</li>
+                        <li>Projects</li>
+                        <li>Tickets</li>
+                    </ul>
+                </>
                 : null
             }
 
