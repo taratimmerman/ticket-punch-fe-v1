@@ -12,6 +12,7 @@ import { deleteUserAction } from '../../actions/userActions';
 import Button from '../../components/button/Button';
 import ErrorMessage from '../../components/errors/ErrorMessage';
 import { getUserId, getUsername } from '../../helpers/getUserInfo';
+import { capitalizeFirstLetter } from '../../helpers/humanizeString';
 import {
     ModalContainer,
     ModalCircle,
@@ -128,7 +129,7 @@ const DeleteModal = props => {
             <ModalCircle className="red">
                 <BsTrash />
             </ModalCircle>
-            <ModalAction>Delete<ModalItem className="red">{determineItemTitle(props.pageType)}</ModalItem>Project?</ModalAction>
+            <ModalAction>Delete<ModalItem className="red">{determineItemTitle(props.pageType)}</ModalItem>{capitalizeFirstLetter(`${props.pageType}?`)}</ModalAction>
 
             <ErrorMessage error={props.projectErrorMessage} />
 
