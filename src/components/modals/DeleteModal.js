@@ -118,6 +118,24 @@ const DeleteModal = props => {
         return deleteAction;
     };
 
+    const determineError = (type) => {
+        let errorMessage;
+        switch (type) {
+            case "project":
+                errorMessage = props.projectErrorMessage;
+                break;
+            case "ticket":
+                errorMessage = props.ticketErrorMessage;
+                break;
+            case "profile":
+                errorMessage = props.profileErrorMessage;
+                break;
+            default:
+                errorMessage = '';
+        }
+        return errorMessage;
+    };
+
     return (
         <ModalContainer
             className="red"
@@ -131,7 +149,7 @@ const DeleteModal = props => {
             </ModalCircle>
             <ModalAction>Delete<ModalItem className="red">{determineItemTitle(props.pageType)}</ModalItem>{capitalizeFirstLetter(`${props.pageType}?`)}</ModalAction>
 
-            <ErrorMessage error={props.projectErrorMessage} />
+            <ErrorMessage error={determineError(props.pageType)} />
 
             {props.pageType === "project" ?
                 <ModalDetails>Related tickets will also be deleted</ModalDetails>
@@ -191,6 +209,7 @@ DeleteModal.propTypes = {
     closeDeleteTicketModalAction: PropTypes.func,
     // Profile Props
     showDeleteAccountModal: PropTypes.bool,
+    profileErrorMessage: PropTypes.string,
     deleteUserAction: PropTypes.func,
     closeDeleteAccountModalAction: PropTypes.func,
     // Any page props
@@ -211,7 +230,7 @@ const mapStateToProps = (state) => {
         ticketErrorMessage: state.ticketReducer.error,
         // Profile Props
         showDeleteAccountModal: state.modalReducer.showDeleteAccountModal,
-        accountErrorMessage: state.userReducer.error
+        profileErrorMessage: state.userReducer.error
     };
 };
 

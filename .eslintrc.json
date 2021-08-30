@@ -44,6 +44,7 @@
                     "caseInsensitive": true
                 }
             }
-        ]
+        ],
+        "react/no-unused-prop-types": 1
     }
 }
