@@ -12,6 +12,7 @@ import { bindActionCreators } from 'redux';
 import { openDeleteTicketModalAction, closeDeleteTicketModalAction, openEditTicketModalAction, closeEditTicketModalAction } from '../actions/modalActions';
 import { getProjectByIdAction } from '../actions/projectActions';
 import { deleteTicketAction, editTicketAction } from '../actions/ticketActions';
+import DeleteModal from '../components/modals/DeleteModal';
 import { getUserId } from '../helpers/getUserInfo';
 import { capitalizeFirstLetter } from '../helpers/humanizeString';
 import {
@@ -170,40 +171,7 @@ const TicketCard = props => {
             </ContentWrapper>
 
             {/* DELETE TICKET MODAL */}
-            <ModalContainer
-                className="red"
-                isOpen={props.showDeleteModal} onRequestClose={() => props.closeDeleteTicketModalAction()}
-                closeTimeoutMS={200}
-                contentLabel="modal"
-            >
-                <ModalCircle className="red">
-                    <BsTrash />
-                </ModalCircle>
-                <ModalAction>Delete <ModalItem className="red">{`${props.ticketTitle}`}</ModalItem> Ticket?</ModalAction>
-
-                <ErrorMessage error={props.errorMessage} />
-
-                <SubActionContainer>
-                    <SubAction>This action cannot be undone</SubAction>
-                </SubActionContainer>
-
-                <ModalButtonContainer>
-                    <Button
-                        className="red"
-                        onClick={() => props.deleteTicketAction(props.ticketId)}
-                        text={"Delete Ticket"}
-                    />
-                </ModalButtonContainer>
-
-                <ModalButtonContainer>
-                    <Button
-                        className="red secondary"
-                        onClick={() => props.closeDeleteTicketModalAction()}
-                        text={"Cancel"}
-                    />
-                </ModalButtonContainer>
-
-            </ModalContainer>
+            {props.showDeleteModal ? <DeleteModal pageType={"ticket"} /> : null}
 
             {/* EDIT TICKET MODAL */}
             <ModalContainer

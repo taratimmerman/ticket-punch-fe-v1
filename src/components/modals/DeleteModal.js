@@ -101,7 +101,7 @@ const DeleteModal = props => {
 
     const deleteItem = (type, id) => {
         let deleteAction;
-        switch(type) {
+        switch (type) {
             case "project":
                 deleteAction = props.deleteProjectAction(id);
                 break;
@@ -132,7 +132,10 @@ const DeleteModal = props => {
 
             <ErrorMessage error={props.projectErrorMessage} />
 
-            <ModalDetails>Related tickets will also be deleted</ModalDetails>
+            {props.pageType === "project" ?
+                <ModalDetails>Related tickets will also be deleted</ModalDetails>
+                : null
+            }
 
             <SubActionContainer>
                 <SubAction>This action cannot be undone</SubAction>
