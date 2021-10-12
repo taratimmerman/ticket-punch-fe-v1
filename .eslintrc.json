@@ -1,12 +1,14 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true
     },
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
-        "plugin:import/recommended"
+        "plugin:import/recommended",
+        "airbnb"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -19,7 +21,6 @@
         "react"
     ],
     "rules": {
-        "semi": 1,
         "import/order": [
             "error",
             {
@@ -45,6 +46,8 @@
                 }
             }
         ],
-        "react/no-unused-prop-types": 1
+        "linebreak-style": ["off", "windows"],
+        "react/jsx-props-no-spreading": 0,
+        "react/require-default-props": 0
     }
 }

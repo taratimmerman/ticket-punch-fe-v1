@@ -36,99 +36,99 @@ export const CLOSE_EDIT_ACCOUNT = 'CLOSE_EDIT_ACCOUNT_MODAL';
 // MODAL ACTION CREATORS
 
 // Login Modal
-export const openLoginModalAction = () => dispatch => {
-    dispatch({ type: SHOW_LOGIN });
+export const openLoginModalAction = () => (dispatch) => {
+  dispatch({ type: SHOW_LOGIN });
 };
 
-export const closeLoginModalAction = () => dispatch => {
-    dispatch({ type: CLOSE_LOGIN });
+export const closeLoginModalAction = () => (dispatch) => {
+  dispatch({ type: CLOSE_LOGIN });
 };
 
 // Welcome Modal
-export const openWelcomeModalAction = () => dispatch => {
-    dispatch({ type: SHOW_WELCOME });
+export const openWelcomeModalAction = () => (dispatch) => {
+  dispatch({ type: SHOW_WELCOME });
 };
 
-export const closeWelcomeModalAction = () => dispatch => {
-    dispatch({ type: CLOSE_WELCOME });
+export const closeWelcomeModalAction = () => (dispatch) => {
+  dispatch({ type: CLOSE_WELCOME });
 };
 
 // Help Modal
-export const openHelpModalAction = () => dispatch => {
-    dispatch({ type: SHOW_HELP });
+export const openHelpModalAction = () => (dispatch) => {
+  dispatch({ type: SHOW_HELP });
 };
 
-export const closeHelpModalAction = () => dispatch => {
-    dispatch({ type: CLOSE_HELP });
+export const closeHelpModalAction = () => (dispatch) => {
+  dispatch({ type: CLOSE_HELP });
 };
 
 // Add Project Modal
-export const openAddProjectModalAction = () => dispatch => {
-    dispatch({ type: SHOW_ADD_PROJECT });
+export const openAddProjectModalAction = () => (dispatch) => {
+  dispatch({ type: SHOW_ADD_PROJECT });
 };
 
-export const closeAddProjectModalAction = () => dispatch => {
-    dispatch({ type: CLOSE_ADD_PROJECT });
+export const closeAddProjectModalAction = () => (dispatch) => {
+  dispatch({ type: CLOSE_ADD_PROJECT });
 };
 
 // Delete Project Modal
-export const openDeleteProjectModalAction = () => dispatch => {
-    dispatch({ type: SHOW_DELETE_PROJECT });
+export const openDeleteProjectModalAction = () => (dispatch) => {
+  dispatch({ type: SHOW_DELETE_PROJECT });
 };
 
-export const closeDeleteProjectModalAction = () => dispatch => {
-    dispatch({ type: CLOSE_DELETE_PROJECT});
+export const closeDeleteProjectModalAction = () => (dispatch) => {
+  dispatch({ type: CLOSE_DELETE_PROJECT });
 };
 
 // Edit Project Modal
-export const openEditProjectModalAction = () => dispatch => {
-    dispatch({ type: SHOW_EDIT_PROJECT });
+export const openEditProjectModalAction = () => (dispatch) => {
+  dispatch({ type: SHOW_EDIT_PROJECT });
 };
 
-export const closeEditProjectModalAction = () => dispatch => {
-    dispatch({ type: CLOSE_EDIT_PROJECT });
+export const closeEditProjectModalAction = () => (dispatch) => {
+  dispatch({ type: CLOSE_EDIT_PROJECT });
 };
 
 // Add Ticket Modal
-export const openAddTicketModalAction = () => dispatch => {
-    dispatch({ type: SHOW_ADD_TICKET });
+export const openAddTicketModalAction = () => (dispatch) => {
+  dispatch({ type: SHOW_ADD_TICKET });
 };
 
-export const closeAddTicketModalAction = () => dispatch => {
-    dispatch({ type: CLOSE_ADD_TICKET });
+export const closeAddTicketModalAction = () => (dispatch) => {
+  dispatch({ type: CLOSE_ADD_TICKET });
 };
 
 // Delete Ticket Modal
-export const openDeleteTicketModalAction = () => dispatch => {
-    dispatch({ type: SHOW_DELETE_TICKET });
+export const openDeleteTicketModalAction = () => (dispatch) => {
+  dispatch({ type: SHOW_DELETE_TICKET });
 };
 
-export const closeDeleteTicketModalAction = () => dispatch => {
-    dispatch({ type: CLOSE_DELETE_TICKET });
+export const closeDeleteTicketModalAction = () => (dispatch) => {
+  dispatch({ type: CLOSE_DELETE_TICKET });
 };
 
 // Edit Ticket Modal
-export const openEditTicketModalAction = () => dispatch => {
-    dispatch({ type: SHOW_EDIT_TICKET });
+export const openEditTicketModalAction = () => (dispatch) => {
+  dispatch({ type: SHOW_EDIT_TICKET });
 };
 
-export const closeEditTicketModalAction = () => dispatch => {
-    dispatch({ type: CLOSE_EDIT_TICKET });
+export const closeEditTicketModalAction = () => (dispatch) => {
+  dispatch({ type: CLOSE_EDIT_TICKET });
 };
 
 // Delete Account Modal
-export const openDeleteAccountModalAction = () => dispatch => {
-    dispatch({ type: SHOW_DELETE_ACCOUNT });
+export const openDeleteAccountModalAction = () => (dispatch) => {
+  dispatch({ type: SHOW_DELETE_ACCOUNT });
 };
 
-export const closeDeleteAccountModalAction = () => dispatch => {
-    dispatch({ type: CLOSE_DELETE_ACCOUNT });
+export const closeDeleteAccountModalAction = () => (dispatch) => {
+  dispatch({ type: CLOSE_DELETE_ACCOUNT });
 };
 
 // Edit Account Modal
-export const openEditAccountModalAction = () => dispatch => {
-    dispatch({ type: SHOW_EDIT_ACCOUNT });
+export const openEditAccountModalAction = () => (dispatch) => {
+  dispatch({ type: SHOW_EDIT_ACCOUNT });
 };
-export const closeEditAccountModalAction = () => dispatch => {
-    dispatch({ type: CLOSE_EDIT_ACCOUNT });
+export const closeEditAccountModalAction = () => (dispatch) => {
+  dispatch({ type: CLOSE_EDIT_ACCOUNT });
 };

@@ -1,6 +1,10 @@
 import { API_URL, axiosWithAuth } from '../helpers/axiosWithAuth';
 import { getUserId } from '../helpers/getUserInfo';
-import { closeAddProjectModalAction, closeDeleteProjectModalAction, closeEditProjectModalAction } from './modalActions';
+import {
+  closeAddProjectModalAction,
+  closeDeleteProjectModalAction,
+  closeEditProjectModalAction,
+} from './modalActions';
 
 // PROJECT ACTION TYPES (CONSTANTS)
 
@@ -28,107 +32,125 @@ export const TARGET_PROJECT = 'PROJECTS_TARGET_PROJECT';
 
 // PROJECT ACTION CREATORS
 
-export const getAllProjectsByUserAction = userId => dispatch => {
-    dispatch({ type: GETALL_REQUEST });
+export const getAllProjectsByUserAction = (userId) => (dispatch) => {
+  dispatch({ type: GETALL_REQUEST });
 
-    axiosWithAuth()
-        .get(`${API_URL}/projects/user/${userId}`)
-        .then(res => {
-            dispatch({
-                type: GETALL_SUCCESS,
-                payload: res.data
-            });
-        })
-        .catch(err => {
-            dispatch({
-                type: GETALL_FAILURE,
-                payload: err.message
-            });
-        });
+  axiosWithAuth()
+    .get(`${API_URL}/projects/user/${userId}`)
+    .then((res) => {
+      dispatch({
+        type: GETALL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: GETALL_FAILURE,
+        payload: err.message,
+      });
+    });
 };
 
-export const getProjectByIdAction = projectId => dispatch => {
-    dispatch({ type: GETPROJECT_REQUEST });
+export const getProjectByIdAction = (projectId) => (dispatch) => {
+  dispatch({ type: GETPROJECT_REQUEST });
 
-    axiosWithAuth()
-        .get(`${API_URL}/projects/${projectId}`)
-        .then(res => {
-            dispatch({
-                type: GETPROJECT_SUCCESS,
-                payload: res.data
-            });
-        })
-        .catch(err => {
-            dispatch({
-                type: GETPROJECT_FAILURE,
-                payload: err.message
-            });
-        });
+  axiosWithAuth()
+    .get(`${API_URL}/projects/${projectId}`)
+    .then((res) => {
+      dispatch({
+        type: GETPROJECT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: GETPROJECT_FAILURE,
+        payload: err.message,
+      });
+    });
 };
 
-export const createProjectAction = (user_id, title, description, status) => dispatch => {
-    dispatch({ type: CREATEPROJECT_REQUEST });
+export const createProjectAction = (userId, title, description, status) => (dispatch) => {
+  dispatch({ type: CREATEPROJECT_REQUEST });
 
-    axiosWithAuth()
-        .post(`${API_URL}/projects`, { user_id, title, description, status })
-        .then(res => {
-            dispatch({
-                type: CREATEPROJECT_SUCCESS,
-                payload: res.data
-            });
-            dispatch(closeAddProjectModalAction());
-            dispatch(getAllProjectsByUserAction(getUserId()));
-        })
-        .catch(err => {
-            dispatch({
-                type: CREATEPROJECT_FAILURE,
-                payload: err.message
-            });
-        });
+  axiosWithAuth()
+    .post(`${API_URL}/projects`, {
+      userId, title, description, status,
+    })
+    .then((res) => {
+      dispatch({
+        type: CREATEPROJECT_SUCCESS,
+        payload: res.data,
+      });
+      dispatch(closeAddProjectModalAction());
+      dispatch(getAllProjectsByUserAction(getUserId()));
+    })
+    .catch((err) => {
+      dispatch({
+        type: CREATEPROJECT_FAILURE,
+        payload: err.message,
+      });
+    });
 };
 
-export const editProjectAction = (id, user_id, title, description, status, archived) => dispatch => {
-    dispatch({ type: UPDATEPROJECT_REQUEST });
+export const editProjectAction = (
+  id,
+  userId,
+  title,
+  description,
+  status,
+  archived,
+) => (dispatch) => {
+  dispatch({ type: UPDATEPROJECT_REQUEST });
 
-    axiosWithAuth()
-        .put(`${API_URL}/projects/${id}`, { user_id, title, description, status, archived })
-        .then(res => {
-            dispatch({
-                type: UPDATEPROJECT_SUCCESS,
-                payload: res.data
-            });
-            dispatch(closeEditProjectModalAction());
-            dispatch(getAllProjectsByUserAction(getUserId()));
-        })
-        .catch(err => {
-            dispatch({
-                type: UPDATEPROJECT_FAILURE,
-                payload: err.message
-            });
-        });
+  axiosWithAuth()
+    .put(`${API_URL}/projects/${id}`, {
+      userId, title, description, status, archived,
+    })
+    .then((res) => {
+      dispatch({
+        type: UPDATEPROJECT_SUCCESS,
+        payload: res.data,
+      });
+      dispatch(closeEditProjectModalAction());
+      dispatch(getAllProjectsByUserAction(getUserId()));
+    })
+    .catch((err) => {
+      dispatch({
+        type: UPDATEPROJECT_FAILURE,
+        payload: err.message,
+      });
+    });
 };
 
-export const deleteProjectAction = projectId => dispatch => {
-    dispatch({ type: DELETEPROJECT_REQUEST });
+export const deleteProjectAction = (projectId) => (dispatch) => {
+  dispatch({ type: DELETEPROJECT_REQUEST });
 
-    axiosWithAuth()
-        .delete(`${API_URL}/projects/${projectId}`)
-        .then(res => {
-            dispatch({
-                type: DELETEPROJECT_SUCCESS,
-                payload: res.data
-            });
-            dispatch(closeDeleteProjectModalAction());
-            dispatch(getAllProjectsByUserAction(getUserId()));
-        })
-        .catch(err => {
-            dispatch({
-                type: DELETEPROJECT_FAILURE,
-                payload: err.message
-            });
-        });
+  axiosWithAuth()
+    .delete(`${API_URL}/projects/${projectId}`)
+    .then((res) => {
+      dispatch({
+        type: DELETEPROJECT_SUCCESS,
+        payload: res.data,
+      });
+      dispatch(closeDeleteProjectModalAction());
+      dispatch(getAllProjectsByUserAction(getUserId()));
+    })
+    .catch((err) => {
+      dispatch({
+        type: DELETEPROJECT_FAILURE,
+        payload: err.message,
+      });
+    });
 };
 
-export const targetProjectAction = (projectId, projectTitle, projectDescription, projectStatus) => dispatch => {
-    dispatch({ type: TARGET_PROJECT, projectId, projectTitle, projectDescription, projectStatus });
+export const targetProjectAction = (
+  projectId,
+  projectTitle,
+  projectDescription,
+  projectStatus,
+) => (dispatch) => {
+  dispatch({
+    type: TARGET_PROJECT, projectId, projectTitle, projectDescription, projectStatus,
+  });
 };

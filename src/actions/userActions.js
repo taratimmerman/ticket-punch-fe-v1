@@ -1,8 +1,14 @@
 import axios from 'axios';
 
+// eslint-disable-next-line import/no-cycle
 import { history } from '../App';
 import { API_URL, axiosWithAuth } from '../helpers/axiosWithAuth';
-import { closeLoginModalAction, closeWelcomeModalAction, closeEditAccountModalAction, closeDeleteAccountModalAction } from './modalActions';
+import {
+  closeLoginModalAction,
+  closeWelcomeModalAction,
+  closeEditAccountModalAction,
+  closeDeleteAccountModalAction,
+} from './modalActions';
 
 // USER ACTION TYPES
 
@@ -34,130 +40,130 @@ export const DELETE_FAILURE = 'USERS_DELETE_FAILURE';
 
 // USER ACTION CREATORS
 
-export const loginUserAction = (email, password) => dispatch => {
-    dispatch({ type: LOGIN_REQUEST });
+export const loginUserAction = (email, password) => (dispatch) => {
+  dispatch({ type: LOGIN_REQUEST });
 
-    axios
-        .post(`${API_URL}/auth/login`, { email, password })
-        .then(res => {
-            dispatch({
-                type: LOGIN_SUCCESS,
-                payload: res.data
-            });
-            window.localStorage.setItem('user', JSON.stringify(res.data));
-            dispatch(closeLoginModalAction());
-            history.push('/projects');
-        })
-        .catch(err => {
-            dispatch({
-                type: LOGIN_FAILURE,
-                payload: err.message
-            });
-        });
+  axios
+    .post(`${API_URL}/auth/login`, { email, password })
+    .then((res) => {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data,
+      });
+      window.localStorage.setItem('user', JSON.stringify(res.data));
+      dispatch(closeLoginModalAction());
+      history.push('/projects');
+    })
+    .catch((err) => {
+      dispatch({
+        type: LOGIN_FAILURE,
+        payload: err.message,
+      });
+    });
 };
 
-export const logoutUserAction = () => dispatch => {
-    dispatch({ type: LOGOUT });
-    localStorage.removeItem('user');
-    history.push('/login');
+export const logoutUserAction = () => (dispatch) => {
+  dispatch({ type: LOGOUT });
+  localStorage.removeItem('user');
+  history.push('/login');
 };
 
-export const registerUserAction = (email, password) => dispatch => {
-    dispatch({ type: REGISTER_REQUEST });
+export const registerUserAction = (email, password) => (dispatch) => {
+  dispatch({ type: REGISTER_REQUEST });
 
-    axios
-        .post(`${API_URL}/auth/register`, { email, password })
-        .then(res => {
-            dispatch({
-                type: REGISTER_SUCCESS,
-                payload: res.data
-            });
-            dispatch(loginUserAction(email, password));
-            dispatch(closeWelcomeModalAction());
-        })
-        .catch(err => {
-            dispatch({
-                type: REGISTER_FAILURE,
-                payload: err.message
-            });
-        });
+  axios
+    .post(`${API_URL}/auth/register`, { email, password })
+    .then((res) => {
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data,
+      });
+      dispatch(loginUserAction(email, password));
+      dispatch(closeWelcomeModalAction());
+    })
+    .catch((err) => {
+      dispatch({
+        type: REGISTER_FAILURE,
+        payload: err.message,
+      });
+    });
 };
 
-export const getAllUsersAction = () => dispatch => {
-    dispatch({ type: GETALL_REQUEST });
+export const getAllUsersAction = () => (dispatch) => {
+  dispatch({ type: GETALL_REQUEST });
 
-    axiosWithAuth()
-        .get(`${API_URL}/users`)
-        .then(res => {
-            dispatch({
-                type: GETALL_SUCCESS,
-                payload: res.data
-            });
-        })
-        .catch(err => {
-            dispatch({
-                type: GETALL_FAILURE,
-                payload: err.message
-            });
-        });
+  axiosWithAuth()
+    .get(`${API_URL}/users`)
+    .then((res) => {
+      dispatch({
+        type: GETALL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: GETALL_FAILURE,
+        payload: err.message,
+      });
+    });
 };
 
-export const getUserByIdAction = userId => dispatch => {
-    dispatch({ type: GETUSER_REQUEST });
+export const getUserByIdAction = (userId) => (dispatch) => {
+  dispatch({ type: GETUSER_REQUEST });
 
-    axiosWithAuth()
-        .get(`${API_URL}/users/${userId}`)
-        .then(res => {
-            dispatch({
-                type: GETUSER_SUCCESS,
-                payload: res.data
-            });
-        })
-        .catch(err => {
-            dispatch({
-                type: GETUSER_FAILURE,
-                payload: err.message
-            });
-        });
+  axiosWithAuth()
+    .get(`${API_URL}/users/${userId}`)
+    .then((res) => {
+      dispatch({
+        type: GETUSER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: GETUSER_FAILURE,
+        payload: err.message,
+      });
+    });
 };
 
-export const updateUserAction = (userId, email, password) => dispatch => {
-    dispatch({ type: UPDATE_REQUEST });
+export const updateUserAction = (userId, email, password) => (dispatch) => {
+  dispatch({ type: UPDATE_REQUEST });
 
-    axiosWithAuth()
-        .put(`${API_URL}/users/${userId}`, { email, password })
-        .then(res => {
-            dispatch({
-                type: UPDATE_SUCCESS,
-                payload: res.data
-            });
-            dispatch(closeEditAccountModalAction());
-        })
-        .catch(err => {
-            dispatch({
-                type: UPDATE_FAILURE,
-                payload: err.message
-            });
-        });
+  axiosWithAuth()
+    .put(`${API_URL}/users/${userId}`, { email, password })
+    .then((res) => {
+      dispatch({
+        type: UPDATE_SUCCESS,
+        payload: res.data,
+      });
+      dispatch(closeEditAccountModalAction());
+    })
+    .catch((err) => {
+      dispatch({
+        type: UPDATE_FAILURE,
+        payload: err.message,
+      });
+    });
 };
 
-export const deleteUserAction = userId => dispatch => {
-    dispatch({ type: DELETE_REQUEST });
+export const deleteUserAction = (userId) => (dispatch) => {
+  dispatch({ type: DELETE_REQUEST });
 
-    axiosWithAuth()
-        .delete(`${API_URL}/users/${userId}`)
-        .then(res => {
-            dispatch({
-                type: DELETE_SUCCESS,
-                payload: res.data
-            });
-            dispatch(closeDeleteAccountModalAction());
-            dispatch(logoutUserAction());
-        })
-        .catch(err => {
-            dispatch({
-                type: DELETE_FAILURE,
-                payload: err.message
-            });
-        });
+  axiosWithAuth()
+    .delete(`${API_URL}/users/${userId}`)
+    .then((res) => {
+      dispatch({
+        type: DELETE_SUCCESS,
+        payload: res.data,
+      });
+      dispatch(closeDeleteAccountModalAction());
+      dispatch(logoutUserAction());
+    })
+    .catch((err) => {
+      dispatch({
+        type: DELETE_FAILURE,
+        payload: err.message,
+      });
+    });
 };

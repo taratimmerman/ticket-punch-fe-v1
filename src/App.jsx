@@ -5,19 +5,25 @@ import { createBrowserHistory } from 'history';
 import {
   Router,
   Switch,
-  Route
-} from "react-router-dom";
+  Route,
+} from 'react-router-dom';
 import {
   CSSTransition,
   TransitionGroup,
 } from 'react-transition-group';
 
 import Navbar from './components/Navbar';
+// eslint-disable-next-line import/no-cycle
 import History from './pages/History';
+// eslint-disable-next-line import/no-cycle
 import Login from './pages/Login';
+// eslint-disable-next-line import/no-cycle
 import Profile from './pages/Profile';
+// eslint-disable-next-line import/no-cycle
 import Projects from './pages/Projects';
+// eslint-disable-next-line import/no-cycle
 import Tickets from './pages/Tickets';
+// eslint-disable-next-line import/no-cycle
 import Welcome from './pages/Welcome';
 
 export const history = createBrowserHistory();
@@ -31,7 +37,8 @@ function App() {
           <CSSTransition
             key={location.key}
             timeout={250}
-            classNames="fade">
+            classNames="fade"
+          >
             <Switch location={location}>
               <Route path="/projects" component={Projects} />
 
@@ -47,7 +54,8 @@ function App() {
             </Switch>
           </CSSTransition>
         </TransitionGroup>
-      )} />
+      )}
+      />
     </Router>
   );
 }
