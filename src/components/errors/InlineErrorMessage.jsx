@@ -3,17 +3,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { MdError } from 'react-icons/md';
 
-const InlineErrorMessage = ({ pMessage }) => (
+const InlineErrorMessage = ({ inlineErrorMessage }) => (
   <article>
     <div>
       <MdError />
     </div>
-    <p>{pMessage}</p>
+    <p>{inlineErrorMessage}</p>
   </article>
 );
 
 InlineErrorMessage.propTypes = {
-  pMessage: PropTypes.string,
+  inlineErrorMessage: PropTypes.string,
 };
 
 export default InlineErrorMessage;
