@@ -51,12 +51,12 @@ table {
 
 /* Page Transitions */
 
-.page{
+/* .page{
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
-  }
+  } */
   
   .fade-appear,
   .fade-enter {

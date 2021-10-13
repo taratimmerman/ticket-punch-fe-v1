@@ -70,12 +70,13 @@ export const getProjectByIdAction = (projectId) => (dispatch) => {
     });
 };
 
-export const createProjectAction = (userId, title, description, status) => (dispatch) => {
+// eslint-disable-next-line camelcase
+export const createProjectAction = (user_id, title, description, status) => (dispatch) => {
   dispatch({ type: CREATEPROJECT_REQUEST });
 
   axiosWithAuth()
     .post(`${API_URL}/projects`, {
-      userId, title, description, status,
+      user_id, title, description, status,
     })
     .then((res) => {
       dispatch({
@@ -95,7 +96,8 @@ export const createProjectAction = (userId, title, description, status) => (disp
 
 export const editProjectAction = (
   id,
-  userId,
+  // eslint-disable-next-line camelcase
+  user_id,
   title,
   description,
   status,
@@ -105,7 +107,7 @@ export const editProjectAction = (
 
   axiosWithAuth()
     .put(`${API_URL}/projects/${id}`, {
-      userId, title, description, status, archived,
+      user_id, title, description, status, archived,
     })
     .then((res) => {
       dispatch({

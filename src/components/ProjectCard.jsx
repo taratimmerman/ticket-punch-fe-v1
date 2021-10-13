@@ -40,6 +40,7 @@ const ProjectCard = ({
   openDeleteProjectModal,
   openEditProjectModal,
   closeEditProjectModal,
+  editProject,
 }) => {
   const {
     register,
@@ -63,7 +64,7 @@ const ProjectCard = ({
     const { statusEdit } = projectEdits;
     const archivedEdit = projectEdits.status === 'archived';
 
-    editProjectAction(
+    editProject(
       idEdit,
       userIdEdit,
       titleEdit,
@@ -142,6 +143,7 @@ const ProjectCard = ({
         onRequestClose={() => closeEditProjectModal()}
         closeTimeoutMS={200}
         contentLabel="modal"
+        ariaHideApp={false}
       >
         <h3>
           Edit
@@ -223,18 +225,15 @@ ProjectCard.propTypes = {
   projectTitle: PropTypes.string,
   projectDescription: PropTypes.string,
   projectStatus: PropTypes.string,
-  deleteProjectAction: PropTypes.func,
-  openDeleteProjectModalAction: PropTypes.func,
-  closeDeleteProjectModalAction: PropTypes.func,
-  showDeleteModal: PropTypes.bool,
-  editProjectAction: PropTypes.func,
-  openEditProjectModalAction: PropTypes.func,
-  closeEditProjectModalAction: PropTypes.func,
-  showEditModal: PropTypes.bool,
-  errorMessage: PropTypes.string,
+  deleteProject: PropTypes.func,
   openDeleteProjectModal: PropTypes.func,
+  closeDeleteProjectModal: PropTypes.func,
+  showDeleteModal: PropTypes.bool,
+  editProject: PropTypes.func,
   openEditProjectModal: PropTypes.func,
   closeEditProjectModal: PropTypes.func,
+  showEditModal: PropTypes.bool,
+  errorMessage: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({

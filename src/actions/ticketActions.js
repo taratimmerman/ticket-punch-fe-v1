@@ -71,7 +71,8 @@ export const getTicketByIdAction = (ticketId) => (dispatch) => {
 };
 
 export const createTicketAction = (
-  userId,
+  // eslint-disable-next-line camelcase
+  user_id,
   title,
   description,
   status,
@@ -82,7 +83,7 @@ export const createTicketAction = (
 
   axiosWithAuth()
     .post(`${API_URL}/tickets`, {
-      userId, title, description, status, bug, projectId,
+      user_id, title, description, status, bug, projectId,
     })
     .then((res) => {
       dispatch({
@@ -102,7 +103,8 @@ export const createTicketAction = (
 
 export const editTicketAction = (
   id,
-  userId,
+  // eslint-disable-next-line camelcase
+  user_id,
   projectId,
   title,
   description,
@@ -113,7 +115,7 @@ export const editTicketAction = (
 
   axiosWithAuth()
     .put(`${API_URL}/tickets/${id}`, {
-      userId, projectId, title, description, status, bug, archived,
+      user_id, projectId, title, description, status, bug, archived,
     })
     .then((res) => {
       dispatch({

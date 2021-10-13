@@ -114,6 +114,7 @@ const Profile = ({
           onRequestClose={() => closeEditAccountModal()}
           closeTimeoutMS={200}
           contentLabel="modal"
+          ariaHideApp={false}
         >
           <h4>
             Edit

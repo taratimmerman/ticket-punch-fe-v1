@@ -148,6 +148,7 @@ const DeleteModal = ({
       onRequestClose={() => closeDeleteModal(pageType)}
       closeTimeoutMS={200}
       contentLabel="modal"
+      ariaHideApp={false}
     >
       <h4>
         Delete

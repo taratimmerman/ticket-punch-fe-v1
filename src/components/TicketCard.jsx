@@ -45,6 +45,7 @@ const TicketCard = ({
   openDeleteTicketModal,
   openEditTicketModal,
   closeEditTicketModal,
+  editTicket,
 }) => {
   const {
     register, handleSubmit, reset, formState: { errors },
@@ -66,11 +67,23 @@ const TicketCard = ({
     const projectIdEdits = parseInt(ticketEdits.projectTitle, 10);
     const titleEdits = ticketEdits.title.trim();
     const descriptionEdits = ticketEdits.description.trim();
-    const { statusEdits } = ticketEdits;
+    const statusEdits = ticketEdits.status;
     const bugEdits = ticketEdits.bug === 'true';
     const archivedEdits = ticketEdits.status === 'archived';
 
-    editTicketAction(
+    // eslint-disable-next-line no-console
+    console.log(
+      idEdits,
+      userIdEdits,
+      projectIdEdits,
+      titleEdits,
+      descriptionEdits,
+      statusEdits,
+      bugEdits,
+      archivedEdits,
+    );
+
+    editTicket(
       idEdits,
       userIdEdits,
       projectIdEdits,
@@ -164,6 +177,7 @@ const TicketCard = ({
         onRequestClose={() => closeEditTicketModal()}
         closeTimeoutMS={200}
         contentLabel="modal"
+        ariaHideApp={false}
       >
         <h4>
           Edit

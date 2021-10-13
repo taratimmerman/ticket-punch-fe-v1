@@ -97,6 +97,7 @@ const Projects = ({
         onRequestClose={() => closeModal()}
         closeTimeoutMS={200}
         contentLabel="modal"
+        ariaHideApp={false}
       >
         <h4>Add Project</h4>
 
