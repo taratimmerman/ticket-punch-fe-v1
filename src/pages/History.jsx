@@ -25,9 +25,9 @@ function History({
 
   return (
     <section className="page">
-      <heading>
+      <header>
         <h1>History</h1>
-      </heading>
+      </header>
       <article>
         <article className="archive">
           <h2>Archived Projects</h2>
