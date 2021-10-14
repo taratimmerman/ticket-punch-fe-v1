@@ -58,6 +58,7 @@ function Login({
       shouldCloseOnOverlayClick={false}
       closeTimeoutMS={200}
       contentLabel="modal"
+      ariaHideApp={false}
     >
       <h1>Log in to your Ticket Punch account</h1>
 

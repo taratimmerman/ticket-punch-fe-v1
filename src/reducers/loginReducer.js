@@ -39,7 +39,10 @@ const loginReducer = (state = initialLoginState, action) => {
         status: 'Failed',
       };
     case LOGOUT:
-      return {};
+      return {
+        ...state,
+        loggedIn: false,
+      };
     default:
       return state;
   }

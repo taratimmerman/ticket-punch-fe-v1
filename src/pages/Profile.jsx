@@ -14,7 +14,6 @@ import {
 } from '../actions/modalActions';
 // eslint-disable-next-line import/no-cycle
 import {
-  logoutUserAction,
   getUserByIdAction,
   deleteUserAction,
   updateUserAction,
@@ -26,7 +25,6 @@ import DeleteModal from '../components/modals/DeleteModal';
 import { getUserId, getUsername } from '../helpers/getUserInfo';
 
 const Profile = ({
-  logout,
   getUserById,
   user,
   openDeleteAccountModal,
@@ -83,14 +81,6 @@ const Profile = ({
     <section className="page">
       <header>
         <h1>Profile</h1>
-        <button
-          type="button"
-          className="purple secondary"
-          onClick={() => logout()}
-          text="Log Out"
-        >
-          Log Out
-        </button>
       </header>
       <section>
         <h2>{getUsername()}</h2>
@@ -176,7 +166,6 @@ const Profile = ({
 };
 
 Profile.propTypes = {
-  logout: PropTypes.func,
   getUserById: PropTypes.func,
   // eslint-disable-next-line react/forbid-prop-types
   user: PropTypes.object,
@@ -202,7 +191,6 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  logout: logoutUserAction,
   getUserById: getUserByIdAction,
   updateUser: updateUserAction,
   openDeleteAccountModal: openDeleteAccountModalAction,
