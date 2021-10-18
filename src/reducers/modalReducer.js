@@ -1,6 +1,4 @@
 import {
-  SHOW_LOGIN,
-  CLOSE_LOGIN,
   SHOW_WELCOME,
   CLOSE_WELCOME,
   SHOW_HELP,
@@ -26,7 +24,6 @@ import {
 // INITIAL MODAL STATE
 
 const initialModalState = {
-  showUserLoginModal: true,
   showWelcomeModal: true,
   showHelpModal: false,
   showAddProjectModal: false,
@@ -43,18 +40,7 @@ const initialModalState = {
 
 const modalReducer = (state = initialModalState, action) => {
   switch (action.type) {
-    // LOGIN MODAL
-    case SHOW_LOGIN:
-      return {
-        ...state,
-        showUserLoginModal: true,
-      };
-    case CLOSE_LOGIN:
-      return {
-        ...state,
-        showUserLoginModal: false,
-      };
-      // WELCOME MODAL
+    // WELCOME MODAL
     case SHOW_WELCOME:
       return {
         ...state,

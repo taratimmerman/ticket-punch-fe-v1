@@ -1,8 +1,5 @@
 // MODAL ACTION TYPES (CONSTANTS)
 
-export const SHOW_LOGIN = 'SHOW_USER_LOGIN_MODAL';
-export const CLOSE_LOGIN = 'CLOSE_USER_LOGIN_MODAL';
-
 export const SHOW_WELCOME = 'SHOW_USER_WELCOME_MODAL';
 export const CLOSE_WELCOME = 'CLOSE_USER_WELCOME_MODAL';
 
@@ -34,15 +31,6 @@ export const SHOW_EDIT_ACCOUNT = 'SHOW_EDIT_ACCOUNT_MODAL';
 export const CLOSE_EDIT_ACCOUNT = 'CLOSE_EDIT_ACCOUNT_MODAL';
 
 // MODAL ACTION CREATORS
-
-// Login Modal
-export const openLoginModalAction = () => (dispatch) => {
-  dispatch({ type: SHOW_LOGIN });
-};
-
-export const closeLoginModalAction = () => (dispatch) => {
-  dispatch({ type: CLOSE_LOGIN });
-};
 
 // Welcome Modal
 export const openWelcomeModalAction = () => (dispatch) => {

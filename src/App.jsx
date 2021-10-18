@@ -12,6 +12,7 @@ import {
   TransitionGroup,
 } from 'react-transition-group';
 
+// eslint-disable-next-line import/no-cycle
 import Navbar from './components/Navbar';
 // eslint-disable-next-line import/no-cycle
 import History from './pages/History';

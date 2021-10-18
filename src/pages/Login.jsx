@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import Modal from 'react-modal';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
-import { openLoginModalAction } from '../actions/modalActions';
 // eslint-disable-next-line import/no-cycle
 import { loginUserAction } from '../actions/userActions';
 import ErrorMessage from '../components/errors/ErrorMessage';
@@ -16,13 +14,7 @@ import InlineErrorMessage from '../components/errors/InlineErrorMessage';
 function Login({
   loginAction,
   errorMessage,
-  openLoginAction,
-  showModal,
 }) {
-  useEffect(() => {
-    openLoginAction();
-  }, []);
-
   const { register, handleSubmit, formState: { errors } } = useForm({
     mode: 'onBlur',
   });
@@ -51,15 +43,7 @@ function Login({
   };
 
   return (
-    <Modal
-      className="purple"
-      isOpen={showModal}
-      onRequestClose={openLoginAction()}
-      shouldCloseOnOverlayClick={false}
-      closeTimeoutMS={200}
-      contentLabel="modal"
-      ariaHideApp={false}
-    >
+    <section>
       <h1>Log in to your Ticket Punch account</h1>
 
       <ErrorMessage error={errorMessage} />
@@ -80,6 +64,7 @@ function Login({
             ? <InlineErrorMessage inlineErrorMessage={errors.email.message} />
             : null}
         </label>
+        <br />
 
         <label
           htmlFor="password"
@@ -96,6 +81,7 @@ function Login({
             ? <InlineErrorMessage inlineErrorMessage={errors.password.message} />
             : null}
         </label>
+        <br />
 
         <button
           type="submit"
@@ -109,25 +95,21 @@ function Login({
         Don&apos;t have an account yet?
         <Link to="/">Sign up</Link>
       </div>
-    </Modal>
+    </section>
   );
 }
 
 Login.propTypes = {
   loginAction: PropTypes.func,
   errorMessage: PropTypes.string,
-  openLoginAction: PropTypes.func,
-  showModal: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({
   errorMessage: state.loginReducer.error,
-  showModal: state.modalReducer.showUserLoginModal,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   loginAction: loginUserAction,
-  openLoginAction: openLoginModalAction,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
