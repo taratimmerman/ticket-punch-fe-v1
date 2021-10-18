@@ -62,7 +62,7 @@ export const loginUserAction = (email, password) => (dispatch) => {
 export const logoutUserAction = () => (dispatch) => {
   dispatch({ type: LOGOUT });
   localStorage.removeItem('user');
-  history.push('/login');
+  history.push('/');
 };
 
 export const registerUserAction = (email, password) => (dispatch) => {

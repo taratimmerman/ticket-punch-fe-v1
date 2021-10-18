@@ -44,7 +44,7 @@ function Login({
 
   return (
     <section>
-      <h1>Log in to your Ticket Punch account</h1>
+      <h1>Ticket Punch</h1>
 
       <ErrorMessage error={errorMessage} />
 
@@ -57,7 +57,7 @@ function Login({
             type="email"
             {...register('email', LoginValidation.email)}
             name="email"
-            className={`purple ${errors.email ? 'error' : null}`}
+            className={`${errors.email ? 'error' : null}`}
             placeholder="name@company.com"
           />
           {errors.email
@@ -74,8 +74,8 @@ function Login({
             type="password"
             {...register('password', LoginValidation.password)}
             name="password"
-            className={`purple ${errors.password ? 'error' : null}`}
-            placeholder="Choose a password"
+            className={`${errors.password ? 'error' : null}`}
+            placeholder="Password"
           />
           {errors.password
             ? <InlineErrorMessage inlineErrorMessage={errors.password.message} />
@@ -85,15 +85,13 @@ function Login({
 
         <button
           type="submit"
-          className="purple extended"
-          text="Sign In"
         >
-          Submit
+          Log In
         </button>
       </form>
       <div>
         Don&apos;t have an account yet?
-        <Link to="/">Sign up</Link>
+        <Link to="/signup">Sign up</Link>
       </div>
     </section>
   );

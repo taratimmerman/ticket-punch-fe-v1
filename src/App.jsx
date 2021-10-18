@@ -49,9 +49,9 @@ function App() {
 
               <Route path="/profile" component={Profile} />
 
-              <Route path="/login" component={Login} />
+              <Route path="/signup" component={Welcome} />
 
-              <Route exact path="/" component={Welcome} />
+              <Route exact path="/" component={Login} />
             </Switch>
           </CSSTransition>
         </TransitionGroup>

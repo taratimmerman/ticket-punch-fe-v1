@@ -45,8 +45,8 @@ function Welcome({ registerAction, errorMessage }) {
 
   return (
     <section>
-      <h1>Welcome to Ticket Punch</h1>
-      <p>Let&apos;s get started</p>
+      <h1>Ticket Punch</h1>
+      <p>Sign up to track your project progress</p>
 
       <ErrorMessage error={errorMessage} />
 
@@ -54,12 +54,12 @@ function Welcome({ registerAction, errorMessage }) {
         <label
           htmlFor="email"
         >
-          Enter email
+          Email
           <input
             type="email"
             {...register('email', RegistrationValidation.email)}
             name="email"
-            className={`purple ${errors.email ? 'error' : null}`}
+            className={`${errors.email ? 'error' : null}`}
             placeholder="name@company.com"
           />
           {errors.email ? (
@@ -71,12 +71,12 @@ function Welcome({ registerAction, errorMessage }) {
         <label
           htmlFor="password"
         >
-          Enter password
+          Password
           <input
             type="password"
             {...register('password', RegistrationValidation.password)}
             name="password"
-            className={`purple ${errors.password ? 'error' : null}`}
+            className={`${errors.password ? 'error' : null}`}
             placeholder="Choose a password"
           />
           {errors.password ? (
@@ -87,16 +87,14 @@ function Welcome({ registerAction, errorMessage }) {
 
         <button
           type="submit"
-          className="purple extended"
-          text="Create Account"
         >
-          Create Account
+          Sign up
         </button>
       </form>
 
       <p>
         Already have an account?
-        <Link to="/login">Log in</Link>
+        <Link to="/">Log in</Link>
       </p>
     </section>
   );
