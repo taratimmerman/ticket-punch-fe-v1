@@ -45,7 +45,6 @@ function Welcome({ registerAction, errorMessage }) {
 
   return (
     <section>
-      <h1>Ticket Punch</h1>
       <p>Sign up to track your project progress</p>
 
       <ErrorMessage error={errorMessage} />
@@ -93,7 +92,7 @@ function Welcome({ registerAction, errorMessage }) {
       </form>
 
       <p>
-        Already have an account?
+        Have an account?
         <Link to="/">Log in</Link>
       </p>
     </section>

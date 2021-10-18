@@ -44,7 +44,6 @@ function Login({
 
   return (
     <section>
-      <h1>Ticket Punch</h1>
 
       <ErrorMessage error={errorMessage} />
 
@@ -90,7 +89,7 @@ function Login({
         </button>
       </form>
       <div>
-        Don&apos;t have an account yet?
+        Don&apos;t have an account?
         <Link to="/signup">Sign up</Link>
       </div>
     </section>
