@@ -1,6 +1,4 @@
 import {
-  SHOW_WELCOME,
-  CLOSE_WELCOME,
   SHOW_HELP,
   CLOSE_HELP,
   SHOW_ADD_PROJECT,
@@ -24,7 +22,6 @@ import {
 // INITIAL MODAL STATE
 
 const initialModalState = {
-  showWelcomeModal: true,
   showHelpModal: false,
   showAddProjectModal: false,
   showDeleteProjectModal: false,
@@ -40,18 +37,7 @@ const initialModalState = {
 
 const modalReducer = (state = initialModalState, action) => {
   switch (action.type) {
-    // WELCOME MODAL
-    case SHOW_WELCOME:
-      return {
-        ...state,
-        showWelcomeModal: true,
-      };
-    case CLOSE_WELCOME:
-      return {
-        ...state,
-        showWelcomeModal: false,
-      };
-      // HELP MODAL
+    // HELP MODAL
     case SHOW_HELP:
       return {
         ...state,

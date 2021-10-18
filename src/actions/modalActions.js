@@ -1,8 +1,5 @@
 // MODAL ACTION TYPES (CONSTANTS)
 
-export const SHOW_WELCOME = 'SHOW_USER_WELCOME_MODAL';
-export const CLOSE_WELCOME = 'CLOSE_USER_WELCOME_MODAL';
-
 export const SHOW_HELP = 'SHOW_HELP_MODAL';
 export const CLOSE_HELP = 'CLOSE_HELP_MODAL';
 
@@ -31,15 +28,6 @@ export const SHOW_EDIT_ACCOUNT = 'SHOW_EDIT_ACCOUNT_MODAL';
 export const CLOSE_EDIT_ACCOUNT = 'CLOSE_EDIT_ACCOUNT_MODAL';
 
 // MODAL ACTION CREATORS
-
-// Welcome Modal
-export const openWelcomeModalAction = () => (dispatch) => {
-  dispatch({ type: SHOW_WELCOME });
-};
-
-export const closeWelcomeModalAction = () => (dispatch) => {
-  dispatch({ type: CLOSE_WELCOME });
-};
 
 // Help Modal
 export const openHelpModalAction = () => (dispatch) => {

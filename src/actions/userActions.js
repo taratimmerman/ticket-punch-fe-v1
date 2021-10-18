@@ -4,7 +4,6 @@ import axios from 'axios';
 import { history } from '../App';
 import { API_URL, axiosWithAuth } from '../helpers/axiosWithAuth';
 import {
-  closeWelcomeModalAction,
   closeEditAccountModalAction,
   closeDeleteAccountModalAction,
 } from './modalActions';
@@ -77,7 +76,6 @@ export const registerUserAction = (email, password) => (dispatch) => {
         payload: res.data,
       });
       dispatch(loginUserAction(email, password));
-      dispatch(closeWelcomeModalAction());
     })
     .catch((err) => {
       dispatch({

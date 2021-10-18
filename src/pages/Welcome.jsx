@@ -1,37 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import Modal from 'react-modal';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
-import {
-  openWelcomeModalAction,
-  closeWelcomeModalAction,
-} from '../actions/modalActions';
 // eslint-disable-next-line import/no-cycle
 import { registerUserAction } from '../actions/userActions';
 import ErrorMessage from '../components/errors/ErrorMessage';
 import InlineErrorMessage from '../components/errors/InlineErrorMessage';
 
-const Welcome = ({
-  registerAction,
-  openModalAction,
-  closeModalAction,
-  showModal,
-  errorMessage,
-}) => {
-  useEffect(() => {
-    openModalAction();
-  }, []);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
+function Welcome({ registerAction, errorMessage }) {
+  const { register, handleSubmit, formState: { errors } } = useForm({
     mode: 'onBlur',
   });
 
@@ -63,14 +44,7 @@ const Welcome = ({
   };
 
   return (
-    <Modal
-      className="purple"
-      isOpen={showModal}
-      onRequestClose={() => closeModalAction()}
-      shouldCloseOnOverlayClick={false}
-      closeTimeoutMS={200}
-      contentLabel="modal"
-    >
+    <section>
       <h1>Welcome to Ticket Punch</h1>
       <p>Let&apos;s get started</p>
 
@@ -92,6 +66,7 @@ const Welcome = ({
             <InlineErrorMessage inlineErrorMessage={errors.email.message} />
           ) : null}
         </label>
+        <br />
 
         <label
           htmlFor="password"
@@ -108,6 +83,7 @@ const Welcome = ({
             <InlineErrorMessage inlineErrorMessage={errors.password.message} />
           ) : null}
         </label>
+        <br />
 
         <button
           type="submit"
@@ -122,27 +98,21 @@ const Welcome = ({
         Already have an account?
         <Link to="/login">Log in</Link>
       </p>
-    </Modal>
+    </section>
   );
-};
+}
 
 Welcome.propTypes = {
   registerAction: PropTypes.func,
-  openModalAction: PropTypes.func,
-  closeModalAction: PropTypes.func,
-  showModal: PropTypes.bool,
   errorMessage: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
-  showModal: state.modalReducer.showWelcomeModal,
   errorMessage: state.registrationReducer.error,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   registerAction: registerUserAction,
-  openModalAction: openWelcomeModalAction,
-  closeModalAction: closeWelcomeModalAction,
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Welcome);
